@@ -1,0 +1,14 @@
+.navbar{
+    width: 100%;
+    height: 43px;
+    display: flex;
+    background-color: #3b7adc;
+}
+
+.menu{
+    background-color: transparent;
+    padding: 5px;
+    border: 0;
+    cursor: pointer;
+    position: relative;
+}

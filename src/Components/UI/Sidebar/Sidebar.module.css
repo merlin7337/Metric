@@ -1,0 +1,23 @@
+.sidebar{
+    width: 220px;
+    height: calc(100vh - 44px);
+}
+
+.links{
+    display: flex;
+    flex-direction: column;
+}
+
+.link{
+    padding: 15px;
+    margin: 5px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 8px;
+}
+
+.link:hover{
+    border: 1px solid black;
+    border-radius: 8px;
+}

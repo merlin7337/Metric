@@ -1,0 +1,20 @@
+.modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+}
+
+.modalContent{
+    padding: 25px;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid black;
+    height: 150px;
+}
+
+.modal.active{
+    display: block;
+}

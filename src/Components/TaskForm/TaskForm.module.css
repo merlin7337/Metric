@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+}
+
+.input{
+    outline: none;
+    border: 1px solid white;
+
+    width: 100%;
+
+    padding: 5px 15px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: right;
+}
+
+.addTask{
+    margin-top: 5px;
+    padding: 5px 15px;
+    color: #ffffff;
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    background: #3B7ADC;
+    cursor: pointer;
+}
+
+.addTask:hover{
+    background: #2c5ca9;;
+}
+
+.cancel{
+    margin-top: 5px;
+    margin-right: 7px;
+    padding: 5px 15px;
+    color: #000000;
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.cancel:hover{
+    background: #e5e5e5;
+}
+
+.form{
+    display: none;
+}
+
+.form.active{
+    display: block;
+}
+
+.input:focus .form.active{
+    border: 1px solid #2cf;
+}
