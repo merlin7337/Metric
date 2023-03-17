@@ -3,8 +3,6 @@ import cl from './Task.module.scss'
 import more from '../../Images/UI Icons/more.svg'
 import { ReactSVG } from 'react-svg'
 import Popup from '../Popup/Popup'
-import moment from 'moment'
-
 const buttons = ["First button", "Second button", "Third button", "Fourth button"]
 
 export default function Task(props) {
@@ -12,31 +10,20 @@ export default function Task(props) {
 
   //priority logic
 
-  const checkboxClasses = [cl.checkbox]
-  if (props.priority === 1) {
-    checkboxClasses.push(cl.p1)
-  }
-  else if(props.priority === 2) {
-    checkboxClasses.push(cl.p2)
-  }
-  else if(props.priority === 3) {
-    checkboxClasses.push(cl.p3)
-  }
-  else if(props.priority === 4) {
-    checkboxClasses.push(cl.p4)
-  }
+  const checkboxClasses = [cl.checkbox, cl[`p${props.priority}`]].join(' ')
 
   //due date logic
 
-  const daysOfWeek = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ]
+  // const daysOfWeek = [
+  //   'Sunday',
+  //   'Monday',
+  //   'Tuesday',
+  //   'Wednesday',
+  //   'Thursday',
+  //   'Friday',
+  //   'Saturday',
+  // ]
+
   // console.log(daysOfWeek[moment().toDate().getDay()]);
   
   return (
@@ -45,7 +32,7 @@ export default function Task(props) {
         <form>
           <label className={cl.container}>
             <input type='checkbox'/>
-            <span className={checkboxClasses.join(' ')}></span>
+            <span className={checkboxClasses}></span>
             <div>
               <div className={cl.title}>{props.title}</div>
               <div>{props.description}</div>
