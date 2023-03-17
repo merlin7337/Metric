@@ -42,8 +42,6 @@ export default function TaskList({filter}) {
           <button
             className={buttonClasses.join(' ')} 
             onClick={() => {setIsFormActive(true); setIsButtonActive(false)}}
-            isActive={isButtonActive}
-            setIsActive={setIsButtonActive}
           >
             <ReactSVG src={plus} className={cl.plus}/>
             Add task

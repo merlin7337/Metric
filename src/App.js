@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter} from 'react-router-dom';
 import './App.css';
-import Router from './Components/Routes/Router';
+import Router from './Routes/Router';
 import Navbar from './Components/UI/Navbar/Navbar';
 import Sidebar from './Components/UI/Sidebar/Sidebar';
 import { AuthContext, SidebarContext, ThemeContext } from './Context';
