@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useOutsideClick } from "../../Hooks/useOutsideClick";
-import cl from "./Popup.module.css";
+import cl from "./Popup.module.scss";
 import {AnimatePresence, motion} from 'framer-motion';
 import {createPortal} from "react-dom";
 
