@@ -1,3 +1,8 @@
+$p1-color: #d1453b;
+$p2-color: #eb8909;
+$p3-color: #246fe0;
+$p4-color: #666;
+
 .task{
     font-size: 16px;
     padding: 8px;
@@ -47,68 +52,59 @@ svg{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
   }
-  
-  /* Hide the browser's default radio button */
-  .container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-  
+
   /* Create a custom radio button */
-  .checkbox.p4{
+  .checkbox{
     position: absolute;
     top: 0;
     left: 0;
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     background-color: #eee;
     border-radius: 50%;
-    border: 1px solid black;
+    &.p1{
+      border: 1px solid $p1-color
+    }
+    &.p2{
+      border: 1px solid $p2-color
+    }
+    &.p3{
+      border: 1px solid $p3-color
+    }
+    &.p4{
+      border: 1px solid $p4-color
+    }
   }
-  .checkbox.p3{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 50%;
-    border: 1px solid rgb(0, 8, 255);
-  }
-  .checkbox.p2{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 50%;
-    border: 1px solid rgb(255, 136, 0);
-  }
-  .checkbox.p1{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 50%;
-    border: 1px solid rgb(255, 0, 0);
-  }
-  
   /* On mouse-over, add a grey background color */
-  .container:hover input ~ .checkbox {
-    background-color: #ccc;
-  }
+  // .container:hover input ~ .checkbox {
+    
+  // }
   
   /* When the radio button is checked, add a blue background */
   .container input:checked ~ .checkbox {
-    background-color: #2196F3;
+    height: 22px;
+    width: 22px;
+    &.p1{
+      background-color: $p1-color;
+    }
+    &.p2{
+      background-color: $p2-color;
+    }
+    &.p3{
+      background-color: $p3-color;
+    }
+    &.p4{
+      background-color: $p4-color;
+    }
   }
   
   /* Create the indicator (the dot/circle - hidden when not checked) */
-  
+//sadasdasd

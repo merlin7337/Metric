@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import cl from './Task.module.css'
+import cl from './Task.module.scss'
 import more from '../../Images/UI Icons/more.svg'
 import { ReactSVG } from 'react-svg'
 import Popup from '../Popup/Popup'
