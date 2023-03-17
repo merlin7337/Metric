@@ -1,7 +1,6 @@
 import React from 'react'
-import cl from './Inbox.module.css';
+import cl from './Inbox.module.scss';
 import TaskList from '../../TaskList/TaskList';
-import moment from 'moment';
 
 export default function Inbox() {
   // const daysOfWeek = [

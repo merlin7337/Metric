@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ReactSVG } from 'react-svg'
 import Task from '../Task/Task'
 import TaskForm from '../TaskForm/TaskForm'
-import cl from './TaskList.module.css'
+import cl from './TaskList.module.scss'
 import plus from '../../Images/UI Icons/plus.svg'
 
 export default function TaskList({filter}) {

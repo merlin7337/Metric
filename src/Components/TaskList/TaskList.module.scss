@@ -1,0 +1,28 @@
+.addTask{
+    background: transparent;
+    border: none;
+    display: flex;
+    font-size: 14px;
+    color: gray;
+    padding-top: 20px;
+    padding-left: 5px;
+    cursor: pointer;
+    &.disactive{
+        display: none;
+    }
+    &:hover {
+        color: #3b7adc;
+    }
+    & svg{
+        fill: #3b7adc;
+    }
+    &:hover svg{
+        fill: white;
+        background-color: #3b7adc;
+        border-radius: 90px;
+    }
+}
+
+.plus{
+    padding-right: 8px;
+}
