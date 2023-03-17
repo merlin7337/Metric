@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import cl from './TaskForm.module.css'
+import cl from './TaskForm.module.scss'
 
 export default function TaskForm({create, cancel, isActive, setIsActive}) {
   const rootClasses = [cl.form]
