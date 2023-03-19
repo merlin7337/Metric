@@ -11,7 +11,7 @@ export default function TaskForm({create, cancel, isActive, setIsActive}) {
     title:'',
     description:'', 
     dueDate:undefined, 
-    priority:1, 
+    priority:4, 
     assignedProject:undefined,
   }) 
 
