@@ -1,9 +1,10 @@
 import React, { useRef, useState } from 'react'
 import cl from './Task.module.scss'
 import more from '../../Images/UI Icons/more.svg'
-import checkmark from '../../Images/UI Icons/checkmark.svg'
+import circle from '../../Images/UI Icons/circle.svg'
 import { ReactSVG } from 'react-svg'
 import Checkbox from "react-custom-checkbox";
+import { IoIosCheckmark, IoIosCheckmarkCircle } from "react-icons/io"
 // import Popup from '../Popup/Popup'
 
 // const buttons = ["First button", "Second button", "Third button", "Fourth button"]
@@ -19,6 +20,8 @@ export default function Task(props) {
     3: '#246fe0',
     4: '#666',
   }
+
+  const checkmarkIconClasses = [cl.checkmarkIcon, cl[`p${props.priority}`]].join(' ')
 
   //due date logic
 
@@ -41,9 +44,8 @@ export default function Task(props) {
           {/*Custom checkbox*/}
           <Checkbox
             className={cl.checkbox}
-            icon={<ReactSVG src={checkmark}/>}
+            icon={<IoIosCheckmarkCircle className={checkmarkIconClasses}/>}
             borderRadius={90}
-            onChange={(ch, e) => console.log(ch, e)}
             borderColor={priorityColors[props.priority]}
           />
           {/*task text*/}
