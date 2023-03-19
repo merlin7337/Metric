@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import cl from './Task.module.scss'
 import more from '../../Images/UI Icons/more.svg'
-import circle from '../../Images/UI Icons/circle.svg'
 import { ReactSVG } from 'react-svg'
 import Checkbox from "react-custom-checkbox";
 import { IoIosCheckmark, IoIosCheckmarkCircle } from "react-icons/io"
