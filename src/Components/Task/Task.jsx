@@ -1,16 +1,24 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import cl from './Task.module.scss'
 import more from '../../Images/UI Icons/more.svg'
+import checkmark from '../../Images/UI Icons/checkmark.svg'
 import { ReactSVG } from 'react-svg'
-import Popup from '../Popup/Popup'
-const buttons = ["First button", "Second button", "Third button", "Fourth button"]
+import Checkbox from "react-custom-checkbox";
+// import Popup from '../Popup/Popup'
+
+// const buttons = ["First button", "Second button", "Third button", "Fourth button"]
 
 export default function Task(props) {
-  const buttonRef = useRef(null);
+  const buttonRef = useRef(null)
 
   //priority logic
 
-  const checkboxClasses = [cl.checkbox, cl[`p${props.priority}`]].join(' ')
+  const priorityColors = {
+    1: '#d1453b',
+    2: '#eb8909',
+    3: '#246fe0',
+    4: '#666',
+  }
 
   //due date logic
 
@@ -29,28 +37,39 @@ export default function Task(props) {
   return (
     <div className={cl.task}>
       <div className={cl.taskContent}>
-        <form>
-          <label className={cl.container}>
-            <input type='checkbox'/>
-            <span className={checkboxClasses}></span>
-            <div>
-              <div className={cl.title}>{props.title}</div>
-              <div>{props.description}</div>
-            </div>
-          </label>
-        </form>
-      </div>
-      <div className={cl.taskRight}>
-        <button className={cl.more} ref={buttonRef}>
-          <ReactSVG src={more} className={cl.svg}/>
-        </button>
-        <Popup containerRef={buttonRef}>
-          {buttons.map((text, key) => (
-            <button key={key} className={cl.popupButton}>{text}</button>
-          ))}
-        </Popup>
+        <div className={cl.taskLeft}>
+          {/*Custom checkbox*/}
+          <Checkbox
+            className={cl.checkbox}
+            icon={<ReactSVG src={checkmark}/>}
+            borderRadius={90}
+            onChange={(ch, e) => console.log(ch, e)}
+            borderColor={priorityColors[props.priority]}
+          />
+          {/*task text*/}
+          <div className={cl.taskText}>
+            <div className={cl.taskTitle}>{props.title}</div>
+            <div className={cl.taskDescription}>{props.description}</div>
+          </div>
+        </div>
+        {/*hidden tools, displayed in the right side of the task*/}
+        <div className={cl.taskTools}>
+          <button className={cl.moreButton} ref={buttonRef}>
+            <ReactSVG src={more} className={cl.svgMore}/>
+          </button>
+        </div>
       </div>
     </div>
   )
 }
+
+//<div className={cl.popupContainer}>
+
+//   <Popup containerRef={buttonRef}>
+//   {buttons.map((text, key) => (
+//     <button key={key} className={cl.popupButton}>{text}</button>
+//   ))}
+//   </Popup>
+
+//</div>
 

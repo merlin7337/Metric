@@ -4,105 +4,51 @@ $p3-color: #246fe0;
 $p4-color: #666;
 
 .task{
-    font-size: 16px;
-    padding: 8px;
+  position: relative;
+  &:hover .taskTools {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
+  }
 }
 
-.task:hover 
-.taskRight {
-    display: flex;
+.taskContent{
+  position: relative;
+  font-size: 16px;
+  padding: 8px;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  
+  border: 1px solid black;
 }
 
-.title {
-    font-size: 20px;
+.checkbox{
+  margin-right: 15px;
+  cursor: pointer;
 }
 
-.taskRight {
-    align-items: end;
-    display: none;
+.taskTitle{
+  font-size: 20px;
+}
+.taskDescription{
+  font-size: 10px;
 }
 
-.more{
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    position: relative;
+.taskTools {
+  display: none;
 }
 
-.svg:hover 
+.moreButton{
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.svgMore:hover 
 svg{
-    fill: #605c5c;
+  fill: #605c5c;
 }
 
-
-
- /* Customize the label (the container) */
- .container {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      height: 0;
-      width: 0;
-    }
-  }
-
-  /* Create a custom radio button */
-  .checkbox{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #eee;
-    border-radius: 50%;
-    &.p1{
-      border: 1px solid $p1-color
-    }
-    &.p2{
-      border: 1px solid $p2-color
-    }
-    &.p3{
-      border: 1px solid $p3-color
-    }
-    &.p4{
-      border: 1px solid $p4-color
-    }
-  }
-  /* On mouse-over, add a grey background color */
-  // .container:hover input ~ .checkbox {
-    
-  // }
-  
-  /* When the radio button is checked, add a blue background */
-  .container input:checked ~ .checkbox {
-    height: 22px;
-    width: 22px;
-    &.p1{
-      background-color: $p1-color;
-    }
-    &.p2{
-      background-color: $p2-color;
-    }
-    &.p3{
-      background-color: $p3-color;
-    }
-    &.p4{
-      background-color: $p4-color;
-    }
-  }
-  
+.taskLeft{
+  display: flex;
+}
