@@ -22,10 +22,7 @@ $p4-color: #666;
 }
 
 .checkbox{
-  & svg{
-    fill: #666;
-  }
-  transition: background-color .3s ease-in-out;
+  // transition: background-color .3s ease-in-out;
   margin-right: 15px;
   cursor: pointer;
 }
