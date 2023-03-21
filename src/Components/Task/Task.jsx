@@ -1,26 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import cl from './Task.module.scss'
 import more from '../../Images/UI Icons/more.svg'
 import { ReactSVG } from 'react-svg'
 import Checkbox from "../UI/Checkbox/Checkbox"; // "react-custom-checkbox"
-import { IoIosCheckmark, IoIosCheckmarkCircle } from "react-icons/io"
 // import Popup from '../Popup/Popup'
 
 // const buttons = ["First button", "Second button", "Third button", "Fourth button"]
 
 export default function Task(props) {
   const buttonRef = useRef(null)
-
-  //priority logic
-
-  const priorityColors = {
-    1: '#d1453b',
-    2: '#eb8909',
-    3: '#246fe0',
-    4: '#666',
-  }
-
-  const checkmarkIconClasses = [cl.checkmarkIcon, cl[`p${props.priority}`]].join(' ')
 
   //due date logic
 
@@ -42,12 +30,6 @@ export default function Task(props) {
         <div className={cl.taskLeft}>
           {/*Custom checkbox*/}
           <Checkbox/>
-          {/* <Checkbox
-            className={cl.checkbox}
-            icon={<IoIosCheckmarkCircle className={checkmarkIconClasses}/>}
-            borderRadius={90}
-            borderColor={priorityColors[props.priority]}
-          /> */}
           {/*task text*/}
           <div className={cl.taskText}>
             <div className={cl.taskTitle}>{props.title}</div>
