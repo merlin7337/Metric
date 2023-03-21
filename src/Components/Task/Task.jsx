@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import cl from './Task.module.scss'
 import more from '../../Images/UI Icons/more.svg'
 import { ReactSVG } from 'react-svg'
-import Checkbox from "react-custom-checkbox";
+import Checkbox from "../UI/Checkbox/Checkbox"; // "react-custom-checkbox"
 import { IoIosCheckmark, IoIosCheckmarkCircle } from "react-icons/io"
 // import Popup from '../Popup/Popup'
 
@@ -41,12 +41,13 @@ export default function Task(props) {
       <div className={cl.taskContent}>
         <div className={cl.taskLeft}>
           {/*Custom checkbox*/}
-          <Checkbox
+          <Checkbox/>
+          {/* <Checkbox
             className={cl.checkbox}
             icon={<IoIosCheckmarkCircle className={checkmarkIconClasses}/>}
             borderRadius={90}
             borderColor={priorityColors[props.priority]}
-          />
+          /> */}
           {/*task text*/}
           <div className={cl.taskText}>
             <div className={cl.taskTitle}>{props.title}</div>

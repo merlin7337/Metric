@@ -21,12 +21,6 @@ $p4-color: #666;
   // border: 1px solid black;
 }
 
-.checkbox{
-  // transition: background-color .3s ease-in-out;
-  margin-right: 15px;
-  cursor: pointer;
-}
-
 .taskTitle{
   font-size: 20px;
 }
@@ -69,4 +63,10 @@ svg{
   }
   position: absolute;
   font-size: 22px;
+}
+
+.checkbox{
+  // transition: background-color .3s ease-in-out;
+  margin-right: 15px;
+  cursor: pointer;
 }
