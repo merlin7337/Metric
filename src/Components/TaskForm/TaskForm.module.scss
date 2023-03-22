@@ -27,7 +27,7 @@
     cursor: pointer;
     &:hover{
         background: #2c5ca9;;
-    }    
+    }
 }
 
 .cancel{
@@ -54,4 +54,44 @@
     &.active{
         display: block;
     }
+}
+
+.popupContainer {
+    position: sticky;
+    // width: 100%;
+    // height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .button {
+      background-color: rgba(0, 0, 0, 0.5);
+      //padding: 10px;
+      padding: 5px;
+      border-radius: 5px;
+      margin: 0;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      font-family: var(--font-primary);
+      font-size: 14px;
+      cursor: pointer;
+    }
+}
+
+.popupButton {
+    border: none;
+    padding-inline: 10px;
+    padding-block: 5px;
+    cursor: pointer;
+    transition: .3s;
+    background-color: var(--text-primary);
+    color: var(--background-primary);
+    font-family: var(--font-primary);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
