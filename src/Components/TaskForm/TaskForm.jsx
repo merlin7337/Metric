@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import uuid from 'react-uuid'
 import cl from './TaskForm.module.scss'
 
 export default function TaskForm({create, cancel, isActive, setIsActive}) {
@@ -30,7 +31,7 @@ export default function TaskForm({create, cancel, isActive, setIsActive}) {
 
   const addNewTask = e => {
     e.preventDefault()
-    const newTask = {...task}
+    const newTask = {...task, id: uuid()}
     create(newTask)
     setTask({
       title:'',

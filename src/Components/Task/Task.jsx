@@ -2,8 +2,7 @@ import React, { useRef } from 'react'
 import cl from './Task.module.scss'
 import more from '../../Images/UI Icons/more.svg'
 import { ReactSVG } from 'react-svg'
-import Checkbox from "../UI/Checkbox/Checkbox"; // "react-custom-checkbox"
-// import Popup from '../Popup/Popup'
+import Checkbox from "../UI/Checkbox/Checkbox";
 
 // const buttons = ["First button", "Second button", "Third button", "Fourth button"]
 
@@ -40,6 +39,9 @@ export default function Task(props) {
         <div className={cl.taskTools}>
           <button className={cl.moreButton} ref={buttonRef}>
             <ReactSVG src={more} className={cl.svgMore}/>
+          </button>
+          <button onClick={() => props.deleteTask(props.task)}>
+            delete
           </button>
         </div>
       </div>

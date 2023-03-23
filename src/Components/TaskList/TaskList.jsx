@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ReactSVG } from 'react-svg'
 import Task from '../Task/Task'
 import TaskForm from '../TaskForm/TaskForm'
@@ -11,6 +11,15 @@ export default function TaskList({filter}) {
   const [isFormActive, setIsFormActive] = useState(false)
   const [isButtonActive, setIsButtonActive] = useState(true)
 
+  useEffect(() => {
+    if(localStorage.getItem('tasks')){
+      const items = JSON.parse(localStorage.getItem('tasks'));
+      if (items) {
+      setTasks(items);
+      }
+    }
+  }, []);
+
   const buttonClasses = [cl.addTask]
   if (!isButtonActive) {
     buttonClasses.push(cl.disactive)
@@ -20,10 +29,18 @@ export default function TaskList({filter}) {
     setIsFormActive(false)
     setIsButtonActive(true)
   }
+
   function createTask(newTask) {
     setTasks([...tasks, newTask])
     setIsFormActive(false)
     setIsButtonActive(true)
+    localStorage.setItem('tasks', JSON.stringify([...tasks, newTask]))
+  }
+  
+  function deleteTask(task) {
+    const newTasks = tasks.filter(e => e.id !== task.id)
+    setTasks(newTasks);
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
   }
 
     return(
@@ -35,12 +52,14 @@ export default function TaskList({filter}) {
             dueDate={e.dueDate}
             priority={e.priority}
             assignedProject={e.assignedProject}
-            key={e.title}
+            task={e}
+            deleteTask={deleteTask}
+            key={e.id}
           />
         })}
         <div className={cl.container}>
           <button
-            className={buttonClasses.join(' ')} 
+            className={buttonClasses.join(' ')}
             onClick={() => {setIsFormActive(true); setIsButtonActive(false)}}
           >
             <ReactSVG src={plus} className={cl.plus}/>
