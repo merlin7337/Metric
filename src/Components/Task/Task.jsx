@@ -3,6 +3,8 @@ import cl from './Task.module.scss'
 import more from '../../Images/UI Icons/more.svg'
 import { ReactSVG } from 'react-svg'
 import Checkbox from "../UI/Checkbox/Checkbox";
+import { FaTrashAlt } from "react-icons/fa"
+import { FiMoreHorizontal } from "react-icons/fi"
 
 // const buttons = ["First button", "Second button", "Third button", "Fourth button"]
 
@@ -38,10 +40,10 @@ export default function Task(props) {
         {/*hidden tools, displayed in the right side of the task*/}
         <div className={cl.taskTools}>
           <button className={cl.moreButton} ref={buttonRef}>
-            <ReactSVG src={more} className={cl.svgMore}/>
+            <FiMoreHorizontal className={cl.moreIcon}/>
           </button>
-          <button onClick={() => props.deleteTask(props.task)}>
-            delete
+          <button className={cl.trashButton} onClick={() => props.deleteTask(props.task)}>
+            <FaTrashAlt className={cl.trashIcon}/>
           </button>
         </div>
       </div>

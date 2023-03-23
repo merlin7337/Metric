@@ -17,8 +17,6 @@ $p4-color: #666;
   display: flex;
   height: 60px;
   justify-content: space-between;
-  
-  // border: 1px solid black;
 }
 
 .taskTitle{
@@ -38,10 +36,29 @@ $p4-color: #666;
   cursor: pointer;
   position: relative;
 }
+.trashButton{
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+}
 
-.svgMore:hover 
-svg{
-  fill: #605c5c;
+.moreIcon{
+  width: 30px;
+  height: 30px;
+  &:hover{
+    color: #605c5c;
+  }
+  margin-left: 10px;
+}
+
+.trashIcon{
+  width: 20px;
+  height: 20px;
+  &:hover{
+    color: #605c5c;
+  }
+  margin-left: 10px;
 }
 
 .taskLeft{
