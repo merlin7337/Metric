@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import cl from './Task.module.scss'
-import more from '../../Images/UI Icons/more.svg'
-import { ReactSVG } from 'react-svg'
+
 import Checkbox from "../UI/Checkbox/Checkbox";
 import { FaTrashAlt } from "react-icons/fa"
 import { FiMoreHorizontal } from "react-icons/fi"
