@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import {NavLink } from 'react-router-dom'
 import { SidebarContext } from '../../../Context'
-import cl from './Sidebar.module.css'
+import cl from './Sidebar.module.scss'
 
 export default function Sidebar(props) {
   const {isSidebarShown} = useContext(SidebarContext)

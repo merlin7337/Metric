@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { ReactSVG } from 'react-svg'
-import cl from './Navbar.module.css'
+import cl from './Navbar.module.scss'
 import menu from '../../../Images/UI Icons/menu.svg'
 import { SidebarContext } from '../../../Context'
 

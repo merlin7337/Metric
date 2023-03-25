@@ -1,5 +1,5 @@
 import React from 'react'
-import cl from './FullModal.module.css'
+import cl from './FullModal.module.scss'
 
 export default function FullModal({children, visible, setVisible}) {
     const rootClasses = [cl.modal]
