@@ -69,7 +69,7 @@ export default function TaskForm({create, cancel, isActive, setIsActive}) {
         />
       </form>
       {/* buttons to configure task */}
-
+      
       {/* Переписать */}
       <div>
         <button className={cl.priorityModalButton} onClick={() => setPriorityVisibility(!priorityVisibility)}>
