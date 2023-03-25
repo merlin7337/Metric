@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import cl from './TaskForm.module.scss'
 import Modal from '../Modal/Modal'
-import { IoIosCheckmark, IoIosFlag, IoCheckmark, IoMdCheckmark } from 'react-icons/io'
+import { IoIosFlag, IoMdCheckmark } from 'react-icons/io'
 
 export default function TaskForm({create, cancel, isActive, setIsActive}) {
 
