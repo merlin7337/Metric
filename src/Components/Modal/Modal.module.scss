@@ -1,0 +1,22 @@
+.modal{
+    position: relative;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+    &.active{
+        display: block;
+    }
+}
+
+.modalContent{
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid black;
+}

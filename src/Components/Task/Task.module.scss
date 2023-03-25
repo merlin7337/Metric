@@ -64,26 +64,3 @@ $p4-color: #666;
 .taskLeft{
   display: flex;
 }
-
-.checkmarkIcon{
-  &.p1{
-    color: $p1-color;
-  }
-  &.p2{
-    color: $p2-color;
-  }
-  &.p3{
-    color: $p3-color;
-  }
-  &.p4{
-    color: $p4-color
-  }
-  position: absolute;
-  font-size: 22px;
-}
-
-.checkbox{
-  // transition: background-color .3s ease-in-out;
-  margin-right: 15px;
-  cursor: pointer;
-}
