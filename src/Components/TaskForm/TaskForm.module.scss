@@ -1,3 +1,8 @@
+$p1-color: #d1453b;
+$p2-color: #eb8909;
+$p3-color: #246fe0;
+$p4-color: #666;
+
 *{
     margin: 0;
 }
@@ -45,6 +50,48 @@
     }
 }
 
+.priorityButton{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    position: relative;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 2px;
+    &:hover{
+        background: #e5e5e5;
+    }
+}
+
+.priorityModalButton{
+    background-color: transparent;
+    border: 1px solid ;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.flagIcon{
+    font-size: 24px;
+    &.p1{
+        color: $p1-color;
+    }
+    &.p2{
+        color: $p2-color;
+    }
+    &.p3{
+        color: $p3-color;
+    }
+    &.p4{
+        color: $p4-color;
+    }
+}
+
 .form{
     border: 1px solid #202020;
     border-radius: 10px;
@@ -56,42 +103,7 @@
     }
 }
 
-.popupContainer {
-    position: sticky;
-    // width: 100%;
-    // height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .button {
-      background-color: rgba(0, 0, 0, 0.5);
-      //padding: 10px;
-      padding: 5px;
-      border-radius: 5px;
-      margin: 0;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-primary);
-      font-family: var(--font-primary);
-      font-size: 14px;
-      cursor: pointer;
-    }
-}
-
-.popupButton {
-    border: none;
-    padding-inline: 10px;
-    padding-block: 5px;
-    cursor: pointer;
-    transition: .3s;
-    background-color: var(--text-primary);
-    color: var(--background-primary);
-    font-family: var(--font-primary);
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.checkmarkIcon{
+    font-size: 24px;
+    padding-left: 10px;
 }

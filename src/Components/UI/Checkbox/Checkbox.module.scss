@@ -4,60 +4,56 @@ $p3-color: #246fe0;
 $p4-color: #666;
 
 .checkboxContainer{
-    display: flex;
-    align-items: center;
-    // justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .checkbox{
-    background-color: transparent;
-    &.p1{
-        color: $p1-color;
-    }
-    &.p2{
-        color: $p2-color;
-    }
-    &.p3{
-        color: $p3-color;
-    }
-    &.p4{
-        color: $p4-color
-    }
-    height: 18px;
-    width: 18px;
-    position: relative;
-    border: 2px solid $p4-color;
-    border-radius: 90px;
-    margin-right: 15px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    & svg{
-        fill: #666;
-      }
-    &:hover .checkmarkIcon{
-        opacity: 1;
-        // transform: scale(1);
-    }
+  background-color: transparent;
+  &.p1{
+    color: $p1-color;
+  }
+  &.p2{
+    color: $p2-color;
+  }
+  &.p3{
+    color: $p3-color;
+  }
+  &.p4{
+    color: $p4-color
+  }
+  height: 18px;
+  width: 18px;
+  position: relative;
+  border: 2px solid;
+  border-radius: 90px;
+  margin-right: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover .checkmarkIcon{
+    opacity: 1;
+    // transform: scale(1);
+  }
 }
 
 .checkmarkIcon{
-    opacity: 0;
-    transition: opacity .3s ease-in-out;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
     // transform: scale(.95);
-    &.p1{
-      color: $p1-color;
-    }
-    &.p2{
-      color: $p2-color;
-    }
-    &.p3{
-      color: $p3-color;
-    }
-    &.p4{
-      color: $p4-color
-    }
-    position: absolute;
-    font-size: 22px;
+  &.p1{
+    color: $p1-color;
   }
+  &.p2{
+    color: $p2-color;
+  }
+  &.p3{
+    color: $p3-color;
+  }
+  &.p4{
+    color: $p4-color
+  }
+  position: absolute;
+  font-size: 22px;
+}

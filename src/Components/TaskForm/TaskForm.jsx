@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import cl from './TaskForm.module.scss'
 import Modal from '../Modal/Modal'
+import { IoIosCheckmark, IoIosFlag, IoCheckmark, IoMdCheckmark } from 'react-icons/io'
 
 export default function TaskForm({create, cancel, isActive, setIsActive}) {
+
   const [priorityVisibility, setPriorityVisibility] = useState(false)
+
   const rootClasses = [cl.form]
     if(isActive){
       rootClasses.push(cl.active)
+    }
+    else if(priorityVisibility){
+      rootClasses.push(cl.contextMenuActive)
     }
 
   const [task, setTask] = useState({
@@ -15,7 +21,7 @@ export default function TaskForm({create, cancel, isActive, setIsActive}) {
     dueDate:undefined, 
     priority:4, 
     assignedProject:undefined,
-  }) 
+  })
 
   const cancelAdding = () => {
     cancel()
@@ -26,6 +32,7 @@ export default function TaskForm({create, cancel, isActive, setIsActive}) {
       priority:4,
       assignedProject:undefined,
     })
+    setPriorityVisibility(false)
     setIsActive(false)
   }
 
@@ -33,12 +40,13 @@ export default function TaskForm({create, cancel, isActive, setIsActive}) {
     const newTask = {...task}
     create(newTask)
     setTask({
-      title:'',
-      description:'',
-      dueDate:undefined,
-      priority:4,
-      assignedProject:undefined,
+      title: '',
+      description: '',
+      dueDate: undefined,
+      priority: 4,
+      assignedProject: undefined,
     })
+    setPriorityVisibility(false)
     setIsActive(false)
   }
   return (
@@ -61,15 +69,38 @@ export default function TaskForm({create, cancel, isActive, setIsActive}) {
         />
       </form>
       {/* buttons to configure task */}
+
+      {/* Переписать */}
       <div>
-        <button onClick={() => setPriorityVisibility(!priorityVisibility)} className={cl.priorityButton}>Priority</button>
+        <button className={cl.priorityModalButton} onClick={() => setPriorityVisibility(!priorityVisibility)}>
+          <IoIosFlag className={[cl.flagIcon, cl[`p${task.priority}`]].join(' ')}/>
+          Priority
+        </button>
         <Modal visible={priorityVisibility} setVisible={setPriorityVisibility}>
-          <button>Priority 1</button>
-          <button>Priority 2</button>
-          <button>Priority 3</button>
-          <button>Priority 4</button>
+          <button className={cl.priorityButton} onClick={() => setTask({...task, priority: 1})}>
+            <IoIosFlag className={[cl.flagIcon, cl['p1']].join(' ')}/>
+            Priority 1
+            {task.priority === 1 && <IoMdCheckmark className={cl.checkmarkIcon}/>}
+          </button>
+          <button className={cl.priorityButton} onClick={() => setTask({...task, priority: 2})}>
+            <IoIosFlag className={[cl.flagIcon, cl['p2']].join(' ')}/>
+            Priority 2
+            {task.priority === 2 && <IoMdCheckmark className={cl.checkmarkIcon}/>}
+          </button>
+          <button className={cl.priorityButton} onClick={() => setTask({...task, priority: 3})}>
+            <IoIosFlag className={[cl.flagIcon, cl['p3']].join(' ')}/>
+            Priority 3
+            {task.priority === 3 && <IoMdCheckmark className={cl.checkmarkIcon}/>}
+          </button>
+          <button className={cl.priorityButton} onClick={() => setTask({...task, priority: 4})}>
+            <IoIosFlag className={[cl.flagIcon, cl['p4']].join(' ')}/>
+            Priority 4
+            {task.priority === 4 && <IoMdCheckmark className={cl.checkmarkIcon}/>}
+          </button>
         </Modal>
       </div>
+      {/* Переписать */}
+
       {/* sending buttons */}
       <div className={cl.buttons}>
         <button onClick={cancelAdding} className={cl.cancel}>Cancel</button>
