@@ -1,15 +1,10 @@
 import React from 'react'
 import cl from './Task.module.scss'
-import more from '../../Images/UI Icons/more.svg'
-import { ReactSVG } from 'react-svg'
-import Checkbox from "../UI/Checkbox/Checkbox"; // "react-custom-checkbox"
-// import Popup from '../Popup/Popup'
-
-// const buttons = ["First button", "Second button", "Third button", "Fourth button"]
+import Checkbox from "../UI/Checkbox/Checkbox";
+import { FaTrashAlt } from "react-icons/fa"
+import { TfiMoreAlt } from "react-icons/tfi"
 
 export default function Task(props) {
-
-  //due date logic
 
   // const daysOfWeek = [
   //   'Sunday',
@@ -38,7 +33,10 @@ export default function Task(props) {
         {/*hidden tools, displayed in the right side of the task*/}
         <div className={cl.taskTools}>
           <button className={cl.moreButton}>
-            <ReactSVG src={more} className={cl.svgMore}/>
+            <TfiMoreAlt className={cl.moreIcon}/>
+          </button>
+          <button className={cl.trashButton}>
+            <FaTrashAlt className={cl.trashIcon} onClick={() => {props.deleteTask(props.task)}}/>
           </button>
         </div>
       </div>

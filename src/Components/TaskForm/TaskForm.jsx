@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import cl from './TaskForm.module.scss'
 import Modal from '../Modal/Modal'
 import { IoIosFlag, IoMdCheckmark } from 'react-icons/io'
+import uuid from 'react-uuid'
 
 export default function TaskForm({ create, cancel, isActive, setIsActive }) {
 
@@ -37,7 +38,7 @@ export default function TaskForm({ create, cancel, isActive, setIsActive }) {
   }
 
   const addNewTask = () => {
-    const newTask = { ...task }
+    const newTask = { ...task, id: uuid() }
     create(newTask)
     setTask({
       title: '',

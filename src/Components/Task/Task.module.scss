@@ -36,6 +36,7 @@ $p4-color: #666;
   cursor: pointer;
   position: relative;
 }
+
 .trashButton{
   background-color: transparent;
   border: 0;
@@ -44,8 +45,7 @@ $p4-color: #666;
 }
 
 .moreIcon{
-  width: 30px;
-  height: 30px;
+  font-size: 24px;
   &:hover{
     color: #605c5c;
   }
@@ -53,8 +53,7 @@ $p4-color: #666;
 }
 
 .trashIcon{
-  width: 20px;
-  height: 20px;
+  font-size: 24px;
   &:hover{
     color: #605c5c;
   }
