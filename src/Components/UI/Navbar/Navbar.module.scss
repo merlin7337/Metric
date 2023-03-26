@@ -3,12 +3,19 @@
     height: 43px;
     display: flex;
     background-color: #3b7adc;
+    align-items: center;
 }
 
-.menu{
+.menuButton{
     background-color: transparent;
-    padding: 5px;
     border: 0;
     cursor: pointer;
     position: relative;
+}
+
+.menuIcon{
+    font-size: 40px;
+    &:hover{
+        color: #605c5c;
+    }
 }

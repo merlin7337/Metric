@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import cl from './Task.module.scss'
 import Checkbox from "../UI/Checkbox/Checkbox";
+import Modal from "../Modal/Modal"
 import { FaTrashAlt } from "react-icons/fa"
 import { TfiMoreAlt } from "react-icons/tfi"
 
 export default function Task(props) {
+  const [modalVisible, setModalVisible] = useState(false)
 
   // const daysOfWeek = [
   //   'Sunday',
@@ -32,12 +34,15 @@ export default function Task(props) {
         </div>
         {/*hidden tools, displayed in the right side of the task*/}
         <div className={cl.taskTools}>
-          <button className={cl.moreButton}>
+          <button className={cl.moreButton} onClick={() => setModalVisible(!modalVisible)}>
             <TfiMoreAlt className={cl.moreIcon}/>
           </button>
-          <button className={cl.trashButton}>
-            <FaTrashAlt className={cl.trashIcon} onClick={() => {props.deleteTask(props.task)}}/>
-          </button>
+          <Modal visible={modalVisible} setVisible={setModalVisible}>
+            <button className={cl.trashButton} onClick={() => {props.deleteTask(props.task)}}>
+              <FaTrashAlt className={cl.trashIcon}/>
+              Delete task
+            </button>
+          </Modal>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ $p4-color: #666;
   position: relative;
   &:hover .taskTools {
     display: flex;
+    flex-direction: column;
   }
 }
 
@@ -42,6 +43,10 @@ $p4-color: #666;
   border: 0;
   cursor: pointer;
   position: relative;
+  font-size: 14px;
+  &:hover{
+    color: #605c5c;
+  }
 }
 
 .moreIcon{
@@ -49,15 +54,10 @@ $p4-color: #666;
   &:hover{
     color: #605c5c;
   }
-  margin-left: 10px;
 }
 
 .trashIcon{
-  font-size: 24px;
-  &:hover{
-    color: #605c5c;
-  }
-  margin-left: 10px;
+  font-size: 16px;
 }
 
 .taskLeft{

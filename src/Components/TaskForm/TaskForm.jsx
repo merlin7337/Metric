@@ -57,7 +57,7 @@ export default function TaskForm({ create, cancel, isActive, setIsActive }) {
       <button className={cl.priorityButton} onClick={() => {setTask({ ...task, priority }); setPriorityVisibility(false)}}>
         <IoIosFlag className={[cl.flagIcon, cl[`p${priority}`]].join(' ')} />
         Priority {priority}
-        {task.priority === priority && <IoMdCheckmark className={cl.checkmarkIcon} />}
+        {task.priority === priority && <IoMdCheckmark className={cl.checkmarkIcon}/>}
       </button>
     )
   })
