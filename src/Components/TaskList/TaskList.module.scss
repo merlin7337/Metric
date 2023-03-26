@@ -2,6 +2,7 @@
     background: transparent;
     border: none;
     display: flex;
+    align-items: center;
     font-size: 14px;
     color: gray;
     padding-top: 20px;
@@ -23,6 +24,7 @@
     }
 }
 
-.plus{
-    padding-right: 8px;
+.plusIcon{
+    font-size: 18px;
+    margin-right: 8px;
 }

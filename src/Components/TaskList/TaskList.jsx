@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { ReactSVG } from 'react-svg'
 import Task from '../Task/Task'
 import TaskForm from '../TaskForm/TaskForm'
 import cl from './TaskList.module.scss'
-import plus from '../../Images/UI Icons/plus.svg'
+import { AiOutlinePlus } from "react-icons/ai"
 
 export default function TaskList({filter}) {
   
@@ -62,7 +61,7 @@ export default function TaskList({filter}) {
             className={buttonClasses.join(' ')}
             onClick={() => {setIsFormActive(true); setIsButtonActive(false)}}
           >
-            <ReactSVG src={plus} className={cl.plus}/>
+            <AiOutlinePlus className={cl.plusIcon}/>
             Add task
           </button>
           <TaskForm create={createTask} cancel={cancel} isActive={isFormActive} setIsActive={setIsFormActive}/>
