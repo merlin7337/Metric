@@ -66,6 +66,21 @@ $p4-color: #666;
 }
 
 .priorityModalButton{
+    padding: 2px;
+    margin-right: 5px;
+    background-color: transparent;
+    border: 1px solid ;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.dueDateModalButton{
+    padding: 2px;
+    margin-right: 5px;
     background-color: transparent;
     border: 1px solid ;
     border-radius: 5px;
@@ -78,6 +93,7 @@ $p4-color: #666;
 
 .flagIcon{
     font-size: 24px;
+    margin-right: 5px;
     &.p1{
         color: $p1-color;
     }
@@ -90,6 +106,10 @@ $p4-color: #666;
     &.p4{
         color: $p4-color;
     }
+}
+.calendarIcon{
+    font-size: 24px;
+    margin-right: 5px;
 }
 
 .form{
@@ -106,4 +126,22 @@ $p4-color: #666;
 .checkmarkIcon{
     font-size: 24px;
     padding-left: 10px;
+}
+
+.buttonsContainer{
+    margin-left: 16px;
+    margin-top: 8px;
+    display: flex;
+}
+
+.dueDateContainer{
+    position: relative;
+}
+
+.priorityContainer{
+    position: relative;
+}
+
+.dropdown{
+    position: absolute;
 }

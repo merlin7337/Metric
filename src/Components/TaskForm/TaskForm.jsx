@@ -1,98 +1,140 @@
-import React, { useState } from 'react'
-import cl from './TaskForm.module.scss'
-import Modal from '../Modal/Modal'
-import { IoIosFlag, IoMdCheckmark } from 'react-icons/io'
-import uuid from 'react-uuid'
+import React, { useState } from "react";
+import cl from "./TaskForm.module.scss";
+import Modal from "../Modal/Modal";
+import { IoIosFlag, IoMdCheckmark } from "react-icons/io";
+import uuid from "react-uuid";
+import { IoCalendarOutline } from "react-icons/io5";
 
 export default function TaskForm({ create, cancel, isActive, setIsActive }) {
+  
+  const [priorityVisibility, setPriorityVisibility] = useState(false);
+  const [dueDateVisibility, setDueDateVisibility] = useState(false);
 
-  const [priorityVisibility, setPriorityVisibility] = useState(false)
-
-  const rootClasses = [cl.form]
+  const rootClasses = [cl.form];
   if (isActive) {
-    rootClasses.push(cl.active)
-  }
-  else if (priorityVisibility) {
-    rootClasses.push(cl.contextMenuActive)
+    rootClasses.push(cl.active);
+  } else if (priorityVisibility) {
+    rootClasses.push(cl.contextMenuActive);
   }
 
   const [task, setTask] = useState({
-    title: '',
-    description: '',
+    title: "",
+    description: "",
     dueDate: undefined,
     priority: 4,
     assignedProject: undefined,
-  })
+  });
 
   const cancelAdding = () => {
-    cancel()
+    cancel();
     setTask({
-      title: '',
-      description: '',
+      title: "",
+      description: "",
       dueDate: undefined,
       priority: 4,
       assignedProject: undefined,
-    })
-    setPriorityVisibility(false)
-    setIsActive(false)
-  }
+    });
+    setDueDateVisibility(false);
+    setPriorityVisibility(false);
+    setIsActive(false);
+  };
 
   const addNewTask = () => {
-    const newTask = { ...task, id: uuid() }
-    create(newTask)
+    const newTask = { ...task, id: uuid() };
+    create(newTask);
     setTask({
-      title: '',
-      description: '',
+      title: "",
+      description: "",
       dueDate: undefined,
       priority: 4,
       assignedProject: undefined,
-    })
-    setPriorityVisibility(false)
-    setIsActive(false)
-  }
+    });
+    setDueDateVisibility(false);
+    setPriorityVisibility(false);
+    setIsActive(false);
+  };
 
   const priorityButtons = Array.from({ length: 4 }).map((_, i) => {
-    const priority = i + 1
+    const priority = i + 1;
     return (
-      <button className={cl.priorityButton} onClick={() => {setTask({ ...task, priority }); setPriorityVisibility(false)}}>
-        <IoIosFlag className={[cl.flagIcon, cl[`p${priority}`]].join(' ')} />
+      <button
+        className={cl.priorityButton}
+        onClick={() => {
+          setTask({ ...task, priority });
+          setPriorityVisibility(false);
+        }}
+      >
+        <IoIosFlag className={[cl.flagIcon, cl[`p${priority}`]].join(" ")} />
         Priority {priority}
-        {task.priority === priority && <IoMdCheckmark className={cl.checkmarkIcon}/>}
+        {task.priority === priority && (
+          <IoMdCheckmark className={cl.checkmarkIcon} />
+        )}
       </button>
-    )
-  })
-  
+    );
+  });
+
   return (
-    <div className={rootClasses.join(' ')}>
+    <div className={rootClasses.join(" ")}>
       <form>
         <input
-          type='text'
-          placeholder='Task name'
+          type="text"
+          placeholder="Task name"
           value={task.title}
-          onChange={e => setTask({ ...task, title: e.target.value })}
+          onChange={(e) => setTask({ ...task, title: e.target.value })}
           className={cl.input}
         />
         <input
-          type='text'
-          placeholder='Description'
+          type="text"
+          placeholder="Description"
           value={task.description}
-          onChange={e => setTask({ ...task, description: e.target.value })}
+          onChange={(e) => setTask({ ...task, description: e.target.value })}
           className={cl.input}
         />
       </form>
-      <div>
-        <button className={cl.priorityModalButton} onClick={() => setPriorityVisibility(!priorityVisibility)}>
-          <IoIosFlag className={[cl.flagIcon, cl[`p${task.priority}`]].join(' ')} />
-          Priority
-        </button>
-        <Modal visible={priorityVisibility} setVisible={setPriorityVisibility}>
-          {priorityButtons}
-        </Modal>
+      <div className={cl.buttonsContainer}>
+        <div className={cl.dueDateContainer}>
+          <button
+            className={cl.dueDateModalButton}
+            onClick={() => setDueDateVisibility(!dueDateVisibility)}
+          >
+            <IoCalendarOutline className={cl.calendarIcon} />
+            Due date
+          </button>
+          <Modal
+            className={cl.dropdown}
+            visible={dueDateVisibility}
+            setVisible={setDueDateVisibility}
+          >
+            {priorityButtons}
+          </Modal>
+        </div>
+        <div className={cl.priorityContainer}>
+          <button
+            className={cl.priorityModalButton}
+            onClick={() => setPriorityVisibility(!priorityVisibility)}
+          >
+            <IoIosFlag
+              className={[cl.flagIcon, cl[`p${task.priority}`]].join(" ")}
+            />
+            Priority
+          </button>
+          <Modal
+            className={cl.dropdown}
+            visible={priorityVisibility}
+            setVisible={setPriorityVisibility}
+          >
+            {priorityButtons}
+          </Modal>
+        </div>
       </div>
       <div className={cl.buttons}>
-        <button onClick={cancelAdding} className={cl.cancel}>Cancel</button>
-        <button onClick={addNewTask} className={cl.addTask}>Add task</button>
+        <button onClick={cancelAdding} className={cl.cancel}>
+          Cancel
+        </button>
+        <button onClick={addNewTask} className={cl.addTask}>
+          Add task
+        </button>
       </div>
     </div>
-  )
+  );
 }
