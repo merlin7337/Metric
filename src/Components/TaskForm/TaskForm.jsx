@@ -6,7 +6,6 @@ import uuid from "react-uuid";
 import { IoCalendarOutline } from "react-icons/io5";
 
 export default function TaskForm({ create, cancel, isActive, setIsActive }) {
-  
   const [priorityVisibility, setPriorityVisibility] = useState(false);
   const [dueDateVisibility, setDueDateVisibility] = useState(false);
 
