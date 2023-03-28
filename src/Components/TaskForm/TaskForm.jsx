@@ -5,7 +5,17 @@ import { IoIosFlag, IoMdCheckmark } from "react-icons/io";
 import uuid from "react-uuid";
 import { IoCalendarOutline } from "react-icons/io5";
 
-export default function TaskForm({ create, cancel, isActive, setIsActive }) {
+export default function TaskForm({
+  create,
+  cancel,
+  isActive,
+  setIsActive,
+  task,
+  setTask,
+  isFormAdding,
+  setIsFormAdding,
+  saveTask,
+}) {
   const [priorityVisibility, setPriorityVisibility] = useState(false);
   const [dueDateVisibility, setDueDateVisibility] = useState(false);
 
@@ -15,14 +25,6 @@ export default function TaskForm({ create, cancel, isActive, setIsActive }) {
   } else if (priorityVisibility) {
     rootClasses.push(cl.contextMenuActive);
   }
-
-  const [task, setTask] = useState({
-    title: "",
-    description: "",
-    dueDate: undefined,
-    priority: 4,
-    assignedProject: undefined,
-  });
 
   const cancelAdding = () => {
     cancel();
@@ -38,6 +40,36 @@ export default function TaskForm({ create, cancel, isActive, setIsActive }) {
     setIsActive(false);
   };
 
+  const cancelEditing = () => {
+    cancel();
+    setTask({
+      title: "",
+      description: "",
+      dueDate: undefined,
+      priority: 4,
+      assignedProject: undefined,
+    });
+    setDueDateVisibility(false);
+    setPriorityVisibility(false);
+    setIsActive(false);
+    setIsFormAdding(true);
+  };
+
+  const saveEditing = () => {
+    saveTask();
+    setTask({
+      title: "",
+      description: "",
+      dueDate: undefined,
+      priority: 4,
+      assignedProject: undefined,
+    });
+    setDueDateVisibility(false);
+    setPriorityVisibility(false);
+    setIsActive(false);
+    setIsFormAdding(true);
+  };
+
   const addNewTask = () => {
     const newTask = { ...task, id: uuid() };
     create(newTask);
@@ -51,12 +83,14 @@ export default function TaskForm({ create, cancel, isActive, setIsActive }) {
     setDueDateVisibility(false);
     setPriorityVisibility(false);
     setIsActive(false);
+    setIsFormAdding(true);
   };
 
   const priorityButtons = Array.from({ length: 4 }).map((_, i) => {
     const priority = i + 1;
     return (
       <button
+        key={uuid()}
         className={cl.priorityButton}
         onClick={() => {
           setTask({ ...task, priority });
@@ -127,12 +161,18 @@ export default function TaskForm({ create, cancel, isActive, setIsActive }) {
         </div>
       </div>
       <div className={cl.buttons}>
-        <button onClick={cancelAdding} className={cl.cancel}>
+        <button onClick={() => isFormAdding ? cancelAdding() : cancelEditing(task)} className={cl.cancel}>
           Cancel
         </button>
+        {isFormAdding 
+        ? 
         <button onClick={addNewTask} className={cl.addTask}>
           Add task
         </button>
+        : 
+        <button onClick={saveEditing} className={cl.addTask}>
+          Save
+        </button>}
       </div>
     </div>
   );

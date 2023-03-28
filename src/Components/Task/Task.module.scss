@@ -7,7 +7,7 @@ $p4-color: #666;
   position: relative;
   &:hover .taskTools {
     display: flex;
-    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -39,6 +39,8 @@ $p4-color: #666;
 }
 
 .trashButton{
+  display: flex;
+  align-items: center;
   background-color: transparent;
   border: 0;
   cursor: pointer;
@@ -58,8 +60,13 @@ $p4-color: #666;
 
 .trashIcon{
   font-size: 16px;
+  margin-right: 5px;
 }
 
 .taskLeft{
   display: flex;
+}
+
+.moreContainer{
+  position: relative;
 }
