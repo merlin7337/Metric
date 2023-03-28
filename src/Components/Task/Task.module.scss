@@ -32,6 +32,7 @@ $p4-color: #666;
 }
 
 .moreButton{
+  margin-left: 12px;
   background-color: transparent;
   border: 0;
   cursor: pointer;
@@ -51,7 +52,27 @@ $p4-color: #666;
   }
 }
 
+.editButton{
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  &:hover{
+    color: #605c5c;
+  }
+}
+
 .moreIcon{
+  font-size: 24px;
+  &:hover{
+    color: #605c5c;
+  }
+}
+
+.editIcon{
   font-size: 24px;
   &:hover{
     color: #605c5c;

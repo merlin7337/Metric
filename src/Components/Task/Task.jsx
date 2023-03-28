@@ -25,15 +25,12 @@ export default function Task(props) {
     <div className={cl.task}>
       <div className={cl.taskContent}>
         <div className={cl.taskLeft}>
-          {/*Custom checkbox*/}
           <Checkbox priority={props.priority} />
-          {/*task text*/}
           <div className={cl.taskText}>
             <div className={cl.taskTitle}>{props.title}</div>
             <div className={cl.taskDescription}>{props.description}</div>
           </div>
         </div>
-        {/*hidden tools, displayed in the right side of the task*/}
         <div className={cl.taskTools}>
           <div className={cl.editContainer}>
             <button className={cl.editButton} onClick={() => {props.setIsFormAdding(false); props.editTask(props.task)}}> 

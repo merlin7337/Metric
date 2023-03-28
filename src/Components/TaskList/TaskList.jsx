@@ -50,9 +50,20 @@ export default function TaskList({ filter }) {
   }
 
   function editTask(task) {
-    setIsButtonActive(false);
-    setIsFormActive(true);
-    setTask(task);
+    setIsButtonActive(!isButtonActive);
+    setIsFormActive(!isFormActive);
+    setIsFormAdding(!isFormAdding)
+    if(isFormActive) {
+      setTask({
+        title: "",
+        description: "",
+        dueDate: undefined,
+        priority: 4,
+        assignedProject: undefined,
+      })
+    }else{
+      setTask(task);
+    }
   }
 
   function saveTask() {
