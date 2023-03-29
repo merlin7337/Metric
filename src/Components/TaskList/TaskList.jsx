@@ -3,16 +3,8 @@ import Task from "../Task/Task";
 import TaskForm from "../TaskForm/TaskForm";
 import cl from "./TaskList.module.scss";
 import { AiOutlinePlus } from "react-icons/ai";
-import TaskForm2 from "../TaskForm/TaskForm2";
 
 export default function TaskList({ filter }) {
-  const [task, setTask] = useState({
-    title: "",
-    description: "",
-    dueDate: undefined,
-    priority: 4,
-    assignedProject: undefined,
-  });
   const [editingTask, setEditingTask] = useState();
   const [tasks, setTasks] = useState([]);
   const [isFormActive, setIsFormActive] = useState(false);
@@ -66,11 +58,6 @@ export default function TaskList({ filter }) {
             Add task
           </button>
         )}
-        {/* <TaskForm2
-          editingTask={editingTask}
-          setTasks={setTasks}
-          type={type}
-        /> */}
       </div>
     </div>
   );
