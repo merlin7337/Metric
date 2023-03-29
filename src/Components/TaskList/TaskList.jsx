@@ -5,7 +5,7 @@ import cl from "./TaskList.module.scss";
 import { AiOutlinePlus } from "react-icons/ai";
 
 export default function TaskList({ filter }) {
-  const [editingTask, setEditingTask] = useState();
+  const [editingTask, setEditingTask] = useState({});
   const [tasks, setTasks] = useState([]);
   const [isFormActive, setIsFormActive] = useState(false);
   const [type, setType] = useState("create");
@@ -49,6 +49,8 @@ export default function TaskList({ filter }) {
           <TaskForm
             setIsActive={setIsFormActive}
             editingTask={editingTask}
+            setEditingTask={setEditingTask}
+            tasks={tasks}
             setTasks={setTasks}
             type={type}
           />
