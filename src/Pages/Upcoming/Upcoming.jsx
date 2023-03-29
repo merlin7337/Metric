@@ -1,5 +1,5 @@
-import React from 'react'
-import cl from './Upcoming.module.scss'
+import React from "react";
+import cl from "./Upcoming.module.scss";
 
 export default function Upcoming() {
   return (
@@ -8,5 +8,5 @@ export default function Upcoming() {
         <h2>Upcoming</h2>
       </div>
     </div>
-  )
+  );
 }
