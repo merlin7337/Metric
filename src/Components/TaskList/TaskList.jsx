@@ -9,6 +9,7 @@ export default function TaskList({ filter }) {
   const [tasks, setTasks] = useState([]);
   const [isFormActive, setIsFormActive] = useState(false);
   const [type, setType] = useState("create");
+
   useEffect(() => {
     if (localStorage.getItem("tasks")) {
       const items = JSON.parse(localStorage.getItem("tasks"));
@@ -38,7 +39,7 @@ export default function TaskList({ filter }) {
 
   return (
     <div className={cl.taskList}>
-      {tasks.map((e) => {
+      {tasks.filter(filter).map((e) => {
         return (
           <Task
             {...e}
