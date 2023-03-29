@@ -9,7 +9,6 @@ export default function TaskList({ filter }) {
   const [tasks, setTasks] = useState([]);
   const [isFormActive, setIsFormActive] = useState(false);
   const [type, setType] = useState("create");
-
   useEffect(() => {
     if (localStorage.getItem("tasks")) {
       const items = JSON.parse(localStorage.getItem("tasks"));
@@ -18,6 +17,14 @@ export default function TaskList({ filter }) {
       }
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.removeItem('tasks');
+    localStorage.setItem(
+      'tasks',
+      JSON.stringify(tasks)
+    );
+  }, [tasks]);
 
   const handleOpenForm = () => {
     setIsFormActive(true);
@@ -31,7 +38,7 @@ export default function TaskList({ filter }) {
 
   return (
     <div className={cl.taskList}>
-      {tasks.filter(filter).map((e) => {
+      {tasks.map((e) => {
         return (
           <Task
             {...e}

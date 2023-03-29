@@ -56,38 +56,25 @@ export default function TaskForm({
           id: uuid(),
         },
       ]);
-      localStorage.setItem(
-        "tasks",
-        JSON.stringify([
-          ...tasks,
-          {
-            title,
-            description,
-            dueDate,
-            priority,
-            assignedProject,
-          },
-        ])
-      );
       handleClose();
     }
   };
 
   const editTask = () => {
-    if (title !== "") {
-      setTasks((state) => {
-        const copy = JSON.parse(JSON.stringify(state)); //unique copy
-        return copy.map((e) =>
-          e.id === editingTask.id
-            ? { ...e, title, description, priority, dueDate, assignedProject }
-            : e
-        );
-      });
-      handleClose();
+    if (title === "") {
+      return
     }
+    setTasks(state => {
+      const copy = JSON.parse(JSON.stringify(state)); //unique copy
+      return copy.map(e =>
+        e.id === editingTask.id
+          ? { ...e, title, description, priority, dueDate, assignedProject }
+          : e
+      )
+    });
+    handleClose();
   };
 
-  console.log(title);
 
   const onSave =
     type === "create" ? createTask : type === "edit" ? editTask : null;
