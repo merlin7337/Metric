@@ -4,37 +4,42 @@ import Checkbox from "../UI/Checkbox/Checkbox";
 import Modal from "../Modal/Modal";
 import { FaTrashAlt } from "react-icons/fa";
 import { TfiMoreAlt } from "react-icons/tfi";
-import { AiOutlineEdit } from "react-icons/ai"
+import { AiOutlineEdit } from "react-icons/ai";
 
-export default function Task(props) {
+export default function Task({
+  title,
+  description,
+  priority,
+  dueDate,
+  assignedProject,
+  setEditingTask,
+  deleteTask,
+  task,
+  setType,
+  setIsFormActive,
+}) {
   const [modalVisible, setModalVisible] = useState(false);
 
-  // const daysOfWeek = [
-  //   'Sunday',
-  //   'Monday',
-  //   'Tuesday',
-  //   'Wednesday',
-  //   'Thursday',
-  //   'Friday',
-  //   'Saturday',
-  // ]
-
-  // console.log(daysOfWeek[moment().toDate().getDay()]);
+  const handleEdit = () => {
+    setEditingTask(task);
+    setType("edit");
+    setIsFormActive(true);
+  };
 
   return (
     <div className={cl.task}>
       <div className={cl.taskContent}>
         <div className={cl.taskLeft}>
-          <Checkbox priority={props.priority} />
+          <Checkbox priority={priority} />
           <div className={cl.taskText}>
-            <div className={cl.taskTitle}>{props.title}</div>
-            <div className={cl.taskDescription}>{props.description}</div>
+            <div className={cl.taskTitle}>{title}</div>
+            <div className={cl.taskDescription}>{description}</div>
           </div>
         </div>
         <div className={cl.taskTools}>
           <div className={cl.editContainer}>
-            <button className={cl.editButton} onClick={() => {props.setIsFormAdding(false); props.editTask(props.task)}}> 
-              <AiOutlineEdit className={cl.editIcon}/>
+            <button className={cl.editButton} onClick={handleEdit}>
+              <AiOutlineEdit className={cl.editIcon} />
             </button>
           </div>
           <div className={cl.moreContainer}>
@@ -48,7 +53,7 @@ export default function Task(props) {
               <button
                 className={cl.trashButton}
                 onClick={() => {
-                  props.deleteTask(props.task);
+                  deleteTask(task);
                 }}
               >
                 <FaTrashAlt className={cl.trashIcon} />

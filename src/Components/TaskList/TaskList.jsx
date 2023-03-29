@@ -5,17 +5,10 @@ import cl from "./TaskList.module.scss";
 import { AiOutlinePlus } from "react-icons/ai";
 
 export default function TaskList({ filter }) {
-  const [task, setTask] = useState({
-    title: "",
-    description: "",
-    dueDate: undefined,
-    priority: 4,
-    assignedProject: undefined,
-  });
+  const [editingTask, setEditingTask] = useState();
   const [tasks, setTasks] = useState([]);
   const [isFormActive, setIsFormActive] = useState(false);
-  const [isButtonActive, setIsButtonActive] = useState(true);
-  const [isFormAdding, setIsFormAdding] = useState(true);
+  const [type, setType] = useState("create");
 
   useEffect(() => {
     if (localStorage.getItem("tasks")) {
@@ -26,22 +19,9 @@ export default function TaskList({ filter }) {
     }
   }, []);
 
-  const buttonClasses = [cl.addTask];
-  if (!isButtonActive) {
-    buttonClasses.push(cl.disactive);
-  }
-
-  function cancel() {
-    setIsFormActive(false);
-    setIsButtonActive(true);
-  }
-
-  function createTask(newTask) {
-    setTasks([...tasks, newTask]);
-    setIsFormActive(false);
-    setIsButtonActive(true);
-    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
-  }
+  const handleOpenForm = () => {
+    setIsFormActive(true);
+  };
 
   function deleteTask(task) {
     const newTasks = tasks.filter((e) => e.id !== task.id);
@@ -49,68 +29,35 @@ export default function TaskList({ filter }) {
     localStorage.setItem("tasks", JSON.stringify(newTasks));
   }
 
-  function editTask(task) {
-    setIsButtonActive(!isButtonActive);
-    setIsFormActive(!isFormActive);
-    setIsFormAdding(!isFormAdding)
-    if(isFormActive) {
-      setTask({
-        title: "",
-        description: "",
-        dueDate: undefined,
-        priority: 4,
-        assignedProject: undefined,
-      })
-    }else{
-      setTask(task);
-    }
-  }
-
-  function saveTask() {
-    setIsButtonActive(true);
-    setIsFormActive(false);
-  }
-
   return (
     <div className={cl.taskList}>
       {tasks.filter(filter).map((e) => {
         return (
           <Task
-            title={e.title}
-            description={e.description}
-            dueDate={e.dueDate}
-            priority={e.priority}
-            assignedProject={e.assignedProject}
+            {...e}
             task={e}
             deleteTask={deleteTask}
-            editTask={editTask}
-            setIsFormAdding={setIsFormAdding}
+            setEditingTask={setEditingTask}
             key={e.id}
+            setType={setType}
+            setIsFormActive={setIsFormActive}
           />
         );
       })}
       <div className={cl.container}>
-        <button
-          className={buttonClasses.join(" ")}
-          onClick={() => {
-            setIsFormActive(true);
-            setIsButtonActive(false);
-          }}
-        >
-          <AiOutlinePlus className={cl.plusIcon} />
-          Add task
-        </button>
-        <TaskForm
-          create={createTask}
-          cancel={cancel}
-          isActive={isFormActive}
-          setIsActive={setIsFormActive}
-          task={task}
-          setTask={setTask}
-          isFormAdding={isFormAdding}
-          setIsFormAdding={setIsFormAdding}
-          saveTask={saveTask}
-        />
+        {isFormActive ? (
+          <TaskForm
+            setIsActive={setIsFormActive}
+            editingTask={editingTask}
+            setTasks={setTasks}
+            type={type}
+          />
+        ) : (
+          <button className={cl.addTask} onClick={handleOpenForm}>
+            <AiOutlinePlus className={cl.plusIcon} />
+            Add task
+          </button>
+        )}
       </div>
     </div>
   );

@@ -1,65 +1,65 @@
-.sidebar{
-    width: 220px;
-    height: calc(100vh - 44px);
+.sidebar {
+  width: 220px;
+  height: calc(100vh - 44px);
 }
 
-.links{
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.link {
+  padding: 15px;
+  margin: 5px;
+  text-decoration: none;
+  color: black;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 8px;
+  &:hover {
+    border: 1px solid black;
+  }
+  &.inbox {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    align-items: center;
+  }
+  &.today {
+    display: flex;
+    align-items: center;
+  }
+  &.upcoming {
+    display: flex;
+    align-items: center;
+  }
 }
 
-.link{
-    padding: 15px;
-    margin: 5px;
-    text-decoration: none;
-    color: black;
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 8px;
-    &:hover{
-        border: 1px solid black;
-    }
-    &.inbox{
-        display: flex;
-        align-items: center;
-    }
-    &.today{
-        display: flex;
-        align-items: center;
-    }
-    &.upcoming{
-        display: flex;
-        align-items: center;
-    }
+.inboxIcon {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #246fe0;
 }
 
-.inboxIcon{
-    margin-right: 10px;
-    font-size: 20px;
-    color: #246fe0;    
+.todayIcon {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #058527;
 }
 
-.todayIcon{
-    margin-right: 10px;
-    font-size: 20px;
-    color: #058527;   
+.upcomingIcon {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #692fc2;
 }
 
-.upcomingIcon{
-    margin-right: 10px;
-    font-size: 20px;
-    color: #692fc2;
+.date {
+  color: #058527;
+  font-size: 10px;
+  font-weight: 600;
+  top: 5px;
+  left: 5px;
+  position: absolute;
 }
 
-.date{
-    color: #058527;
-    font-size: 10px;
-    font-weight: 600;
-    top: 5px;
-    left: 5px;
-    position: absolute;
-}
-
-.calendarIconContainer{
-    position: relative;
+.calendarIconContainer {
+  position: relative;
 }
