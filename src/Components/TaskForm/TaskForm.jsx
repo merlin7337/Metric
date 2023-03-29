@@ -5,7 +5,14 @@ import { IoIosFlag, IoMdCheckmark } from "react-icons/io";
 import uuid from "react-uuid";
 import { IoCalendarOutline } from "react-icons/io5";
 
-export default function TaskForm({ setIsActive, editingTask, setTasks, type }) {
+export default function TaskForm({
+  setIsActive,
+  editingTask,
+  setEditingTask,
+  tasks,
+  setTasks,
+  type,
+}) {
   const [title, setTitle] = useState(editingTask?.title || "");
   const [description, setDescription] = useState(
     editingTask?.description || ""
@@ -33,6 +40,7 @@ export default function TaskForm({ setIsActive, editingTask, setTasks, type }) {
     setPriority(4);
     setDueDate(undefined);
     setAssignedProject(undefined);
+    setEditingTask({});
   };
 
   const createTask = () => {
@@ -48,21 +56,38 @@ export default function TaskForm({ setIsActive, editingTask, setTasks, type }) {
           id: uuid(),
         },
       ]);
+      localStorage.setItem(
+        "tasks",
+        JSON.stringify([
+          ...tasks,
+          {
+            title,
+            description,
+            dueDate,
+            priority,
+            assignedProject,
+          },
+        ])
+      );
       handleClose();
     }
   };
 
   const editTask = () => {
-    setTasks((state) => {
-      const copy = JSON.parse(JSON.stringify(state)); //unique copy
-      return copy.map((e) =>
-        e.id === editingTask.id
-          ? { ...e, title, description, priority, dueDate, assignedProject }
-          : e
-      );
-    });
-    handleClose();
+    if (title !== "") {
+      setTasks((state) => {
+        const copy = JSON.parse(JSON.stringify(state)); //unique copy
+        return copy.map((e) =>
+          e.id === editingTask.id
+            ? { ...e, title, description, priority, dueDate, assignedProject }
+            : e
+        );
+      });
+      handleClose();
+    }
   };
+
+  console.log(title);
 
   const onSave =
     type === "create" ? createTask : type === "edit" ? editTask : null;
