@@ -3,145 +3,141 @@ $p2-color: #eb8909;
 $p3-color: #246fe0;
 $p4-color: #666;
 
-*{
-    margin: 0;
+* {
+  margin: 0;
 }
 
-.input{
-    outline: none;
-    border: 1px solid white;
-    width: 100%;
-    padding: 5px 15px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+.input {
+  outline: none;
+  border: 1px solid white;
+  width: 100%;
+  padding: 5px 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
-.buttons{
-    display: flex;
-    justify-content: right;
+.buttons {
+  display: flex;
+  justify-content: right;
 }
 
-.addTask{
-    margin-top: 5px;
-    padding: 5px 15px;
-    color: #ffffff;
-    font-size: 14px;
-    border: 0;
-    border-radius: 5px;
-    background: #3B7ADC;
-    cursor: pointer;
-    &:hover{
-        background: #2c5ca9;;
-    }
+.addTask {
+  margin-top: 5px;
+  padding: 5px 15px;
+  color: #ffffff;
+  font-size: 14px;
+  border: 0;
+  border-radius: 5px;
+  background: #3b7adc;
+  cursor: pointer;
+  &:hover {
+    background: #2c5ca9;
+  }
 }
 
-.cancel{
-    margin-top: 5px;
-    margin-right: 7px;
-    padding: 5px 15px;
-    color: #202020;
-    font-size: 14px;
-    border: 0;
-    border-radius: 5px;
-    background: #ffffff;
-    cursor: pointer;
-    &:hover{
-        background: #e5e5e5;
-    }
+.cancel {
+  margin-top: 5px;
+  margin-right: 7px;
+  padding: 5px 15px;
+  color: #202020;
+  font-size: 14px;
+  border: 0;
+  border-radius: 5px;
+  background: #ffffff;
+  cursor: pointer;
+  &:hover {
+    background: #e5e5e5;
+  }
 }
 
-.priorityButton{
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    position: relative;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    padding: 2px;
-    &:hover{
-        background: #e5e5e5;
-    }
+.priorityButton {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 2px;
+  &:hover {
+    background: #e5e5e5;
+  }
 }
 
-.priorityModalButton{
-    padding: 2px;
-    margin-right: 5px;
-    background-color: transparent;
-    border: 1px solid ;
-    border-radius: 5px;
-    cursor: pointer;
-    position: relative;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
+.priorityModalButton {
+  padding: 2px;
+  margin-right: 5px;
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
 }
 
-.dueDateModalButton{
-    padding: 2px;
-    margin-right: 5px;
-    background-color: transparent;
-    border: 1px solid ;
-    border-radius: 5px;
-    cursor: pointer;
-    position: relative;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
+.dueDateModalButton {
+  padding: 2px;
+  margin-right: 5px;
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
 }
 
-.flagIcon{
-    font-size: 24px;
-    margin-right: 5px;
-    &.p1{
-        color: $p1-color;
-    }
-    &.p2{
-        color: $p2-color;
-    }
-    &.p3{
-        color: $p3-color;
-    }
-    &.p4{
-        color: $p4-color;
-    }
+.flagIcon {
+  font-size: 24px;
+  margin-right: 5px;
+  &.p1 {
+    color: $p1-color;
+  }
+  &.p2 {
+    color: $p2-color;
+  }
+  &.p3 {
+    color: $p3-color;
+  }
+  &.p4 {
+    color: $p4-color;
+  }
 }
-.calendarIcon{
-    font-size: 24px;
-    margin-right: 5px;
-}
-
-.form{
-    border: 1px solid #202020;
-    border-radius: 10px;
-    margin: 8px;
-    padding: 8px;
-    display: none;
-    &.active{
-        display: block;
-    }
+.calendarIcon {
+  font-size: 24px;
+  margin-right: 5px;
 }
 
-.checkmarkIcon{
-    font-size: 24px;
-    padding-left: 10px;
+.form {
+  border: 1px solid #202020;
+  border-radius: 10px;
+  margin: 8px;
+  padding: 8px;
 }
 
-.buttonsContainer{
-    margin-left: 16px;
-    margin-top: 8px;
-    display: flex;
+.checkmarkIcon {
+  font-size: 24px;
+  padding-left: 10px;
 }
 
-.dueDateContainer{
-    position: relative;
+.buttonsContainer {
+  margin-left: 16px;
+  margin-top: 8px;
+  display: flex;
 }
 
-.priorityContainer{
-    position: relative;
+.dueDateContainer {
+  position: relative;
 }
 
-.dropdown{
-    position: absolute;
+.priorityContainer {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
 }

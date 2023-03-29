@@ -5,101 +5,86 @@ import { IoIosFlag, IoMdCheckmark } from "react-icons/io";
 import uuid from "react-uuid";
 import { IoCalendarOutline } from "react-icons/io5";
 
-export default function TaskForm({
-  create,
-  cancel,
-  isActive,
-  setIsActive,
-  task,
-  setTask,
-  isFormAdding,
-  setIsFormAdding,
-  saveTask,
-}) {
+export default function TaskForm({ setIsActive, editingTask, setTasks, type }) {
+  const [title, setTitle] = useState(editingTask?.title || "");
+  const [description, setDescription] = useState(
+    editingTask?.description || ""
+  );
+  const [priority, setPriority] = useState(editingTask?.priority || 4);
+  const [dueDate, setDueDate] = useState(editingTask?.dueDate || undefined);
+  const [assignedProject, setAssignedProject] = useState(
+    editingTask?.assignedProject || undefined
+  );
+
   const [priorityVisibility, setPriorityVisibility] = useState(false);
   const [dueDateVisibility, setDueDateVisibility] = useState(false);
 
-  const rootClasses = [cl.form];
-  if (isActive) {
-    rootClasses.push(cl.active);
-  } else if (priorityVisibility) {
-    rootClasses.push(cl.contextMenuActive);
-  }
-
-  const cancelAdding = () => {
-    cancel();
-    setTask({
-      title: "",
-      description: "",
-      dueDate: undefined,
-      priority: 4,
-      assignedProject: undefined,
-    });
-    setDueDateVisibility(false);
-    setPriorityVisibility(false);
-    setIsActive(false);
+  const handleChangeTitle = (e) => {
+    setTitle(e.currentTarget.value);
+  };
+  const handleChangeDescription = (e) => {
+    setDescription(e.currentTarget.value);
   };
 
-  const cancelEditing = () => {
-    cancel();
-    setTask({
-      title: "",
-      description: "",
-      dueDate: undefined,
-      priority: 4,
-      assignedProject: undefined,
-    });
-    setDueDateVisibility(false);
-    setPriorityVisibility(false);
+  const handleClose = () => {
     setIsActive(false);
-    setIsFormAdding(true);
+    setTitle("");
+    setDescription("");
+    setPriority(4);
+    setDueDate(undefined);
+    setAssignedProject(undefined);
   };
 
-  const saveEditing = () => {
-    saveTask();
-    setTask({
-      title: "",
-      description: "",
-      dueDate: undefined,
-      priority: 4,
-      assignedProject: undefined,
-    });
-    setDueDateVisibility(false);
-    setPriorityVisibility(false);
-    setIsActive(false);
-    setIsFormAdding(true);
+  const createTask = () => {
+    if (title !== "") {
+      setTasks((state) => [
+        ...state,
+        {
+          title,
+          description,
+          dueDate,
+          priority,
+          assignedProject,
+          id: uuid(),
+        },
+      ]);
+      handleClose();
+    }
   };
 
-  const addNewTask = () => {
-    const newTask = { ...task, id: uuid() };
-    create(newTask);
-    setTask({
-      title: "",
-      description: "",
-      dueDate: undefined,
-      priority: 4,
-      assignedProject: undefined,
+  const editTask = () => {
+    setTasks((state) => {
+      const copy = JSON.parse(JSON.stringify(state)); //unique copy
+      return copy.map((e) =>
+        e.id === editingTask.id
+          ? { ...e, title, description, priority, dueDate, assignedProject }
+          : e
+      );
     });
-    setDueDateVisibility(false);
-    setPriorityVisibility(false);
-    setIsActive(false);
-    setIsFormAdding(true);
+    handleClose();
   };
+
+  const onSave =
+    type === "create" ? createTask : type === "edit" ? editTask : null;
+  const submitButtonText =
+    type === "create" ? "Add task" : type === "edit" ? "Save" : null;
 
   const priorityButtons = Array.from({ length: 4 }).map((_, i) => {
-    const priority = i + 1;
+    const buttonPriority = i + 1;
     return (
       <button
-        key={uuid()}
+        key={i}
         className={cl.priorityButton}
         onClick={() => {
-          setTask({ ...task, priority });
+          setPriority(buttonPriority);
           setPriorityVisibility(false);
         }}
       >
-        <IoIosFlag className={[cl.flagIcon, cl[`p${priority}`]].join(" ")} />
-        Priority {priority}
-        {task.priority === priority && (
+        <IoIosFlag
+          className={[cl.flagIcon, cl[`p${buttonPriority}`]].join(" ")}
+        />
+        Priority {buttonPriority}
+        {buttonPriority === priority && (
           <IoMdCheckmark className={cl.checkmarkIcon} />
         )}
       </button>
@@ -107,23 +92,24 @@ export default function TaskForm({
   });
 
   return (
-    <div className={rootClasses.join(" ")}>
+    <div className={cl.form}>
       <form>
         <input
           type="text"
           placeholder="Task name"
-          value={task.title}
-          onChange={(e) => setTask({ ...task, title: e.target.value })}
+          value={title}
+          onChange={handleChangeTitle}
           className={cl.input}
         />
         <input
           type="text"
           placeholder="Description"
-          value={task.description}
-          onChange={(e) => setTask({ ...task, description: e.target.value })}
+          value={description}
+          onChange={handleChangeDescription}
           className={cl.input}
         />
       </form>
+
       <div className={cl.buttonsContainer}>
         <div className={cl.dueDateContainer}>
           <button
@@ -147,7 +133,7 @@ export default function TaskForm({
             onClick={() => setPriorityVisibility(!priorityVisibility)}
           >
             <IoIosFlag
-              className={[cl.flagIcon, cl[`p${task.priority}`]].join(" ")}
+              className={[cl.flagIcon, cl[`p${priority}`]].join(" ")}
             />
             Priority
           </button>
@@ -161,18 +147,12 @@ export default function TaskForm({
         </div>
       </div>
       <div className={cl.buttons}>
-        <button onClick={() => isFormAdding ? cancelAdding() : cancelEditing(task)} className={cl.cancel}>
+        <button className={cl.cancel} onClick={handleClose}>
           Cancel
         </button>
-        {isFormAdding 
-        ? 
-        <button onClick={addNewTask} className={cl.addTask}>
-          Add task
+        <button className={cl.addTask} onClick={onSave}>
+          {submitButtonText}
         </button>
-        : 
-        <button onClick={saveEditing} className={cl.addTask}>
-          Save
-        </button>}
       </div>
     </div>
   );

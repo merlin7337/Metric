@@ -3,7 +3,7 @@ $p2-color: #eb8909;
 $p3-color: #246fe0;
 $p4-color: #666;
 
-.task{
+.task {
   position: relative;
   &:hover .taskTools {
     display: flex;
@@ -11,7 +11,7 @@ $p4-color: #666;
   }
 }
 
-.taskContent{
+.taskContent {
   position: relative;
   font-size: 16px;
   padding: 8px;
@@ -20,10 +20,10 @@ $p4-color: #666;
   justify-content: space-between;
 }
 
-.taskTitle{
+.taskTitle {
   font-size: 20px;
 }
-.taskDescription{
+.taskDescription {
   font-size: 10px;
 }
 
@@ -31,7 +31,7 @@ $p4-color: #666;
   display: none;
 }
 
-.moreButton{
+.moreButton {
   margin-left: 12px;
   background-color: transparent;
   border: 0;
@@ -39,7 +39,7 @@ $p4-color: #666;
   position: relative;
 }
 
-.trashButton{
+.trashButton {
   display: flex;
   align-items: center;
   background-color: transparent;
@@ -47,12 +47,12 @@ $p4-color: #666;
   cursor: pointer;
   position: relative;
   font-size: 14px;
-  &:hover{
+  &:hover {
     color: #605c5c;
   }
 }
 
-.editButton{
+.editButton {
   display: flex;
   align-items: center;
   background-color: transparent;
@@ -60,34 +60,34 @@ $p4-color: #666;
   cursor: pointer;
   position: relative;
   font-size: 14px;
-  &:hover{
+  &:hover {
     color: #605c5c;
   }
 }
 
-.moreIcon{
+.moreIcon {
   font-size: 24px;
-  &:hover{
+  &:hover {
     color: #605c5c;
   }
 }
 
-.editIcon{
+.editIcon {
   font-size: 24px;
-  &:hover{
+  &:hover {
     color: #605c5c;
   }
 }
 
-.trashIcon{
+.trashIcon {
   font-size: 16px;
   margin-right: 5px;
 }
 
-.taskLeft{
+.taskLeft {
   display: flex;
 }
 
-.moreContainer{
+.moreContainer {
   position: relative;
 }
