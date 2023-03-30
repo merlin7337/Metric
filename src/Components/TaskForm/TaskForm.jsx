@@ -4,6 +4,11 @@ import Modal from "../Modal/Modal";
 import { IoIosFlag, IoMdCheckmark } from "react-icons/io";
 import uuid from "react-uuid";
 import { IoCalendarOutline } from "react-icons/io5";
+import { BsSun, BsCalendar4Range } from "react-icons/bs";
+import { VscCircleSlash } from "react-icons/vsc";
+import { IoCalendarClearOutline } from "react-icons/io5";
+import { FaCouch } from "react-icons/fa";
+import moment from "moment";
 
 export default function TaskForm({
   setIsActive,
@@ -62,19 +67,26 @@ export default function TaskForm({
 
   const editTask = () => {
     if (title === "") {
-      return
+      return;
     }
-    setTasks(state => {
+    setTasks((state) => {
       const copy = JSON.parse(JSON.stringify(state)); //unique copy
-      return copy.map(e =>
+      return copy.map((e) =>
         e.id === editingTask.id
           ? { ...e, title, description, priority, dueDate, assignedProject }
           : e
-      )
+      );
     });
     handleClose();
   };
 
+  let today = moment().toDate().getDate();
+
+  let nextMon = new Date();
+  nextMon.setDate(nextMon.getDate() + ((1 + 7 - nextMon.getDay()) % 7 || 7));
+
+  let nextSat = new Date();
+  nextSat.setDate(nextSat.getDate() + ((1 + 5 - nextSat.getDay()) % 7 || 7));
 
   const onSave =
     type === "create" ? createTask : type === "edit" ? editTask : null;
@@ -136,7 +148,61 @@ export default function TaskForm({
             visible={dueDateVisibility}
             setVisible={setDueDateVisibility}
           >
-            {priorityButtons}
+            <button
+              className={cl.dueDateButton}
+              onClick={() => setDueDate(moment().format("DD.MM.YYYY"))}
+            >
+              <div className={cl.calendarIconContainer}>
+                <IoCalendarClearOutline className={cl.todayIcon} />
+                <span className={cl.date}>{today}</span>
+              </div>
+              Today
+              {dueDate === moment().format("DD.MM.YYYY") && (
+                <IoMdCheckmark className={cl.checkmarkIcon} />
+              )}
+            </button>
+            <button
+              className={cl.dueDateButton}
+              onClick={() =>
+                setDueDate(moment().add(1, "days").format("DD.MM.YYYY"))
+              }
+            >
+              <BsSun className={cl.tomorrowIcon} />
+              Tomorrow
+              {dueDate === moment().add(1, "days").format("DD.MM.YYYY") && (
+                <IoMdCheckmark className={cl.checkmarkIcon} />
+              )}
+            </button>
+            <button
+              className={cl.dueDateButton}
+              onClick={() => setDueDate(moment(nextSat).format("DD.MM.YYYY"))}
+            >
+              <FaCouch className={cl.thisWeekendIcon} />
+              This weekend
+              {dueDate === moment(nextSat).format("DD.MM.YYYY") && (
+                <IoMdCheckmark className={cl.checkmarkIcon} />
+              )}
+            </button>
+            <button
+              className={cl.dueDateButton}
+              onClick={() => setDueDate(moment(nextMon).format("DD.MM.YYYY"))}
+            >
+              <BsCalendar4Range className={cl.nextWeekIcon} />
+              Next week
+              {dueDate === moment(nextMon).format("DD.MM.YYYY") && (
+                <IoMdCheckmark className={cl.checkmarkIcon} />
+              )}
+            </button>
+            <button
+              className={cl.dueDateButton}
+              onClick={() => setDueDate(undefined)}
+            >
+              <VscCircleSlash className={cl.noDueDateIcon} />
+              No due date
+              {dueDate === undefined && (
+                <IoMdCheckmark className={cl.checkmarkIcon} />
+              )}
+            </button>
           </Modal>
         </div>
         <div className={cl.priorityContainer}>
