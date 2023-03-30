@@ -1,6 +1,6 @@
 import React from "react";
 import cl from "./Inbox.module.scss";
-import TaskList from "../../Components/TaskList/TaskList";
+import TaskList from "../../components/TaskList/TaskList";
 
 export default function Inbox() {
   return (

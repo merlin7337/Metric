@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import cl from "./Navbar.module.scss";
-import { SidebarContext } from "../../../Context";
+import { SidebarContext } from "../../../context";
 import { IoMenu } from "react-icons/io5";
 
 export default function Navbar() {

@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Inbox from "../Pages/Inbox/Inbox";
-import Today from "../Pages/Today/Today";
-import Upcoming from "../Pages/Upcoming/Upcoming";
+import Inbox from "../pages/Inbox/Inbox";
+import Today from "../pages/Today/Today";
+import Upcoming from "../pages/Upcoming/Upcoming";
 
 function Router() {
   return (

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { SidebarContext } from "../../../Context";
+import { SidebarContext } from "../../../context";
 import cl from "./Sidebar.module.scss";
 import { HiOutlineInbox } from "react-icons/hi2";
 import { IoCalendarClearOutline, IoCalendarOutline } from "react-icons/io5";
 import moment from "moment";
 
-export default function Sidebar(props) {
+export default function Sidebar() {
   const { isSidebarShown } = useContext(SidebarContext);
 
   const today = moment().toDate().getDate();
@@ -18,7 +18,6 @@ export default function Sidebar(props) {
           <NavLink to="/inbox" className={[cl.link, cl["inbox"]].join(" ")}>
             <HiOutlineInbox className={cl.inboxIcon} />
             Inbox
-            <div>{}</div>
           </NavLink>
           <NavLink to="/today" className={[cl.link, cl["today"]].join(" ")}>
             <div className={cl.calendarIconContainer}>
@@ -26,7 +25,6 @@ export default function Sidebar(props) {
               <span className={cl.date}>{today}</span>
             </div>
             Today
-            <div>{}</div>
           </NavLink>
           <NavLink
             to="/upcoming"
@@ -34,7 +32,6 @@ export default function Sidebar(props) {
           >
             <IoCalendarOutline className={cl.upcomingIcon} />
             Upcoming
-            <div>{}</div>
           </NavLink>
         </div>
       </div>
