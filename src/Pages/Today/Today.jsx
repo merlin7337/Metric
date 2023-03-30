@@ -8,7 +8,7 @@ export default function Today() {
     <div className={cl.container}>
       <div className={cl.content}>
         <h2>Today</h2>
-        <TaskList filter={(e) => e.dueDate === moment()} />
+        <TaskList filter={(e) => e.dueDate === moment().format("DD.MM.YYYY")} />
       </div>
     </div>
   );
