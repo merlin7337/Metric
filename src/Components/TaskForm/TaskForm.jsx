@@ -87,21 +87,6 @@ export default function TaskForm({
   let nextSat = new Date();
   nextSat.setDate(nextSat.getDate() + ((1 + 5 - nextSat.getDay()) % 7 || 7));
 
-  // const month = [
-  //   "Jan",
-  //   "Feb",
-  //   "Mar",
-  //   "Apr",
-  //   "May",
-  //   "Jun",
-  //   "Jul",
-  //   "Aug",
-  //   "Sep",
-  //   "Oct",
-  //   "Nov",
-  //   "Dec",
-  // ];
-
   const onSave =
     type === "create" ? createTask : type === "edit" ? editTask : null;
   const submitButtonText =
@@ -129,6 +114,32 @@ export default function TaskForm({
     );
   });
 
+  let dueDateModalIcon;
+  switch (dueDate) {
+    case moment().format("DD.MM.YYYY"):
+      dueDateModalIcon = (
+        <div className={cl.calendarIconContainer}>
+          <IoCalendarClearOutline className={cl.todayIcon} />
+          <span className={cl.date}>{today}</span>
+        </div>
+      );
+      break;
+    case moment().add(1, "days").format("DD.MM.YYYY"):
+      dueDateModalIcon = <BsSun className={cl.tomorrowIcon} />;
+      break;
+    case moment(nextSat).format("DD.MM.YYYY"):
+      dueDateModalIcon = <FaCouch className={cl.thisWeekendIcon} />;
+      break;
+    case moment(nextMon).format("DD.MM.YYYY"):
+      dueDateModalIcon = <BsCalendar4Range className={cl.nextWeekIcon} />;
+      break;
+    case undefined:
+      dueDateModalIcon = <VscCircleSlash className={cl.noDueDateIcon} />;
+      break;
+    default:
+      break;
+  }
+
   return (
     <div className={cl.form}>
       <form>
@@ -153,7 +164,7 @@ export default function TaskForm({
             className={cl.dueDateModalButton}
             onClick={() => setDueDateVisibility(!dueDateVisibility)}
           >
-            <BsSun className={cl.tomorrowIcon} />
+            {dueDateModalIcon}
             {dueDate === undefined
               ? "Due date"
               : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
@@ -222,7 +233,7 @@ export default function TaskForm({
               className={cl.dueDateButton}
               onClick={() => {
                 setDueDate(undefined);
-                setDueDateVisibility(false)
+                setDueDateVisibility(false);
               }}
             >
               <VscCircleSlash className={cl.noDueDateIcon} />
