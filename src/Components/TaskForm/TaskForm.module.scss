@@ -66,7 +66,7 @@ $p4-color: #666;
 }
 
 .priorityModalButton {
-  padding: 2px;
+  padding: 3px;
   margin-right: 5px;
   background-color: transparent;
   border: 1px solid;
@@ -79,7 +79,7 @@ $p4-color: #666;
 }
 
 .dueDateModalButton {
-  padding: 2px;
+  padding: 3px;
   margin-right: 5px;
   background-color: transparent;
   border: 1px solid;
@@ -184,7 +184,7 @@ $p4-color: #666;
 .noDueDateIcon{
   margin-right: 10px;
   font-size: 24px;
-  color: grey;
+  color: $p4-color;
 }
 
 .date {

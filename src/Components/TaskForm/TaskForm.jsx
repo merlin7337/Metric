@@ -3,7 +3,6 @@ import cl from "./TaskForm.module.scss";
 import Modal from "../Modal/Modal";
 import { IoIosFlag, IoMdCheckmark } from "react-icons/io";
 import uuid from "react-uuid";
-import { IoCalendarOutline } from "react-icons/io5";
 import { BsSun, BsCalendar4Range } from "react-icons/bs";
 import { VscCircleSlash } from "react-icons/vsc";
 import { IoCalendarClearOutline } from "react-icons/io5";
@@ -88,6 +87,21 @@ export default function TaskForm({
   let nextSat = new Date();
   nextSat.setDate(nextSat.getDate() + ((1 + 5 - nextSat.getDay()) % 7 || 7));
 
+  // const month = [
+  //   "Jan",
+  //   "Feb",
+  //   "Mar",
+  //   "Apr",
+  //   "May",
+  //   "Jun",
+  //   "Jul",
+  //   "Aug",
+  //   "Sep",
+  //   "Oct",
+  //   "Nov",
+  //   "Dec",
+  // ];
+
   const onSave =
     type === "create" ? createTask : type === "edit" ? editTask : null;
   const submitButtonText =
@@ -133,15 +147,16 @@ export default function TaskForm({
           className={cl.input}
         />
       </form>
-
       <div className={cl.buttonsContainer}>
         <div className={cl.dueDateContainer}>
           <button
             className={cl.dueDateModalButton}
             onClick={() => setDueDateVisibility(!dueDateVisibility)}
           >
-            <IoCalendarOutline className={cl.calendarIcon} />
-            Due date
+            <BsSun className={cl.tomorrowIcon} />
+            {dueDate === undefined
+              ? "Due date"
+              : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
           </button>
           <Modal
             className={cl.dropdown}
@@ -150,7 +165,10 @@ export default function TaskForm({
           >
             <button
               className={cl.dueDateButton}
-              onClick={() => setDueDate(moment().format("DD.MM.YYYY"))}
+              onClick={() => {
+                setDueDate(moment().format("DD.MM.YYYY"));
+                setDueDateVisibility(false);
+              }}
             >
               <div className={cl.calendarIconContainer}>
                 <IoCalendarClearOutline className={cl.todayIcon} />
@@ -163,9 +181,10 @@ export default function TaskForm({
             </button>
             <button
               className={cl.dueDateButton}
-              onClick={() =>
-                setDueDate(moment().add(1, "days").format("DD.MM.YYYY"))
-              }
+              onClick={() => {
+                setDueDate(moment().add(1, "days").format("DD.MM.YYYY"));
+                setDueDateVisibility(false);
+              }}
             >
               <BsSun className={cl.tomorrowIcon} />
               Tomorrow
@@ -175,7 +194,10 @@ export default function TaskForm({
             </button>
             <button
               className={cl.dueDateButton}
-              onClick={() => setDueDate(moment(nextSat).format("DD.MM.YYYY"))}
+              onClick={() => {
+                setDueDate(moment(nextSat).format("DD.MM.YYYY"));
+                setDueDateVisibility(false);
+              }}
             >
               <FaCouch className={cl.thisWeekendIcon} />
               This weekend
@@ -185,7 +207,10 @@ export default function TaskForm({
             </button>
             <button
               className={cl.dueDateButton}
-              onClick={() => setDueDate(moment(nextMon).format("DD.MM.YYYY"))}
+              onClick={() => {
+                setDueDate(moment(nextMon).format("DD.MM.YYYY"));
+                setDueDateVisibility(false);
+              }}
             >
               <BsCalendar4Range className={cl.nextWeekIcon} />
               Next week
@@ -195,7 +220,10 @@ export default function TaskForm({
             </button>
             <button
               className={cl.dueDateButton}
-              onClick={() => setDueDate(undefined)}
+              onClick={() => {
+                setDueDate(undefined);
+                setDueDateVisibility(false)
+              }}
             >
               <VscCircleSlash className={cl.noDueDateIcon} />
               No due date
