@@ -1,31 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Task from "../Task/Task";
 import TaskForm from "../TaskForm/TaskForm";
 import cl from "./TaskList.module.scss";
 import { AiOutlinePlus } from "react-icons/ai";
+import useTasks from "../../hooks/useTasks";
 
-export default function TaskList({ filter }) {
+export default function TaskList({ filter, defaultValue }) {
   const [editingTask, setEditingTask] = useState({});
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useTasks()
   const [isFormActive, setIsFormActive] = useState(false);
   const [type, setType] = useState("create");
-
-  useEffect(() => {
-    if (localStorage.getItem("tasks")) {
-      const items = JSON.parse(localStorage.getItem("tasks"));
-      if (items) {
-        setTasks(items);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.removeItem('tasks');
-    localStorage.setItem(
-      'tasks',
-      JSON.stringify(tasks)
-    );
-  }, [tasks]);
 
   const handleOpenForm = () => {
     setIsFormActive(true);
@@ -34,7 +18,6 @@ export default function TaskList({ filter }) {
   function deleteTask(task) {
     const newTasks = tasks.filter((e) => e.id !== task.id);
     setTasks(newTasks);
-    localStorage.setItem("tasks", JSON.stringify(newTasks));
   }
 
   return (
@@ -42,13 +25,13 @@ export default function TaskList({ filter }) {
       {tasks.filter(filter).map((e) => {
         return (
           <Task
-            {...e}
             task={e}
+            {...e}
             deleteTask={deleteTask}
             setEditingTask={setEditingTask}
-            key={e.id}
             setType={setType}
             setIsFormActive={setIsFormActive}
+            key={e.id}
           />
         );
       })}
@@ -58,9 +41,9 @@ export default function TaskList({ filter }) {
             setIsActive={setIsFormActive}
             editingTask={editingTask}
             setEditingTask={setEditingTask}
-            tasks={tasks}
             setTasks={setTasks}
             type={type}
+            defaultValue={defaultValue}
           />
         ) : (
           <button className={cl.addTask} onClick={handleOpenForm}>

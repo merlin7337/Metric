@@ -14,22 +14,12 @@
   margin: 5px;
   text-decoration: none;
   color: black;
-  border: 1px solid rgb(255, 255, 255);
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   &:hover {
-    border: 1px solid black;
-  }
-  &.inbox {
-    display: flex;
-    align-items: center;
-  }
-  &.today {
-    display: flex;
-    align-items: center;
-  }
-  &.upcoming {
-    display: flex;
-    align-items: center;
+    background-color: #e5e5e5;
   }
 }
 
@@ -62,4 +52,14 @@
 .calendarIconContainer {
   position: relative;
   display: flex;
+}
+
+.countOfTasks{
+  color: grey;
+  font-size: 14px;
+}
+
+.navLinkLeft{
+  display: flex;
+  align-items: center;
 }

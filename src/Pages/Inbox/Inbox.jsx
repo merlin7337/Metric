@@ -7,7 +7,10 @@ export default function Inbox() {
     <div className={cl.container}>
       <div className={cl.content}>
         <h2>Inbox</h2>
-        <TaskList filter={(e) => e.assignedProject === undefined} />
+        <TaskList
+          filter={(e) => e.assignedProject === undefined}
+          defaultValue={{ assignedProject: undefined }}
+        />
       </div>
     </div>
   );
