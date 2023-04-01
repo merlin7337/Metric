@@ -9,7 +9,10 @@ import moment from "moment";
 export default function Sidebar() {
   const { isSidebarShown } = useContext(SidebarContext);
 
-  const today = moment().toDate().getDate();
+  let today = moment().toDate().getDate().toString();
+  if (today.length === 1) {
+    today = "0" + today;
+  }
 
   if (isSidebarShown) {
     return (

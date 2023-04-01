@@ -3,6 +3,10 @@ $p2-color: #eb8909;
 $p3-color: #246fe0;
 $p4-color: #666;
 
+$overdue-color: #d82113;
+$todayDue-color: #00c90a;
+$futureDue-color: #246fe0;
+
 .task {
   position: relative;
   &:hover .taskTools {
@@ -22,9 +26,12 @@ $p4-color: #666;
 
 .taskTitle {
   font-size: 20px;
+  margin-right: 10px;
 }
 .taskDescription {
+  margin-left: 33px;
   font-size: 10px;
+  color: rgb(70, 70, 70);
 }
 
 .taskTools {
@@ -86,8 +93,41 @@ $p4-color: #666;
 
 .taskLeft {
   display: flex;
+  flex-direction: column;
 }
 
 .moreContainer {
   position: relative;
+}
+
+.taskTopLine{
+  align-items: center;
+  display: flex;
+}
+
+.taskDownLine{
+  display: flex;
+  align-items: center;
+}
+
+.dueDate{
+  border: 1px solid;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 2px;
+  &.undefined{
+    display: none;
+  }
+  &.overdue{
+    color: $overdue-color;
+    border-color: $overdue-color;
+  }
+  &.today{
+    color: $todayDue-color;
+    border-color: $todayDue-color;
+  }
+  &.future{
+    color: $futureDue-color;
+    border-color: $futureDue-color;
+  }
 }

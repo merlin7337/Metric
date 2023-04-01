@@ -79,7 +79,10 @@ export default function TaskForm({
     handleClose();
   };
 
-  let today = moment().toDate().getDate();
+  let today = moment().toDate().getDate().toString();
+  if (today.length === 1) {
+    today = "0" + today;
+  }
 
   let nextMon = new Date();
   nextMon.setDate(nextMon.getDate() + ((1 + 7 - nextMon.getDay()) % 7 || 7));
@@ -94,6 +97,7 @@ export default function TaskForm({
 
   const priorityButtons = Array.from({ length: 4 }).map((_, i) => {
     const buttonPriority = i + 1;
+
     return (
       <button
         key={i}
