@@ -10,20 +10,20 @@ function App() {
   const [isSidebarShown, setIsSidebarShown] = useState(false);
 
   return (
-        <SidebarContext.Provider
-          value={{
-            isSidebarShown,
-            setIsSidebarShown,
-          }}
-        >
-          <BrowserRouter>
-            <Navbar />
-            <div className="App">
-              <Sidebar />
-              <Router />
-            </div>
-          </BrowserRouter>
-        </SidebarContext.Provider>
+    <SidebarContext.Provider
+      value={{
+        isSidebarShown,
+        setIsSidebarShown,
+      }}
+    >
+      <BrowserRouter>
+        <Navbar />
+        <div className="App">
+          <Sidebar />
+          <Router />
+        </div>
+      </BrowserRouter>
+    </SidebarContext.Provider>
   );
 }
 
