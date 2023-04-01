@@ -37,6 +37,10 @@ export default function TaskForm({
     setDescription(e.currentTarget.value);
   };
 
+  const handleChangeDueDate = (e) => {
+    setDueDate(e.currentTarget.value);
+  };
+
   const handleClose = () => {
     setIsActive(false);
     setTitle("");
@@ -141,6 +145,7 @@ export default function TaskForm({
       dueDateModalIcon = <VscCircleSlash className={cl.noDueDateIcon} />;
       break;
     default:
+      dueDateModalIcon = <BsCalendar4Range className={cl.nextWeekIcon} />;
       break;
   }
 
@@ -178,6 +183,14 @@ export default function TaskForm({
             visibility={dueDateVisibility}
             setVisibility={setDueDateVisibility}
           >
+            <input
+              type="week"
+              placeholder="Due date"
+              value={dueDate}
+              onChange={handleChangeDueDate}
+              className={cl.input}
+            />
+            <div className={cl.divider} />
             <button
               className={cl.dueDateButton}
               onClick={() => {

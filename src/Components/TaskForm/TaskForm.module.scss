@@ -11,7 +11,7 @@ $p4-color: #666;
   outline: none;
   border: 1px solid white;
   width: 100%;
-  padding: 5px 15px;
+  padding: 5px 10px;
   margin-bottom: 5px;
   margin-top: 5px;
 }
@@ -197,4 +197,9 @@ $p4-color: #666;
 
 .calendarIconContainer {
   position: relative;
+}
+
+.divider{
+  border-top: 1px solid black;
+  margin-bottom: 5px;
 }
