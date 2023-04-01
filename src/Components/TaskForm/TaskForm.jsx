@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import cl from "./TaskForm.module.scss";
-import Modal from "../Modal/Modal";
+import Dropdown from "../Dropdown/Dropdown";
 import { IoIosFlag, IoMdCheckmark } from "react-icons/io";
 import uuid from "react-uuid";
 import { BsSun, BsCalendar4Range } from "react-icons/bs";
@@ -169,10 +169,10 @@ export default function TaskForm({
               ? "Due date"
               : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
           </button>
-          <Modal
+          <Dropdown
             className={cl.dropdown}
-            visible={dueDateVisibility}
-            setVisible={setDueDateVisibility}
+            visibility={dueDateVisibility}
+            setVisibility={setDueDateVisibility}
           >
             <button
               className={cl.dueDateButton}
@@ -242,7 +242,7 @@ export default function TaskForm({
                 <IoMdCheckmark className={cl.checkmarkIcon} />
               )}
             </button>
-          </Modal>
+          </Dropdown>
         </div>
         <div className={cl.priorityContainer}>
           <button
@@ -254,13 +254,13 @@ export default function TaskForm({
             />
             Priority
           </button>
-          <Modal
+          <Dropdown
             className={cl.dropdown}
-            visible={priorityVisibility}
-            setVisible={setPriorityVisibility}
+            visibility={priorityVisibility}
+            setVisibility={setPriorityVisibility}
           >
             {priorityButtons}
-          </Modal>
+          </Dropdown>
         </div>
       </div>
       <div className={cl.buttons}>

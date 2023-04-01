@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import cl from "./Task.module.scss";
 import Checkbox from "../UI/Checkbox/Checkbox";
-import Modal from "../Modal/Modal";
+import Dropdown from "../Dropdown/Dropdown";
 import { FaTrashAlt } from "react-icons/fa";
 import { TfiMoreAlt } from "react-icons/tfi";
 import { AiOutlineEdit } from "react-icons/ai";
+import cl from "./Task.module.scss";
 
 export default function Task({
   title,
@@ -18,7 +18,7 @@ export default function Task({
   setType,
   setIsFormActive,
 }) {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [dropdownVisiblility, setDropdownVisibility] = useState(false);
 
   const handleEdit = () => {
     setEditingTask(task);
@@ -45,11 +45,11 @@ export default function Task({
           <div className={cl.moreContainer}>
             <button
               className={cl.moreButton}
-              onClick={() => setModalVisible(!modalVisible)}
+              onClick={() => setDropdownVisibility(!dropdownVisiblility)}
             >
               <TfiMoreAlt className={cl.moreIcon} />
             </button>
-            <Modal visible={modalVisible} setVisible={setModalVisible}>
+            <Dropdown visibility={dropdownVisiblility} setVisibility={setDropdownVisibility}>
               <button
                 className={cl.trashButton}
                 onClick={() => {
@@ -59,7 +59,7 @@ export default function Task({
                 <FaTrashAlt className={cl.trashIcon} />
                 Delete task
               </button>
-            </Modal>
+            </Dropdown>
           </div>
         </div>
       </div>

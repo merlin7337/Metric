@@ -1,4 +1,4 @@
-.modal {
+.dropdown {
   position: absolute;
   display: none;
   &.active {
@@ -9,7 +9,7 @@
   left: 50%;
 }
 
-.modalContent {
+.dropdownContent {
   width: max-content;
   display: flex;
   flex-direction: column;
