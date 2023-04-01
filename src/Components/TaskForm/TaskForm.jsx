@@ -13,9 +13,9 @@ export default function TaskForm({
   setIsActive,
   editingTask,
   setEditingTask,
-  tasks,
   setTasks,
   type,
+  defaultValue,
 }) {
   const [title, setTitle] = useState(editingTask?.title || "");
   const [description, setDescription] = useState(

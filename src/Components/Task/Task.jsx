@@ -8,18 +8,14 @@ import cl from "./Task.module.scss";
 import moment from "moment";
 
 export default function Task({
-  title,
-  description,
-  priority,
-  dueDate,
-  assignedProject,
   setEditingTask,
   deleteTask,
-  task,
   setType,
   setIsFormActive,
+  task
 }) {
   const [dropdownVisiblility, setDropdownVisibility] = useState(false);
+  const { title, description, priority, dueDate, assignedProject } = task;
 
   const handleEdit = () => {
     setEditingTask(task);
@@ -46,7 +42,7 @@ export default function Task({
             <Checkbox className={cl.checkbox} priority={priority} />
             <div className={cl.taskTitle}>{title}</div>
             <div className={dueDateClasses.join(" ")}>
-              {dueDate === undefined
+              {!dueDate
                 ? ""
                 : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
             </div>
