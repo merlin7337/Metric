@@ -17,6 +17,7 @@ export default function Sidebar() {
   const [countOfTodayTasks, setCountOfTodayTasks] = useState(0);
   const [countOfUpcomingTasks, setCountOfUpcomingTasks] = useState(0);
 
+
   let today = moment().toDate().getDate().toString();
   if (today.length === 1) {
     today = "0" + today;

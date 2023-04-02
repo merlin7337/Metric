@@ -7,7 +7,7 @@ import useTasks from "../../hooks/useTasks";
 
 export default function TaskList({ filter, defaultValue }) {
   const [editingTask, setEditingTask] = useState({});
-  const [tasks, setTasks] = useTasks()
+  const [tasks, setTasks] = useTasks();
   const [isFormActive, setIsFormActive] = useState(false);
   const [type, setType] = useState("create");
 
@@ -43,6 +43,7 @@ export default function TaskList({ filter, defaultValue }) {
             setEditingTask={setEditingTask}
             setTasks={setTasks}
             type={type}
+            setType={setType}
             defaultValue={defaultValue}
           />
         ) : (

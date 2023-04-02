@@ -12,10 +12,10 @@ export default function Task({
   deleteTask,
   setType,
   setIsFormActive,
-  task
+  task,
 }) {
-  const [dropdownVisiblility, setDropdownVisibility] = useState(false);
   const { title, description, priority, dueDate, assignedProject } = task;
+  const [dropdownVisiblility, setDropdownVisibility] = useState(false);
 
   const handleEdit = () => {
     setEditingTask(task);
@@ -42,9 +42,7 @@ export default function Task({
             <Checkbox className={cl.checkbox} priority={priority} />
             <div className={cl.taskTitle}>{title}</div>
             <div className={dueDateClasses.join(" ")}>
-              {!dueDate
-                ? ""
-                : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
+              {!dueDate ? "" : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
             </div>
           </div>
           <div className={cl.taskDescription}>{description}</div>
@@ -64,6 +62,10 @@ export default function Task({
               visibility={dropdownVisiblility}
               setVisibility={setDropdownVisibility}
             >
+              <button className={cl.trashButton} onClick={handleEdit}>
+                <AiOutlineEdit className={cl.editIcon} />
+                Edit task
+              </button>
               <button
                 className={cl.trashButton}
                 onClick={() => {
@@ -77,6 +79,7 @@ export default function Task({
           </div>
         </div>
       </div>
+      <div className={cl.divider} />
     </div>
   );
 }

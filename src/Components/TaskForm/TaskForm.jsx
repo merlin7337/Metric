@@ -15,16 +15,23 @@ export default function TaskForm({
   setEditingTask,
   setTasks,
   type,
+  setType,
   defaultValue,
 }) {
-  const [title, setTitle] = useState(editingTask?.title || "");
-  const [description, setDescription] = useState(
-    editingTask?.description || ""
+  const [title, setTitle] = useState(
+    editingTask?.title || defaultValue?.title || ""
   );
-  const [priority, setPriority] = useState(editingTask?.priority || 4);
-  const [dueDate, setDueDate] = useState(editingTask?.dueDate || undefined);
+  const [description, setDescription] = useState(
+    editingTask?.description || defaultValue?.description || ""
+  );
+  const [priority, setPriority] = useState(
+    editingTask?.priority || defaultValue?.priority || 4
+  );
+  const [dueDate, setDueDate] = useState(
+    editingTask?.dueDate || defaultValue?.dueDate || undefined
+  );
   const [assignedProject, setAssignedProject] = useState(
-    editingTask?.assignedProject || undefined
+    editingTask?.assignedProject || defaultValue?.assignedProject || undefined
   );
 
   const [priorityVisibility, setPriorityVisibility] = useState(false);
@@ -49,6 +56,9 @@ export default function TaskForm({
     setDueDate(undefined);
     setAssignedProject(undefined);
     setEditingTask({});
+    if (type === "edit") {
+      setType("create");
+    }
   };
 
   const createTask = () => {
@@ -69,9 +79,6 @@ export default function TaskForm({
   };
 
   const editTask = () => {
-    if (title === "") {
-      return;
-    }
     setTasks((state) => {
       const copy = JSON.parse(JSON.stringify(state)); //unique copy
       return copy.map((e) =>
@@ -81,6 +88,7 @@ export default function TaskForm({
       );
     });
     handleClose();
+    setType("create");
   };
 
   let today = moment().toDate().getDate().toString();
@@ -98,6 +106,8 @@ export default function TaskForm({
     type === "create" ? createTask : type === "edit" ? editTask : null;
   const submitButtonText =
     type === "create" ? "Add task" : type === "edit" ? "Save" : null;
+
+  console.log(type);
 
   const priorityButtons = Array.from({ length: 4 }).map((_, i) => {
     const buttonPriority = i + 1;
@@ -184,7 +194,7 @@ export default function TaskForm({
             setVisibility={setDueDateVisibility}
           >
             <input
-              type="week"
+              type="text"
               placeholder="Due date"
               value={dueDate}
               onChange={handleChangeDueDate}
