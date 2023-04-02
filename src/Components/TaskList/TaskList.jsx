@@ -20,6 +20,8 @@ export default function TaskList({ filter, defaultValue }) {
     setTasks(newTasks);
   }
 
+  console.log(tasks);
+  
   return (
     <div className={cl.taskList}>
       {tasks.filter(filter).map((e) => {

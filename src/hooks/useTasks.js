@@ -1,34 +1,36 @@
-import { useCallback, useLayoutEffect } from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
+
+const TasksContext = createContext(null);
 
 const useTasks = () => {
   const [tasks, setTasks] = useState([]);
 
-  const onStorageChange = useCallback(() => {
-    const localData = localStorage.getItem("tasks");
-    if (localData && localData !== JSON.stringify(tasks)) {
-      setTasks(JSON.parse(localData));
-    }
-  }, []);
-
-  useLayoutEffect(() => {
-    const candidate = JSON.parse(localStorage.getItem("tasks"));
-    if (localStorage.getItem("tasks") && candidate) {
-      setTasks(candidate);
-    }
-
-    window.addEventListener("storage", onStorageChange);
-    return () => {
-      window.removeEventListener("storage", onStorageChange);
-    };
-  }, []);
+  const handleSetTasks = (e) => {
+    const copy = [...tasks, e];
+    setTasks(copy);
+    localStorage.setItem("tasks", JSON.stringify(copy));
+  };
 
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+    const data = localStorage.getItem("tasks");
+    const candidate = data ? JSON.parse(data) : [];
+    if (data && candidate.length) {
+      setTasks(candidate);
+    }
+  }, []);
 
-  return [tasks, setTasks];
+  return [tasks, handleSetTasks];
 };
 
-export default useTasks;
+export const TasksProvider = ({ children }) => {
+  const [tasks, setTasks] = useTasks();
+  return (
+    <TasksContext.Provider value={[tasks, setTasks]}>
+      {children}
+    </TasksContext.Provider>
+  );
+};
+
+export default function Import() {
+  return useContext(TasksContext);
+}

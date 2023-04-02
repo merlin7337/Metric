@@ -5,6 +5,7 @@ import Router from "./routes/Router";
 import Navbar from "./components/UI/Navbar/Navbar";
 import Sidebar from "./components/UI/Sidebar/Sidebar";
 import { SidebarContext } from "./context";
+import { TasksProvider } from "./hooks/useTasks";
 
 function App() {
   const [isSidebarShown, setIsSidebarShown] = useState(false);
@@ -16,13 +17,15 @@ function App() {
         setIsSidebarShown,
       }}
     >
-      <BrowserRouter>
-        <Navbar />
-        <div className="App">
-          <Sidebar />
-          <Router />
-        </div>
-      </BrowserRouter>
+      <TasksProvider>
+        <BrowserRouter>
+          <Navbar />
+          <div className="App">
+            <Sidebar />
+            <Router />
+          </div>
+        </BrowserRouter>
+      </TasksProvider>
     </SidebarContext.Provider>
   );
 }

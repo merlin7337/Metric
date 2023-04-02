@@ -63,17 +63,14 @@ export default function TaskForm({
 
   const createTask = () => {
     if (title !== "") {
-      setTasks((state) => [
-        ...state,
-        {
-          title,
-          description,
-          dueDate,
-          priority,
-          assignedProject,
-          id: uuid(),
-        },
-      ]);
+      setTasks({
+        title,
+        description,
+        dueDate,
+        priority,
+        assignedProject,
+        id: uuid(),
+      });
       handleClose();
     }
   };
