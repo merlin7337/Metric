@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import cl from "./Navbar.module.scss";
 import { SidebarContext } from "../../../context";
-import { IoMenu } from "react-icons/io5";
+import { FiMenu } from "react-icons/fi";
+import { NavLink } from "react-router-dom";
+import { GrHomeRounded } from "react-icons/gr";
 
 export default function Navbar() {
   const { isSidebarShown, setIsSidebarShown } = useContext(SidebarContext);
@@ -11,8 +13,11 @@ export default function Navbar() {
         className={cl.menuButton}
         onClick={() => setIsSidebarShown(!isSidebarShown)}
       >
-        <IoMenu className={cl.menuIcon} />
+        <FiMenu className={cl.menuIcon} />
       </button>
+      <NavLink className={cl.homeButton} to="/today">
+        <GrHomeRounded className={cl.homeIcon} />
+      </NavLink>
     </div>
   );
 }
