@@ -19,8 +19,6 @@ export default function TaskList({ filter, defaultValue }) {
     const newTasks = tasks.filter((e) => e.id !== task.id);
     setTasks(newTasks);
   }
-
-  console.log(tasks);
   
   return (
     <div className={cl.taskList}>
@@ -37,7 +35,7 @@ export default function TaskList({ filter, defaultValue }) {
           />
         );
       })}
-      <div className={cl.container}>
+      <div className={cl.formContainer}>
         {isFormActive ? (
           <TaskForm
             setIsActive={setIsFormActive}

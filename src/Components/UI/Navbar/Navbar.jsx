@@ -4,6 +4,7 @@ import { SidebarContext } from "../../../context";
 import { FiMenu } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import { GrHomeRounded } from "react-icons/gr";
+import Search from "../../Search/Search";
 
 export default function Navbar() {
   const { isSidebarShown, setIsSidebarShown } = useContext(SidebarContext);
@@ -18,6 +19,7 @@ export default function Navbar() {
       <NavLink className={cl.homeButton} to="/today">
         <GrHomeRounded className={cl.homeIcon} />
       </NavLink>
+      <Search/>
     </div>
   );
 }

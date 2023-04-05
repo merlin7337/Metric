@@ -104,8 +104,6 @@ export default function TaskForm({
   const submitButtonText =
     type === "create" ? "Add task" : type === "edit" ? "Save" : null;
 
-  console.log(type);
-
   const priorityButtons = Array.from({ length: 4 }).map((_, i) => {
     const buttonPriority = i + 1;
 
