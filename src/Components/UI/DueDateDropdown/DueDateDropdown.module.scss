@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+}
+
+.input {
+  outline: none;
+  border: 1px solid white;
+  width: 100%;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.dueDateModalButton {
+  padding: 3px;
+  margin-right: 5px;
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.calendarIcon {
+  font-size: 24px;
+  margin-right: 5px;
+}
+
+.checkmarkIcon {
+  font-size: 24px;
+  padding-left: 10px;
+}
+
+.dueDateContainer {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+}
+
+.dueDateButton{
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 2px;
+  &:hover {
+    background: #e5e5e5;
+  }
+}
+
+.todayIcon {
+  margin-right: 10px;
+  font-size: 24px;
+  color: #058527;
+}
+
+.tomorrowIcon{
+  margin-right: 10px;
+  font-size: 24px;
+  color: #ad6200 !important;
+}
+
+.nextWeekIcon{
+  margin-right: 10px;
+  font-size: 24px;
+  color: #692fc2 !important;
+}
+
+.thisWeekendIcon{
+  margin-right: 10px;
+  font-size: 24px;
+  color: #246fe0 !important;
+}
+
+.noDueDateIcon{
+  margin-right: 10px;
+  font-size: 24px;
+  color: #666;
+}
+
+.invalidDateIcon{
+    margin-right: 10px;
+    font-size: 24px;
+    color: #d1453b;
+}
+
+.date {
+  color: #058527;
+  font-size: 12px;
+  top: 6px;
+  left: 5.8px;
+  position: absolute;
+}
+
+.calendarIconContainer {
+  position: relative;
+  display: flex;
+}
+
+.divider{
+  border-top: 1px solid black;
+  margin-bottom: 5px;
+}
