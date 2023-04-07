@@ -15,18 +15,27 @@ export default function TaskList({ filter, defaultValue }) {
     setIsFormActive(true);
   };
 
+  const handlePrioritySort = (a, b) => {
+    if (a.priority < b.priority) {
+      return -1;
+    } else if (a.priority > b.priority) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+
   function deleteTask(task) {
     const newTasks = tasks.filter((e) => e.id !== task.id);
     setTasks(newTasks);
   }
-  
+
   return (
     <div className={cl.taskList}>
-      {tasks.filter(filter).map((e) => {
+      {tasks.filter(filter).sort(handlePrioritySort).map((e) => {
         return (
           <Task
             task={e}
-            {...e}
             deleteTask={deleteTask}
             setEditingTask={setEditingTask}
             setType={setType}
@@ -41,6 +50,7 @@ export default function TaskList({ filter, defaultValue }) {
             setIsActive={setIsFormActive}
             editingTask={editingTask}
             setEditingTask={setEditingTask}
+            tasks={tasks}
             setTasks={setTasks}
             type={type}
             setType={setType}

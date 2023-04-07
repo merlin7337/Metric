@@ -6,7 +6,7 @@ const useTasks = () => {
   const [tasks, setTasks] = useState([]);
 
   const handleSetTasks = (e) => {
-    const copy = [...tasks, e];
+    const copy = [...e];
     setTasks(copy);
     localStorage.setItem("tasks", JSON.stringify(copy));
   };

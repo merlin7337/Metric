@@ -8,6 +8,7 @@ export default function TaskForm({
   setIsActive,
   editingTask,
   setEditingTask,
+  tasks,
   setTasks,
   type,
   setType,
@@ -54,14 +55,14 @@ export default function TaskForm({
 
   const createTask = () => {
     if (title !== "") {
-      setTasks({
+      setTasks([...tasks, {
         title,
         description,
         dueDate,
         priority,
         assignedProject,
         id: uuid(),
-      });
+      }]);
       handleClose();
     }
   };
