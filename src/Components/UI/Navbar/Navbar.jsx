@@ -19,7 +19,7 @@ export default function Navbar() {
       <NavLink className={cl.homeButton} to="/today">
         <GrHomeRounded className={cl.homeIcon} />
       </NavLink>
-      <Search/>
+      <Search />
     </div>
   );
 }

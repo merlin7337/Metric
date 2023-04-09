@@ -20,19 +20,24 @@ $p4-color: #666;
   display: flex;
   align-items: center;
   justify-content: center;
+
   &:hover .checkmarkIcon {
     opacity: 1;
     // transform: scale(1);
   }
+
   &.p1 {
     color: $p1-color;
   }
+
   &.p2 {
     color: $p2-color;
   }
+
   &.p3 {
     color: $p3-color;
   }
+
   &.p4 {
     color: $p4-color;
   }
@@ -41,19 +46,24 @@ $p4-color: #666;
 .checkmarkIcon {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+
   // transform: scale(.95);
   &.p1 {
     color: $p1-color;
   }
+
   &.p2 {
     color: $p2-color;
   }
+
   &.p3 {
     color: $p3-color;
   }
+
   &.p4 {
     color: $p4-color;
   }
+
   position: absolute;
   font-size: 22px;
 }

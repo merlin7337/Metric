@@ -1,7 +1,37 @@
-.search{
+.search {
+    position: relative;
+    margin-left: 5px;
+}
+
+.searchIcon{
+    font-size: 22px;
+    margin-right: 5px;
+}
+
+.inputContainer{
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    height: 32.4px;
+    padding: 2px;
     position: relative;
 }
 
-.dropdown{
+.input {
+    outline: none;
+    border: 1px solid white;
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.dropdown {
     position: absolute
+}
+
+.screenFiller {
+    height: 1080px;
+    width: 1920px;
+    position: absolute;
 }

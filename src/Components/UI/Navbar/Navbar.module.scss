@@ -13,9 +13,11 @@
   border: 0;
   cursor: pointer;
   position: relative;
-  &:hover{
+
+  &:hover {
     background-color: #e5e5e536;
   }
+
   height: 32.4px;
   width: 32.4px;
 }
@@ -34,9 +36,11 @@
   border: 0;
   cursor: pointer;
   position: relative;
-  &:hover{
+
+  &:hover {
     background-color: #e5e5e536;
   }
+
   height: 32.4px;
   width: 32.4px;
 }
@@ -44,4 +48,3 @@
 .homeIcon {
   font-size: 25px;
 }
-
