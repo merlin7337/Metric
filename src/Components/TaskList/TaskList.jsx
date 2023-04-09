@@ -7,7 +7,7 @@ import useTasks from "../../hooks/useTasks";
 
 export default function TaskList({ filter, defaultValue }) {
   const [editingTask, setEditingTask] = useState({});
-  const [tasks, setTasks] = useTasks();
+  const [ tasks, handleSetTasks ] = useTasks();
   const [isFormActive, setIsFormActive] = useState(false);
   const [type, setType] = useState("create");
 
@@ -27,23 +27,26 @@ export default function TaskList({ filter, defaultValue }) {
 
   function deleteTask(task) {
     const newTasks = tasks.filter((e) => e.id !== task.id);
-    setTasks(newTasks);
+    handleSetTasks(newTasks);
   }
 
   return (
     <div className={cl.taskList}>
-      {tasks.filter(filter).sort(handlePrioritySort).map((e) => {
-        return (
-          <Task
-            task={e}
-            deleteTask={deleteTask}
-            setEditingTask={setEditingTask}
-            setType={setType}
-            setIsFormActive={setIsFormActive}
-            key={e.id}
-          />
-        );
-      })}
+      {tasks
+        .filter(filter)
+        .sort(handlePrioritySort)
+        .map((e) => {
+          return (
+            <Task
+              task={e}
+              deleteTask={deleteTask}
+              setEditingTask={setEditingTask}
+              setType={setType}
+              setIsFormActive={setIsFormActive}
+              key={e.id}
+            />
+          );
+        })}
       <div className={cl.formContainer}>
         {isFormActive ? (
           <TaskForm
@@ -51,7 +54,7 @@ export default function TaskList({ filter, defaultValue }) {
             editingTask={editingTask}
             setEditingTask={setEditingTask}
             tasks={tasks}
-            setTasks={setTasks}
+            handleSetTasks={handleSetTasks}
             type={type}
             setType={setType}
             defaultValue={defaultValue}

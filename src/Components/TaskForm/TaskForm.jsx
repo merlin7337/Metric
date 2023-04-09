@@ -9,7 +9,7 @@ export default function TaskForm({
   editingTask,
   setEditingTask,
   tasks,
-  setTasks,
+  handleSetTasks,
   type,
   setType,
   defaultValue,
@@ -55,7 +55,7 @@ export default function TaskForm({
 
   const createTask = () => {
     if (title !== "") {
-      setTasks([
+      handleSetTasks([
         ...tasks,
         {
           title,
@@ -71,14 +71,15 @@ export default function TaskForm({
   };
 
   const editTask = () => {
-    setTasks((state) => {
-      const copy = JSON.parse(JSON.stringify(state)); //unique copy
+    const f = (tasks) => {
+      const copy = [...tasks]; //unique copy
       return copy.map((e) =>
         e.id === editingTask.id
           ? { ...e, title, description, priority, dueDate, assignedProject }
           : e
       );
-    });
+    };
+    handleSetTasks(f(tasks));
     handleClose();
     setType("create");
   };

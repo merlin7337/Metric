@@ -19,13 +19,13 @@ const useTasks = () => {
     }
   }, []);
 
-  return [tasks, handleSetTasks];
+  return { tasks, handleSetTasks };
 };
 
 export const TasksProvider = ({ children }) => {
-  const [tasks, setTasks] = useTasks();
+  const { tasks, handleSetTasks } = useTasks();
   return (
-    <TasksContext.Provider value={[tasks, setTasks]}>
+    <TasksContext.Provider value={[tasks, handleSetTasks]}>
       {children}
     </TasksContext.Provider>
   );
