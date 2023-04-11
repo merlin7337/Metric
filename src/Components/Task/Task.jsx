@@ -59,7 +59,12 @@ export default function Task({
       <div className={cl.taskContent}>
         <div className={cl.taskLeft}>
           <div className={cl.taskTopLine}>
-            <Checkbox className={cl.checkbox} priority={priority} />
+            <Checkbox
+              className={cl.checkbox}
+              priority={priority}
+              deleteTask={deleteTask}
+              task={task}
+            />
             <div className={cl.taskTitle}>{title}</div>
             <div className={dueDateClasses.join(" ")}>
               {!dueDate ? "" : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}

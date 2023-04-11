@@ -9,10 +9,6 @@ $futureDue-color: #246fe0;
 
 .task {
   position: relative;
-  &:hover .taskTools {
-    display: flex;
-    align-items: center;
-  }
 }
 
 .taskContent {
@@ -36,7 +32,8 @@ $futureDue-color: #246fe0;
 }
 
 .taskTools {
-  display: none;
+  display: flex;
+  align-items: center;
 }
 
 .moreButton {

@@ -10,8 +10,8 @@ $p4-color: #666;
 
 .checkbox {
   background-color: transparent;
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
   position: relative;
   border: 2px solid;
   border-radius: 90px;
@@ -23,7 +23,10 @@ $p4-color: #666;
 
   &:hover .checkmarkIcon {
     opacity: 1;
-    // transform: scale(1);
+  }
+
+  &:checked .checkmarkIcon{
+    transform: scale(2);
   }
 
   &.p1 {
@@ -45,9 +48,12 @@ $p4-color: #666;
 
 .checkmarkIcon {
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-
-  // transform: scale(.95);
+  transform: scale(1);
+  transition-property: transform, opacity;
+  transition-duration: 3s, 0.3s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  
   &.p1 {
     color: $p1-color;
   }
@@ -65,5 +71,5 @@ $p4-color: #666;
   }
 
   position: absolute;
-  font-size: 22px;
+  font-size: 24px;
 }
