@@ -27,16 +27,26 @@ export default function Task({
   const [tasks, handleSetTasks] = useTasks();
   const [dropdownVisiblility, setDropdownVisibility] = useState(false);
 
-  const handleEditPriority = (priority, editingTask) => {
-    console.log(priority);
+  const handleEditPriority = (priority) => {
     const f = (tasks) => {
       const copy = [...tasks]; //unique copy
       return copy.map((e) =>
         e.id === editingTask.id ? { ...e, priority: priority } : e
       );
     };
-    console.log(f(tasks, priority));
-    handleSetTasks(f(tasks, priority));
+    handleSetTasks(f(tasks));
+    setDropdownVisibility(false);
+    setType("create");
+  };
+
+  const handleEditDueDate = (dueDate) => {
+    const f = (tasks) => {
+      const copy = [...tasks]; //unique copy
+      return copy.map((e) =>
+        e.id === editingTask.id ? { ...e, dueDate: dueDate } : e
+      );
+    };
+    handleSetTasks(f(tasks));
     setDropdownVisibility(false);
     setType("create");
   };
@@ -74,6 +84,12 @@ export default function Task({
   if (today.length === 1) {
     today = "0" + today;
   }
+
+  let nextMon = new Date();
+  nextMon.setDate(nextMon.getDate() + ((1 + 7 - nextMon.getDay()) % 7 || 7));
+
+  let nextSat = new Date();
+  nextSat.setDate(nextSat.getDate() + ((1 + 5 - nextSat.getDay()) % 7 || 7));
 
   const priorityButtons = Array.from({ length: 4 }).map((_, i) => {
     const buttonPriority = i + 1;
@@ -144,7 +160,10 @@ export default function Task({
           <div className={cl.moreContainer}>
             <button
               className={cl.moreButton}
-              onClick={() => setDropdownVisibility(!dropdownVisiblility)}
+              onClick={() => {
+                setDropdownVisibility(!dropdownVisiblility);
+                setEditingTask(task);
+              }}
             >
               <FiMoreHorizontal className={cl.moreIcon} />
             </button>
@@ -169,8 +188,8 @@ export default function Task({
                 <button
                   className={cl.dueDateButton}
                   onClick={() => {
-                    // setDueDate(moment().format("DD.MM.YYYY"));
-                    // setDueDateVisibility(false);
+                    setEditingTask(task);
+                    handleEditDueDate(moment().format("DD.MM.YYYY"));
                   }}
                 >
                   <div className={cl.calendarIconContainer}>
@@ -181,8 +200,10 @@ export default function Task({
                 <button
                   className={cl.dueDateButton}
                   onClick={() => {
-                    // setDueDate(moment().add(1, "days").format("DD.MM.YYYY"));
-                    // setDueDateVisibility(false);
+                    setEditingTask(task);
+                    handleEditDueDate(
+                      moment().add(1, "days").format("DD.MM.YYYY")
+                    );
                   }}
                 >
                   <BsSun className={cl.tomorrowIcon} />
@@ -190,8 +211,8 @@ export default function Task({
                 <button
                   className={cl.dueDateButton}
                   onClick={() => {
-                    // setDueDate(moment(nextSat).format("DD.MM.YYYY"));
-                    // setDueDateVisibility(false);
+                    setEditingTask(task);
+                    handleEditDueDate(moment(nextSat).format("DD.MM.YYYY"));
                   }}
                 >
                   <FaCouch className={cl.thisWeekendIcon} />
@@ -199,8 +220,8 @@ export default function Task({
                 <button
                   className={cl.dueDateButton}
                   onClick={() => {
-                    // setDueDate(moment(nextMon).format("DD.MM.YYYY"));
-                    // setDueDateVisibility(false);
+                    setEditingTask(task);
+                    handleEditDueDate(moment(nextMon).format("DD.MM.YYYY"));
                   }}
                 >
                   <BsCalendar4Range className={cl.nextWeekIcon} />
@@ -208,8 +229,8 @@ export default function Task({
                 <button
                   className={cl.dueDateButton}
                   onClick={() => {
-                    // setDueDate(undefined);
-                    // setDueDateVisibility(false);
+                    setEditingTask(task);
+                    handleEditDueDate(undefined);
                   }}
                 >
                   <VscCircleSlash className={cl.noDueDateIcon} />

@@ -15,6 +15,7 @@ export default function TaskList({ filter, defaultValue }) {
 
   const handleOpenForm = () => {
     setIsFormActive(true);
+    setEditingTask({})
   };
 
   const handlePrioritySort = (a, b) => {

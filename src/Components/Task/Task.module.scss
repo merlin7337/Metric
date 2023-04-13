@@ -180,7 +180,6 @@ $futureDue-color: #246fe0;
   }
 }
 
-
 .taskLeft {
   display: flex;
   flex-direction: column;
@@ -255,12 +254,13 @@ $futureDue-color: #246fe0;
   align-items: center;
   border-radius: 5px;
   padding: 2px;
-  margin-right: 10px;
+  margin-right: 4px;
 }
 
 .todayIcon {
   font-size: 24px;
   color: #058527;
+  border-radius: 4px;
 
   &:hover {
     background: #e5e5e5;
@@ -270,6 +270,8 @@ $futureDue-color: #246fe0;
 .tomorrowIcon {
   font-size: 24px;
   color: #ad6200 !important;
+  border-radius: 4px;
+  padding: 2px;
 
   &:hover {
     background: #e5e5e5;
@@ -279,6 +281,8 @@ $futureDue-color: #246fe0;
 .nextWeekIcon {
   font-size: 24px;
   color: #692fc2 !important;
+  border-radius: 4px;
+  padding: 2px;
 
   &:hover {
     background: #e5e5e5;
@@ -288,6 +292,8 @@ $futureDue-color: #246fe0;
 .thisWeekendIcon {
   font-size: 24px;
   color: #246fe0 !important;
+  border-radius: 4px;
+  padding: 2px;
 
   &:hover {
     background: #e5e5e5;
@@ -297,6 +303,8 @@ $futureDue-color: #246fe0;
 .noDueDateIcon {
   font-size: 24px;
   color: #666;
+  padding: 2px;
+  border-radius: 4px;
 
   &:hover {
     background: #e5e5e5;
@@ -306,14 +314,16 @@ $futureDue-color: #246fe0;
 .date {
   color: #058527;
   font-size: 12px;
-  top: 6px;
-  left: 5.8px;
+  top: 8px;
   position: absolute;
 }
 
 .calendarIconContainer {
+  padding: 2px;
+  justify-content: center;
   position: relative;
   display: flex;
+  border-radius: 4px;
   &:hover {
     background: #e5e5e5;
   }
