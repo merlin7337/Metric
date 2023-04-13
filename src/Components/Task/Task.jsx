@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Checkbox from "../UI/Checkbox/Checkbox";
 import Dropdown from "../Dropdown/Dropdown";
-import { FaTrashAlt } from "react-icons/fa";
-import { TfiMoreAlt } from "react-icons/tfi";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FiMoreHorizontal } from "react-icons/fi";
 import { AiOutlineEdit } from "react-icons/ai";
 import cl from "./Task.module.scss";
 import moment from "moment";
+import uuid from "react-uuid";
+import { BiDuplicate } from "react-icons/bi";
 
 export default function Task({
   setEditingTask,
@@ -14,6 +16,8 @@ export default function Task({
   setIsFormActive,
   task,
   isSearched,
+  tasks,
+  handleSetTasks,
 }) {
   const { title, description, priority, dueDate, assignedProject } = task;
   const [dropdownVisiblility, setDropdownVisibility] = useState(false);
@@ -22,6 +26,18 @@ export default function Task({
     setEditingTask(task);
     setType("edit");
     setIsFormActive(true);
+    setDropdownVisibility(false);
+  };
+
+  const handleDuplicate = (task) => {
+    handleSetTasks([
+      ...tasks,
+      {
+        ...task,
+        id: uuid(),
+      },
+    ]);
+    setDropdownVisibility(false);
   };
 
   const dueDateClasses = [cl.dueDate];
@@ -81,15 +97,22 @@ export default function Task({
               className={cl.moreButton}
               onClick={() => setDropdownVisibility(!dropdownVisiblility)}
             >
-              <TfiMoreAlt className={cl.moreIcon} />
+              <FiMoreHorizontal className={cl.moreIcon} />
             </button>
             <Dropdown
               visibility={dropdownVisiblility}
               setVisibility={setDropdownVisibility}
             >
-              <button className={cl.trashButton} onClick={handleEdit}>
+              <button className={cl.editFullButton} onClick={handleEdit}>
                 <AiOutlineEdit className={cl.editIcon} />
                 Edit task
+              </button>
+              <button
+                className={cl.duplicateButton}
+                onClick={() => handleDuplicate(task)}
+              >
+                <BiDuplicate className={cl.duplicateIcon} />
+                Duplicate
               </button>
               <button
                 className={cl.trashButton}
@@ -97,7 +120,7 @@ export default function Task({
                   deleteTask(task);
                 }}
               >
-                <FaTrashAlt className={cl.trashIcon} />
+                <FaRegTrashAlt className={cl.trashIcon} />
                 Delete task
               </button>
             </Dropdown>

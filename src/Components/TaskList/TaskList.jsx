@@ -44,6 +44,8 @@ export default function TaskList({ filter, defaultValue }) {
               setType={setType}
               setIsFormActive={setIsFormActive}
               key={e.id}
+              tasks={tasks}
+              handleSetTasks={handleSetTasks}
             />
           );
         })}

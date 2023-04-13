@@ -25,6 +25,7 @@ $futureDue-color: #246fe0;
   font-size: 20px;
   margin-right: 10px;
 }
+
 .taskDescription {
   margin-left: 33px;
   font-size: 10px;
@@ -39,9 +40,18 @@ $futureDue-color: #246fe0;
 .moreButton {
   margin-left: 12px;
   background-color: transparent;
+  align-items: center;
+  justify-content: center;
   border: 0;
   cursor: pointer;
   position: relative;
+  border-radius: 4px;
+  height: 30px;
+  width: 30px;
+
+  &:hover {
+    background-color: #e5e5e5;
+  }
 }
 
 .trashButton {
@@ -52,12 +62,33 @@ $futureDue-color: #246fe0;
   cursor: pointer;
   position: relative;
   font-size: 14px;
+  border-radius: 4px;
+  padding: 1px;
+
   &:hover {
-    color: #605c5c;
+    background-color: #e5e5e5;
   }
 }
 
 .editButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  border-radius: 4px;
+  height: 30px;
+  width: 30px;
+
+  &:hover {
+    background-color: #e5e5e5;
+  }
+}
+
+.editFullButton {
   display: flex;
   align-items: center;
   background-color: transparent;
@@ -65,28 +96,46 @@ $futureDue-color: #246fe0;
   cursor: pointer;
   position: relative;
   font-size: 14px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  padding: 1px;
+
   &:hover {
-    color: #605c5c;
+    background-color: #e5e5e5;
+  }
+}
+
+.duplicateButton {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  padding: 1px;
+
+  &:hover {
+    background-color: #e5e5e5;
   }
 }
 
 .moreIcon {
-  font-size: 24px;
-  &:hover {
-    color: #605c5c;
-  }
+  font-size: 30px;
 }
 
 .editIcon {
   font-size: 24px;
-  &:hover {
-    color: #605c5c;
-  }
 }
 
 .trashIcon {
-  font-size: 16px;
-  margin-right: 5px;
+  font-size: 24px;
+}
+
+.duplicateIcon {
+  font-size: 24px;
 }
 
 .taskLeft {
@@ -98,39 +147,43 @@ $futureDue-color: #246fe0;
   position: relative;
 }
 
-.taskTopLine{
+.taskTopLine {
   align-items: center;
   display: flex;
 }
 
-.taskDownLine{
+.taskDownLine {
   display: flex;
   align-items: center;
 }
 
-.dueDate{
+.dueDate {
   border: 1px solid;
   border-radius: 4px;
   font-size: 12px;
   padding: 2px;
-  &.undefined{
+
+  &.undefined {
     display: none;
   }
-  &.overdue{
+
+  &.overdue {
     color: $overdue-color;
     border-color: $overdue-color;
   }
-  &.today{
+
+  &.today {
     color: $todayDue-color;
     border-color: $todayDue-color;
   }
-  &.future{
+
+  &.future {
     color: $futureDue-color;
     border-color: $futureDue-color;
   }
 }
 
-.divider{
+.divider {
   border-top: 1px solid #e5e5e5;
   margin-bottom: 5px;
 }
