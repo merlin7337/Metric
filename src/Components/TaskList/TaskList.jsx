@@ -11,6 +11,8 @@ export default function TaskList({ filter, defaultValue }) {
   const [isFormActive, setIsFormActive] = useState(false);
   const [type, setType] = useState("create");
 
+  
+
   const handleOpenForm = () => {
     setIsFormActive(true);
   };
@@ -40,6 +42,7 @@ export default function TaskList({ filter, defaultValue }) {
             <Task
               task={e}
               deleteTask={deleteTask}
+              editingTask={editingTask}
               setEditingTask={setEditingTask}
               setType={setType}
               setIsFormActive={setIsFormActive}

@@ -70,6 +70,22 @@ $futureDue-color: #246fe0;
   }
 }
 
+.priorityButton {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 2px;
+
+  &.active .flagIcon {
+    border: 1px solid black;
+  }
+}
+
 .editButton {
   display: flex;
   align-items: center;
@@ -113,7 +129,7 @@ $futureDue-color: #246fe0;
   cursor: pointer;
   position: relative;
   font-size: 14px;
-  border-radius: 4px;
+
   margin-bottom: 5px;
   padding: 1px;
 
@@ -137,6 +153,33 @@ $futureDue-color: #246fe0;
 .duplicateIcon {
   font-size: 24px;
 }
+
+.flagIcon {
+  font-size: 24px;
+  margin-right: 5px;
+  border-radius: 4px;
+
+  &:hover {
+    background: #e5e5e5;
+  }
+
+  &.p1 {
+    color: $p1-color;
+  }
+
+  &.p2 {
+    color: $p2-color;
+  }
+
+  &.p3 {
+    color: $p3-color;
+  }
+
+  &.p4 {
+    color: $p4-color;
+  }
+}
+
 
 .taskLeft {
   display: flex;
@@ -183,7 +226,95 @@ $futureDue-color: #246fe0;
   }
 }
 
+.dueDateButtonsContainer {
+  margin-top: 6px;
+  display: flex;
+}
+
+.priorityButtonsContainer {
+  margin-top: 6px;
+  display: flex;
+}
+
+.heading {
+  font-size: 14px;
+}
+
 .divider {
   border-top: 1px solid #e5e5e5;
   margin-bottom: 5px;
+}
+
+.dueDateButton {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 2px;
+  margin-right: 10px;
+}
+
+.todayIcon {
+  font-size: 24px;
+  color: #058527;
+
+  &:hover {
+    background: #e5e5e5;
+  }
+}
+
+.tomorrowIcon {
+  font-size: 24px;
+  color: #ad6200 !important;
+
+  &:hover {
+    background: #e5e5e5;
+  }
+}
+
+.nextWeekIcon {
+  font-size: 24px;
+  color: #692fc2 !important;
+
+  &:hover {
+    background: #e5e5e5;
+  }
+}
+
+.thisWeekendIcon {
+  font-size: 24px;
+  color: #246fe0 !important;
+
+  &:hover {
+    background: #e5e5e5;
+  }
+}
+
+.noDueDateIcon {
+  font-size: 24px;
+  color: #666;
+
+  &:hover {
+    background: #e5e5e5;
+  }
+}
+
+.date {
+  color: #058527;
+  font-size: 12px;
+  top: 6px;
+  left: 5.8px;
+  position: absolute;
+}
+
+.calendarIconContainer {
+  position: relative;
+  display: flex;
+  &:hover {
+    background: #e5e5e5;
+  }
 }

@@ -12,7 +12,7 @@ export default function TaskForm({
   handleSetTasks,
   type,
   setType,
-  defaultValue,
+  defaultValue
 }) {
   const [title, setTitle] = useState(
     editingTask?.title || defaultValue?.title || ""
