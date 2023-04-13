@@ -8,13 +8,13 @@ import { SidebarContext } from "./context";
 import { TasksProvider } from "./hooks/useTasks";
 
 function App() {
-  const [isSidebarShown, setIsSidebarShown] = useState(false);
+  const [sidebarVisibility, setSidebarVisibility] = useState(false);
 
   return (
     <SidebarContext.Provider
       value={{
-        isSidebarShown,
-        setIsSidebarShown,
+        sidebarVisibility,
+        setSidebarVisibility,
       }}
     >
       <TasksProvider>

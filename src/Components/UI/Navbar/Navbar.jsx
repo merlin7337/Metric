@@ -7,12 +7,13 @@ import { GrHomeRounded } from "react-icons/gr";
 import Search from "../../Search/Search";
 
 export default function Navbar() {
-  const { isSidebarShown, setIsSidebarShown } = useContext(SidebarContext);
+  const { sidebarVisibility, setSidebarVisibility } =
+    useContext(SidebarContext);
   return (
     <div className={cl.navbar}>
       <button
         className={cl.menuButton}
-        onClick={() => setIsSidebarShown(!isSidebarShown)}
+        onClick={() => setSidebarVisibility(!sidebarVisibility)}
       >
         <FiMenu className={cl.menuIcon} />
       </button>

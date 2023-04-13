@@ -10,13 +10,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 export default function Sidebar() {
-  const { isSidebarShown } = useContext(SidebarContext);
+  const { sidebarVisibility } = useContext(SidebarContext);
 
   const [tasks] = useTasks();
   const [countOfInboxTasks, setCountOfInboxTasks] = useState(0);
   const [countOfTodayTasks, setCountOfTodayTasks] = useState(0);
   const [countOfUpcomingTasks, setCountOfUpcomingTasks] = useState(0);
-
 
   let today = moment().toDate().getDate().toString();
   if (today.length === 1) {
@@ -28,10 +27,12 @@ export default function Sidebar() {
     setCountOfTodayTasks(
       tasks.filter((e) => e.dueDate === moment().format("DD.MM.YYYY")).length
     );
-    setCountOfUpcomingTasks(tasks.filter((e) => e.dueDate > moment().format("DD.MM.YYYY")).length);
+    setCountOfUpcomingTasks(
+      tasks.filter((e) => e.dueDate > moment().format("DD.MM.YYYY")).length
+    );
   }, [tasks]);
 
-  if (isSidebarShown) {
+  if (sidebarVisibility) {
     return (
       <div className={cl.sidebar}>
         <div className={cl.links}>
