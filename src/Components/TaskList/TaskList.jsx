@@ -11,11 +11,9 @@ export default function TaskList({ filter, defaultValue }) {
   const [isFormActive, setIsFormActive] = useState(false);
   const [type, setType] = useState("create");
 
-  
-
   const handleOpenForm = () => {
     setIsFormActive(true);
-    setEditingTask({})
+    setEditingTask({});
   };
 
   const handlePrioritySort = (a, b) => {

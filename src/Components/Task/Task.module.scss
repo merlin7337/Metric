@@ -252,8 +252,8 @@ $futureDue-color: #246fe0;
   font-size: 14px;
   display: flex;
   align-items: center;
-  border-radius: 5px;
-  padding: 2px;
+  border-radius: 4px;
+  padding: 1px;
   margin-right: 4px;
 }
 
@@ -324,6 +324,7 @@ $futureDue-color: #246fe0;
   position: relative;
   display: flex;
   border-radius: 4px;
+
   &:hover {
     background: #e5e5e5;
   }
