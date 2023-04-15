@@ -23,13 +23,34 @@ export default function Sidebar() {
   }
 
   useEffect(() => {
+    const upcomingTasksCount =
+      tasks.filter(
+        (e) => e.dueDate === moment().add(0, "days").format("DD.MM.YYYY")
+      ).length +
+      tasks.filter(
+        (e) => e.dueDate === moment().add(1, "days").format("DD.MM.YYYY")
+      ).length +
+      tasks.filter(
+        (e) => e.dueDate === moment().add(2, "days").format("DD.MM.YYYY")
+      ).length +
+      tasks.filter(
+        (e) => e.dueDate === moment().add(3, "days").format("DD.MM.YYYY")
+      ).length +
+      tasks.filter(
+        (e) => e.dueDate === moment().add(4, "days").format("DD.MM.YYYY")
+      ).length +
+      tasks.filter(
+        (e) => e.dueDate === moment().add(5, "days").format("DD.MM.YYYY")
+      ).length +
+      tasks.filter(
+        (e) => e.dueDate === moment().add(6, "days").format("DD.MM.YYYY")
+      ).length;
+
     setCountOfInboxTasks(tasks.filter((e) => !e.assignedProject).length);
     setCountOfTodayTasks(
       tasks.filter((e) => e.dueDate === moment().format("DD.MM.YYYY")).length
     );
-    setCountOfUpcomingTasks(
-      tasks.filter((e) => e.dueDate > moment().format("DD.MM.YYYY")).length
-    );
+    setCountOfUpcomingTasks(upcomingTasksCount);
   }, [tasks]);
 
   if (sidebarVisibility) {

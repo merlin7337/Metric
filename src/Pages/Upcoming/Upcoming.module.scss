@@ -1,10 +1,45 @@
 .container {
-  width: 100%;
+  width: 2000px;
   display: flex;
 }
+
 .content {
-  margin-top: 30px;
   flex: 0 0 1000px;
   margin-left: auto;
   margin-right: auto;
+  margin: 0px 15px;
+  margin-bottom: 15px;
+}
+
+.heading {
+  margin: 0px 15px;
+  margin-top: 30px;
+  margin-bottom: 20px
+}
+
+
+.dateHeading {
+  display: flex;
+
+  &.today {
+    width: fit-content;
+    padding: 2px;
+    border-radius: 4px;
+    color: #00c90a;
+    border: 1px solid #00c90a;
+  }
+}
+
+.taskListContainer {
+  padding: 0px 15px;
+}
+
+.upcomingContainer {
+  display: grid;
+  grid-template-columns: 300px 1px 300px 1px 300px 1px 300px 1px 300px 1px 300px 1px 300px;
+}
+
+.verticalDivider {
+  border: 1px solid #e5e5e5;
+  height: 100vh;
 }
