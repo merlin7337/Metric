@@ -8,6 +8,7 @@ import moment from "moment";
 import useTasks from "../../../hooks/useTasks";
 import { useState } from "react";
 import { useEffect } from "react";
+import useNextDayOfWeek from "../../../hooks/useNextDayOfWeek";
 
 export default function Sidebar() {
   const { sidebarVisibility } = useContext(SidebarContext);
@@ -18,39 +19,25 @@ export default function Sidebar() {
   const [countOfUpcomingTasks, setCountOfUpcomingTasks] = useState(0);
 
   let today = moment().toDate().getDate().toString();
-  if (today.length === 1) {
-    today = "0" + today;
-  }
+  today = today.length > 1 ? today : "0" + today;
 
   useEffect(() => {
-    const upcomingTasksCount =
-      tasks.filter(
-        (e) => e.dueDate === moment().add(0, "days").format("DD.MM.YYYY")
-      ).length +
-      tasks.filter(
-        (e) => e.dueDate === moment().add(1, "days").format("DD.MM.YYYY")
-      ).length +
-      tasks.filter(
-        (e) => e.dueDate === moment().add(2, "days").format("DD.MM.YYYY")
-      ).length +
-      tasks.filter(
-        (e) => e.dueDate === moment().add(3, "days").format("DD.MM.YYYY")
-      ).length +
-      tasks.filter(
-        (e) => e.dueDate === moment().add(4, "days").format("DD.MM.YYYY")
-      ).length +
-      tasks.filter(
-        (e) => e.dueDate === moment().add(5, "days").format("DD.MM.YYYY")
-      ).length +
-      tasks.filter(
-        (e) => e.dueDate === moment().add(6, "days").format("DD.MM.YYYY")
-      ).length;
+    const upcomingWeekTasksCount = Array.from({ length: 7 })
+      .map(
+        (_, i) =>
+          tasks.filter(
+            (e) => e.dueDate === moment().add(i, "days").format("DD.MM.YYYY")
+          ).length
+      )
+      .reduce((a, b) => {
+        return a + b;
+      });
 
     setCountOfInboxTasks(tasks.filter((e) => !e.assignedProject).length);
     setCountOfTodayTasks(
       tasks.filter((e) => e.dueDate === moment().format("DD.MM.YYYY")).length
     );
-    setCountOfUpcomingTasks(upcomingTasksCount);
+    setCountOfUpcomingTasks(upcomingWeekTasksCount);
   }, [tasks]);
 
   if (sidebarVisibility) {

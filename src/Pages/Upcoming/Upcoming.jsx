@@ -4,21 +4,6 @@ import TaskList from "../../components/TaskList/TaskList";
 import moment from "moment";
 
 export default function Upcoming() {
-  // function nextDayAndTime(dayOfWeekIndex, format = "DD.MM.YYYY") {
-  //   let now = new Date();
-  //   let result = new Date(
-  //     now.getFullYear(),
-  //     now.getMonth(),
-  //     now.getDate() + ((6 + dayOfWeekIndex - now.getDay()) % 6)
-  //   );
-
-  //   if (result < now) {
-  //     result.setDate(result.getDate() + 6);
-  //   }
-
-  //   return moment(result).format(format);
-  // }
-
   const upcomingWeek = Array.from({ length: 7 }).map((_, i) =>
     moment().add(i, "days").format("DD.MM.YYYY")
   );

@@ -7,6 +7,7 @@ import { BsSun, BsCalendar4Range } from "react-icons/bs";
 import { VscCircleSlash } from "react-icons/vsc";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { FaCouch } from "react-icons/fa";
+import useNextDayOfWeek from "../../../hooks/useNextDayOfWeek";
 
 export default function DueDateDropdown({
   dueDate,
@@ -15,15 +16,10 @@ export default function DueDateDropdown({
   setDueDateVisibility,
 }) {
   let today = moment().toDate().getDate().toString();
-  if (today.length === 1) {
-    today = "0" + today;
-  }
+  today = today.length > 1 ? today : "0" + today;
 
-  let nextMon = new Date();
-  nextMon.setDate(nextMon.getDate() + ((1 + 7 - nextMon.getDay()) % 7 || 7));
-
-  let nextSat = new Date();
-  nextSat.setDate(nextSat.getDate() + ((1 + 5 - nextSat.getDay()) % 7 || 7));
+  let nextMon = useNextDayOfWeek(1);
+  let nextSat = useNextDayOfWeek(6);
 
   let dueDateModalIcon;
   switch (dueDate) {
