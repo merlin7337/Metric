@@ -32,11 +32,11 @@
 
 .taskListContainer {
   padding: 0px 15px;
+  width: 400px;
 }
 
 .upcomingContainer {
-  display: grid;
-  grid-template-columns: 300px 1px 300px 1px 300px 1px 300px 1px 300px 1px 300px 1px 300px;
+  display: flex;
 }
 
 .verticalDivider {
