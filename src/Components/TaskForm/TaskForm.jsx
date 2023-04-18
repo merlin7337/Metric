@@ -12,7 +12,7 @@ export default function TaskForm({
   handleSetTasks,
   type,
   setType,
-  defaultValue
+  defaultValue,
 }) {
   const [title, setTitle] = useState(
     editingTask?.title || defaultValue?.title || ""
@@ -24,10 +24,7 @@ export default function TaskForm({
     editingTask?.priority || defaultValue?.priority || 4
   );
   const [dueDate, setDueDate] = useState(
-    editingTask?.dueDate || defaultValue?.dueDate || undefined
-  );
-  const [assignedProject, setAssignedProject] = useState(
-    editingTask?.assignedProject || defaultValue?.assignedProject || undefined
+    editingTask?.dueDate || defaultValue?.dueDate || ""
   );
 
   const [priorityVisibility, setPriorityVisibility] = useState(false);
@@ -45,8 +42,7 @@ export default function TaskForm({
     setTitle("");
     setDescription("");
     setPriority(4);
-    setDueDate(undefined);
-    setAssignedProject(undefined);
+    setDueDate("");
     setEditingTask({});
     if (type === "edit") {
       setType("create");
@@ -62,7 +58,6 @@ export default function TaskForm({
           description,
           dueDate,
           priority,
-          assignedProject,
           id: uuid(),
         },
       ]);
@@ -75,7 +70,7 @@ export default function TaskForm({
       const copy = [...tasks]; //unique copy
       return copy.map((e) =>
         e.id === editingTask.id
-          ? { ...e, title, description, priority, dueDate, assignedProject }
+          ? { ...e, title, description, priority, dueDate }
           : e
       );
     };

@@ -1,6 +1,7 @@
 .sidebar {
   width: 220px;
-  height: calc(100vh - 44px);
+  z-index: 0.9;
+  background: white;
 }
 
 .links {
@@ -19,6 +20,7 @@
   align-items: center;
   min-width: 183px;
   justify-content: space-between;
+
   &:hover {
     background-color: #e5e5e5;
   }
@@ -55,12 +57,12 @@
   display: flex;
 }
 
-.countOfTasks{
+.countOfTasks {
   color: grey;
   font-size: 14px;
 }
 
-.navLinkLeft{
+.navLinkLeft {
   display: flex;
   align-items: center;
 }

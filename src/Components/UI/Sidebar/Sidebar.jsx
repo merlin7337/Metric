@@ -8,7 +8,6 @@ import moment from "moment";
 import useTasks from "../../../hooks/useTasks";
 import { useState } from "react";
 import { useEffect } from "react";
-import useNextDayOfWeek from "../../../hooks/useNextDayOfWeek";
 
 export default function Sidebar() {
   const { sidebarVisibility } = useContext(SidebarContext);
@@ -33,7 +32,7 @@ export default function Sidebar() {
         return a + b;
       });
 
-    setCountOfInboxTasks(tasks.filter((e) => !e.assignedProject).length);
+    setCountOfInboxTasks(tasks.length);
     setCountOfTodayTasks(
       tasks.filter((e) => e.dueDate === moment().format("DD.MM.YYYY")).length
     );
