@@ -13,6 +13,7 @@ import useTasks from "../../hooks/useTasks";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { BsCalendar4Range, BsSun } from "react-icons/bs";
 import { VscCircleSlash } from "react-icons/vsc";
+import useNextDayOfWeek from "../../hooks/useNextDayOfWeek";
 
 export default function Task({
   editingTask,
@@ -23,7 +24,7 @@ export default function Task({
   task,
   isSearched,
 }) {
-  const { title, description, priority, dueDate, assignedProject } = task;
+  const { title, description, priority, dueDate } = task;
   const [tasks, handleSetTasks] = useTasks();
   const [dropdownVisiblility, setDropdownVisibility] = useState(false);
 
@@ -70,7 +71,7 @@ export default function Task({
   };
 
   const dueDateClasses = [cl.dueDate];
-  if (dueDate === undefined) {
+  if (dueDate === "") {
     dueDateClasses.push(cl.undefined);
   } else if (dueDate < moment().format("DD.MM.YYYY")) {
     dueDateClasses.push(cl.overdue);
@@ -85,11 +86,9 @@ export default function Task({
     today = "0" + today;
   }
 
-  let nextMon = new Date();
-  nextMon.setDate(nextMon.getDate() + ((1 + 7 - nextMon.getDay()) % 7 || 7));
+  let nextMon = useNextDayOfWeek(1);
 
-  let nextSat = new Date();
-  nextSat.setDate(nextSat.getDate() + ((1 + 5 - nextSat.getDay()) % 7 || 7));
+  let nextSat = useNextDayOfWeek(6);
 
   const priorityButtons = Array.from({ length: 4 }).map((_, i) => {
     const buttonPriority = i + 1;

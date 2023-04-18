@@ -8,6 +8,7 @@ import { VscCircleSlash } from "react-icons/vsc";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { FaCouch } from "react-icons/fa";
 import useNextDayOfWeek from "../../../hooks/useNextDayOfWeek";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 
 export default function DueDateDropdown({
   dueDate,
@@ -22,36 +23,27 @@ export default function DueDateDropdown({
   let nextSat = useNextDayOfWeek(6);
 
   let dueDateModalIcon;
-  switch (dueDate) {
-    case moment().format("DD.MM.YYYY"):
-      dueDateModalIcon = (
-        <div className={cl.calendarIconContainer}>
-          <IoCalendarClearOutline className={cl.todayIcon} />
-          <span className={cl.date}>{today}</span>
-        </div>
-      );
-      break;
-    case moment().add(1, "days").format("DD.MM.YYYY"):
-      dueDateModalIcon = <BsSun className={cl.tomorrowIcon} />;
-      break;
-    case moment(nextSat).format("DD.MM.YYYY"):
-      dueDateModalIcon = <FaCouch className={cl.thisWeekendIcon} />;
-      break;
-    case moment(nextMon).format("DD.MM.YYYY"):
-      dueDateModalIcon = <BsCalendar4Range className={cl.nextWeekIcon} />;
-      break;
-    case undefined:
-      dueDateModalIcon = <VscCircleSlash className={cl.noDueDateIcon} />;
-      break;
-    default:
-      dueDateModalIcon = <VscCircleSlash className={cl.invalidDateIcon} />;
-      break;
+  if (dueDate === "") {
+    dueDateModalIcon = <VscCircleSlash className={cl.noDueDateIcon} />;
+  } else if (dueDate === moment().format("DD.MM.YYYY")) {
+    dueDateModalIcon = (
+      <div className={cl.calendarIconContainer}>
+        <IoCalendarClearOutline className={cl.todayIcon} />
+        <span className={cl.date}>{today}</span>
+      </div>
+    );
+  } else if (dueDate === moment().add(1, "days").format("DD.MM.YYYY")) {
+    dueDateModalIcon = <BsSun className={cl.tomorrowIcon} />;
+  } else if (dueDate === nextSat) {
+    dueDateModalIcon = <FaCouch className={cl.thisWeekendIcon} />;
+  } else if (dueDate > moment().format("DD.MM.YYYY")) {
+    dueDateModalIcon = <BsCalendar4Range className={cl.nextWeekIcon} />;
+  } else {
+    dueDateModalIcon = <VscCircleSlash className={cl.invalidDateIcon} />;
   }
 
   const handleChangeDueDate = (e) => {
-    e.currentTarget.value === ""
-      ? setDueDate(undefined)
-      : setDueDate(e.currentTarget.value);
+    setDueDate(e.target.value);
   };
 
   return (
@@ -61,7 +53,7 @@ export default function DueDateDropdown({
         onClick={() => setDueDateVisibility(!dueDateVisibility)}
       >
         {dueDateModalIcon}
-        {dueDate === undefined
+        {dueDate === ""
           ? "Due date"
           : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
       </button>
@@ -70,13 +62,22 @@ export default function DueDateDropdown({
         visibility={dueDateVisibility}
         setVisibility={setDueDateVisibility}
       >
-        <input
-          type="text"
-          placeholder="Due date"
-          value={dueDate}
-          onChange={handleChangeDueDate}
-          className={cl.input}
-        />
+        <div className={cl.inputContainer}>
+          <div className={cl.info}>
+            <IoMdInformationCircleOutline className={cl.infoIcon} />
+            <div className={cl.extraInfo}>
+              Write here date in format: DD.MM.YYYY
+            </div>
+          </div>
+          <input
+            type="text"
+            placeholder="Due date"
+            value={dueDate}
+            onChange={handleChangeDueDate}
+            className={cl.input}
+          />
+        </div>
+
         <div className={cl.divider} />
         <button
           className={cl.dueDateButton}
@@ -110,7 +111,7 @@ export default function DueDateDropdown({
         <button
           className={cl.dueDateButton}
           onClick={() => {
-            setDueDate(moment(nextSat).format("DD.MM.YYYY"));
+            setDueDate(nextSat);
             setDueDateVisibility(false);
           }}
         >
@@ -123,7 +124,7 @@ export default function DueDateDropdown({
         <button
           className={cl.dueDateButton}
           onClick={() => {
-            setDueDate(moment(nextMon).format("DD.MM.YYYY"));
+            setDueDate(nextMon);
             setDueDateVisibility(false);
           }}
         >
@@ -136,15 +137,13 @@ export default function DueDateDropdown({
         <button
           className={cl.dueDateButton}
           onClick={() => {
-            setDueDate(undefined);
+            setDueDate("");
             setDueDateVisibility(false);
           }}
         >
           <VscCircleSlash className={cl.noDueDateIcon} />
           No due date
-          {dueDate === undefined && (
-            <IoMdCheckmark className={cl.checkmarkIcon} />
-          )}
+          {dueDate === "" && <IoMdCheckmark className={cl.checkmarkIcon} />}
         </button>
       </Dropdown>
     </div>
