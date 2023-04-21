@@ -5,7 +5,6 @@
 .input {
   outline: none;
   border: 1px solid white;
-  width: 100%;
   padding: 5px 10px;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -110,33 +109,6 @@
 .divider {
   border-top: 1px solid black;
   margin-bottom: 5px;
-}
-
-.extraInfo {
-  position: absolute;
-  // z-index: 2;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 4px;
-  font-size: 12px;
-  width: 150px;
-  right: 205px;
-  top: 6px;
-  opacity: 0;
-
-  transition-property: opacity;
-  transition-duration: 2s;
-  transition-timing-function: ease-out;
-}
-
-.infoIcon {
-  font-size: 20px;
-  color: #666;
-  position: relative;
-
-  &:hover .extraInfo {
-    opacity: 1;
-  }
 }
 
 .inputContainer {

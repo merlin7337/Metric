@@ -1,5 +1,5 @@
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 import Dropdown from "../../Dropdown/Dropdown";
 import cl from "./DueDateDropdown.module.scss";
 import { IoMdCheckmark } from "react-icons/io";
@@ -8,7 +8,7 @@ import { VscCircleSlash } from "react-icons/vsc";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { FaCouch } from "react-icons/fa";
 import useNextDayOfWeek from "../../../hooks/useNextDayOfWeek";
-import { IoMdInformationCircleOutline } from "react-icons/io";
+import DatePicker from "@mui/lab/DatePicker";
 
 export default function DueDateDropdown({
   dueDate,
@@ -16,6 +16,10 @@ export default function DueDateDropdown({
   dueDateVisibility,
   setDueDateVisibility,
 }) {
+  const [dueDateInputValue, setDueDateInputValue] = useState(
+    moment(dueDate, "DD.MM.YYYY").format("YYYY-MM-DD")
+  );
+
   let today = moment().toDate().getDate().toString();
   today = today.length > 1 ? today : "0" + today;
 
@@ -43,7 +47,9 @@ export default function DueDateDropdown({
   }
 
   const handleChangeDueDate = (e) => {
-    setDueDate(e.target.value);
+    const copy = e.target.value;
+    setDueDateInputValue(copy);
+    setDueDate(moment(copy, "YYYY-MM-DD").format("DD.MM.YYYY"));
   };
 
   return (
@@ -62,27 +68,23 @@ export default function DueDateDropdown({
         visibility={dueDateVisibility}
         setVisibility={setDueDateVisibility}
       >
-        <div className={cl.inputContainer}>
-          <div className={cl.info}>
-            <IoMdInformationCircleOutline className={cl.infoIcon} />
-            <div className={cl.extraInfo}>
-              Write here date in format: DD.MM.YYYY
-            </div>
-          </div>
+        {/* <div className={cl.inputContainer}>
           <input
-            type="text"
-            placeholder="Due date"
-            value={dueDate}
-            onChange={handleChangeDueDate}
+            type="date"
+            value={dueDateInputValue}
+            onInput={handleChangeDueDate}
             className={cl.input}
           />
-        </div>
+        </div> */}
+
+        {/* <DatePicker /> */}
 
         <div className={cl.divider} />
         <button
           className={cl.dueDateButton}
           onClick={() => {
             setDueDate(moment().format("DD.MM.YYYY"));
+            setDueDateInputValue(moment().format("YYYY-MM-DD"));
             setDueDateVisibility(false);
           }}
         >
@@ -99,6 +101,7 @@ export default function DueDateDropdown({
           className={cl.dueDateButton}
           onClick={() => {
             setDueDate(moment().add(1, "days").format("DD.MM.YYYY"));
+            setDueDateInputValue(moment().add(1, "days").format("YYYY-MM-DD"));
             setDueDateVisibility(false);
           }}
         >
@@ -112,6 +115,9 @@ export default function DueDateDropdown({
           className={cl.dueDateButton}
           onClick={() => {
             setDueDate(nextSat);
+            setDueDateInputValue(
+              moment(nextSat, "DD.MM.YYYY").format("YYYY-MM-DD")
+            );
             setDueDateVisibility(false);
           }}
         >
@@ -125,6 +131,9 @@ export default function DueDateDropdown({
           className={cl.dueDateButton}
           onClick={() => {
             setDueDate(nextMon);
+            setDueDateInputValue(
+              moment(nextMon, "DD.MM.YYYY").format("YYYY-MM-DD")
+            );
             setDueDateVisibility(false);
           }}
         >
@@ -138,6 +147,7 @@ export default function DueDateDropdown({
           className={cl.dueDateButton}
           onClick={() => {
             setDueDate("");
+            setDueDateInputValue("");
             setDueDateVisibility(false);
           }}
         >
