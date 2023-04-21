@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Inbox from "../pages/Inbox/Inbox";
-import Today from "../pages/Today/Today";
-import Upcoming from "../pages/Upcoming/Upcoming";
+import Inbox from "../views/Inbox/Inbox";
+import Today from "../views/Today/Today";
+import Upcoming from "../views/Upcoming/Upcoming";
+import Overdue from "../views/Overdue/Overdue";
 
 function Router() {
   return (
@@ -11,6 +12,7 @@ function Router() {
       <Route path="/inbox" element={<Inbox />} />
       <Route path="/today" element={<Today />} />
       <Route path="/upcoming" element={<Upcoming />} />
+      <Route path="/overdue" element={<Overdue />} />
     </Routes>
   );
 }

@@ -8,7 +8,8 @@ import { VscCircleSlash } from "react-icons/vsc";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { FaCouch } from "react-icons/fa";
 import useNextDayOfWeek from "../../../hooks/useNextDayOfWeek";
-import DatePicker from "@mui/lab/DatePicker";
+import Checkbox from '@mui/material/Checkbox';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function DueDateDropdown({
   dueDate,
@@ -68,16 +69,16 @@ export default function DueDateDropdown({
         visibility={dueDateVisibility}
         setVisibility={setDueDateVisibility}
       >
-        {/* <div className={cl.inputContainer}>
+        <div className={cl.inputContainer}>
           <input
             type="date"
             value={dueDateInputValue}
             onInput={handleChangeDueDate}
             className={cl.input}
           />
-        </div> */}
+        </div>
 
-        {/* <DatePicker /> */}
+        <DatePicker />
 
         <div className={cl.divider} />
         <button
