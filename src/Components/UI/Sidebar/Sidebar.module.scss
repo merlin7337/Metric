@@ -1,12 +1,14 @@
 .sidebar {
-  width: 220px;
   z-index: 0.9;
   background: white;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
+  transition: 0.3s ease;
+  opacity: 0;
+  overflow: hidden;
+  width: 0%;
 
   &.active {
-    transform: translateX(0%);
+    opacity: 1;
+    width: 15%;
   }
 }
 
@@ -24,7 +26,6 @@
   border-radius: 8px;
   display: flex;
   align-items: center;
-  min-width: 183px;
   justify-content: space-between;
 
   &:hover {
