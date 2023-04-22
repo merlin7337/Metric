@@ -5,7 +5,11 @@ import cl from "./TaskList.module.scss";
 import { AiOutlinePlus } from "react-icons/ai";
 import useTasks from "../../hooks/useTasks";
 
-export default function TaskList({ filter, defaultValue, isButtonActive = true }) {
+export default function TaskList({
+  filter,
+  defaultValue,
+  isButtonActive = true,
+}) {
   const [editingTask, setEditingTask] = useState({});
   const [tasks, handleSetTasks] = useTasks();
   const [isFormActive, setIsFormActive] = useState(false);

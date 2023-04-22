@@ -1,8 +1,7 @@
 # What is Metric?
 
 Metric is an open source pet-project that copies [todoist](https://todoist.com/app/today).
-It has less functional than [todoist](https://todoist.com/app/today), so it took me not too long.
-Metric is my first project, I wish that I can be proud with skills, I owned making Metric
+It's my first project, so I was concentrated on learning while making it. I hope you'll find Metric intersting.
 
 ## Technologies
 
@@ -19,3 +18,5 @@ Metric is my first project, I wish that I can be proud with skills, I owned maki
 ## Libraries
 
 - [React icons](https://react-icons.github.io/react-icons/)
+- [MUI](https://mui.com/)
+- [Moment.js](https://momentjs.com/)

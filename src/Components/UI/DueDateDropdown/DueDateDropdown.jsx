@@ -9,6 +9,7 @@ import { IoCalendarClearOutline } from "react-icons/io5";
 import { FaCouch } from "react-icons/fa";
 import useNextDayOfWeek from "../../../hooks/useNextDayOfWeek";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
 
 export default function DueDateDropdown({
   dueDate,
@@ -17,7 +18,7 @@ export default function DueDateDropdown({
   setDueDateVisibility,
 }) {
   const [dueDateInputValue, setDueDateInputValue] = useState(
-    moment(dueDate, "DD.MM.YYYY").format("YYYY-MM-DD")
+    dueDate ? dayjs(moment(dueDate, "DD.MM.YYYY").toDate()) : null
   );
 
   let today = moment().toDate().getDate().toString();
@@ -38,7 +39,7 @@ export default function DueDateDropdown({
     );
   } else if (dueDate === moment().add(1, "days").format("DD.MM.YYYY")) {
     dueDateModalIcon = <BsSun className={cl.tomorrowIcon} />;
-  } else if (dueDate === nextSat) {
+  } else if (dueDate === moment(nextSat).format("DD.MM.YYYY")) {
     dueDateModalIcon = <FaCouch className={cl.thisWeekendIcon} />;
   } else if (dueDate > moment().format("DD.MM.YYYY")) {
     dueDateModalIcon = <BsCalendar4Range className={cl.nextWeekIcon} />;
@@ -46,10 +47,10 @@ export default function DueDateDropdown({
     dueDateModalIcon = <VscCircleSlash className={cl.invalidDateIcon} />;
   }
 
-  const handleChangeDueDate = (e) => {
-    const copy = e.target.value;
-    setDueDateInputValue(copy);
-    setDueDate(moment(copy, "YYYY-MM-DD").format("DD.MM.YYYY"));
+  const handleChangeDueDate = (value) => {
+    setDueDateInputValue(dayjs(value));
+    console.log(dayjs(value).format("DD.MM.YYYY"));
+    setDueDate(dayjs(value).format("DD.MM.YYYY"));
   };
 
   return (
@@ -68,13 +69,19 @@ export default function DueDateDropdown({
         visibility={dueDateVisibility}
         setVisibility={setDueDateVisibility}
       >
-        <DatePicker />
+        <DatePicker
+          slotProps={{ textField: { size: "small" } }}
+          value={dueDateInputValue}
+          onChange={handleChangeDueDate}
+          closeOnSelect={true}
+          disablePast={true}
+        />
         <div className={cl.divider} />
         <button
           className={cl.dueDateButton}
           onClick={() => {
             setDueDate(moment().format("DD.MM.YYYY"));
-            setDueDateInputValue(moment().format("YYYY-MM-DD"));
+            setDueDateInputValue(dayjs());
             setDueDateVisibility(false);
           }}
         >
@@ -91,7 +98,7 @@ export default function DueDateDropdown({
           className={cl.dueDateButton}
           onClick={() => {
             setDueDate(moment().add(1, "days").format("DD.MM.YYYY"));
-            setDueDateInputValue(moment().add(1, "days").format("YYYY-MM-DD"));
+            setDueDateInputValue(dayjs().add(1, "days"));
             setDueDateVisibility(false);
           }}
         >
@@ -104,10 +111,8 @@ export default function DueDateDropdown({
         <button
           className={cl.dueDateButton}
           onClick={() => {
-            setDueDate(nextSat);
-            setDueDateInputValue(
-              moment(nextSat, "DD.MM.YYYY").format("YYYY-MM-DD")
-            );
+            setDueDate(moment(nextSat).format("DD.MM.YYYY"));
+            setDueDateInputValue(dayjs(nextSat));
             setDueDateVisibility(false);
           }}
         >
@@ -120,10 +125,8 @@ export default function DueDateDropdown({
         <button
           className={cl.dueDateButton}
           onClick={() => {
-            setDueDate(nextMon);
-            setDueDateInputValue(
-              moment(nextMon, "DD.MM.YYYY").format("YYYY-MM-DD")
-            );
+            setDueDate(moment(nextMon).format("DD.MM.YYYY"));
+            setDueDateInputValue(dayjs(nextMon));
             setDueDateVisibility(false);
           }}
         >
@@ -137,7 +140,7 @@ export default function DueDateDropdown({
           className={cl.dueDateButton}
           onClick={() => {
             setDueDate("");
-            setDueDateInputValue("");
+            setDueDateInputValue(null);
             setDueDateVisibility(false);
           }}
         >

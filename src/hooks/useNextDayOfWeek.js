@@ -1,8 +1,5 @@
-import moment from "moment";
-
 export default function useNextDayOfWeek(
   dayOfWeekIndex,
-  format = "DD.MM.YYYY"
 ) {
   let now = new Date();
   let result = new Date(
@@ -15,5 +12,5 @@ export default function useNextDayOfWeek(
     result.setDate(result.getDate() + 7);
   }
 
-  return moment(result).format(format);
+  return result;
 }
