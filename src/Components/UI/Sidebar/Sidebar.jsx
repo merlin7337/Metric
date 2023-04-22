@@ -44,45 +44,43 @@ export default function Sidebar() {
     );
   }, [tasks]);
 
-  if (sidebarVisibility) {
-    return (
-      <div className={cl.sidebar}>
-        <div className={cl.links}>
-          <NavLink to="/inbox" className={cl.link}>
-            <div className={cl.navLinkLeft}>
-              <HiOutlineInbox className={cl.inboxIcon} />
-              Inbox
+  return (
+    <div className={`${cl.sidebar} ${sidebarVisibility ? cl.active : ""}`}>
+      <div className={cl.links}>
+        <NavLink to="/inbox" className={cl.link}>
+          <div className={cl.navLinkLeft}>
+            <HiOutlineInbox className={cl.inboxIcon} />
+            Inbox
+          </div>
+          <div className={cl.countOfTasks}>{countOfInboxTasks}</div>
+        </NavLink>
+        <div className={cl.divider} />
+        <NavLink to="/today" className={cl.link}>
+          <div className={cl.navLinkLeft}>
+            <div className={cl.calendarIconContainer}>
+              <IoCalendarClearOutline className={cl.todayIcon} />
+              <span className={cl.date}>{today}</span>
             </div>
-            <div className={cl.countOfTasks}>{countOfInboxTasks}</div>
-          </NavLink>
-          <div className={cl.divider} />
-          <NavLink to="/today" className={cl.link}>
-            <div className={cl.navLinkLeft}>
-              <div className={cl.calendarIconContainer}>
-                <IoCalendarClearOutline className={cl.todayIcon} />
-                <span className={cl.date}>{today}</span>
-              </div>
-              Today
-            </div>
-            <div className={cl.countOfTasks}>{countOfTodayTasks}</div>
-          </NavLink>
-          <NavLink to="/upcoming" className={cl.link}>
-            <div className={cl.navLinkLeft}>
-              <IoCalendarOutline className={cl.upcomingIcon} />
-              Upcoming
-            </div>
-            <div className={cl.countOfTasks}>{countOfUpcomingTasks}</div>
-          </NavLink>
-          <div className={cl.divider} />
-          <NavLink to="/overdue" className={cl.link}>
-            <div className={cl.navLinkLeft}>
+            Today
+          </div>
+          <div className={cl.countOfTasks}>{countOfTodayTasks}</div>
+        </NavLink>
+        <NavLink to="/upcoming" className={cl.link}>
+          <div className={cl.navLinkLeft}>
+            <IoCalendarOutline className={cl.upcomingIcon} />
+            Upcoming
+          </div>
+          <div className={cl.countOfTasks}>{countOfUpcomingTasks}</div>
+        </NavLink>
+        <div className={cl.divider} />
+        <NavLink to="/overdue" className={cl.link}>
+          <div className={cl.navLinkLeft}>
             <VscCircleSlash className={cl.overdueDateIcon} />
-              Overdue
-            </div>
-            <div className={cl.countOfTasks}>{countOfOverdueTasks}</div>
-          </NavLink>
-        </div>
+            Overdue
+          </div>
+          <div className={cl.countOfTasks}>{countOfOverdueTasks}</div>
+        </NavLink>
       </div>
-    );
-  }
+    </div>
+  );
 }
