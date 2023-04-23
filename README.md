@@ -20,3 +20,4 @@ It's my first project, so I was concentrated on learning while making it. I hope
 - [React icons](https://react-icons.github.io/react-icons/)
 - [MUI](https://mui.com/)
 - [Moment.js](https://momentjs.com/)
+- [classnames](https://github.com/JedWatson/classnames)

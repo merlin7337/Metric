@@ -64,11 +64,7 @@ export default function DueDateDropdown({
           ? "Due date"
           : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
       </button>
-      <Dropdown
-        className={cl.dropdown}
-        visibility={dueDateVisibility}
-        setVisibility={setDueDateVisibility}
-      >
+      <Dropdown mix={cl.dropdown} visibility={dueDateVisibility}>
         <DatePicker
           slotProps={{ textField: { size: "small" } }}
           value={dueDateInputValue}

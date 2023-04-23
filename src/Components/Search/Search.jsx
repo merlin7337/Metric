@@ -4,6 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import Dropdown from "../Dropdown/Dropdown";
 import useTasks from "../../hooks/useTasks";
 import Task from "../Task/Task";
+import { TbMoodSad } from "react-icons/tb";
 
 export default function Search() {
   const [searchText, setSearchText] = useState("");
@@ -20,7 +21,10 @@ export default function Search() {
   return (
     <div className={cl.searchContainer}>
       {searchText && (
-        <div className={cl.screenFiller} onClick={() => setSearchText("")}></div>
+        <div
+          className={cl.screenFiller}
+          onClick={() => setSearchText("")}
+        ></div>
       )}
       <div className={cl.search}>
         <div className={cl.inputContainer}>
@@ -34,26 +38,25 @@ export default function Search() {
           />
         </div>
         {searchText ? (
-          <Dropdown
-            className={cl.dropdown}
-            visibility={dropdownVisibility}
-            setVisibility={setDropdownVisibility}
-          >
+          <Dropdown mix={cl.dropdown} visibility={dropdownVisibility}>
             {tasks.filter(
               (e) =>
                 e.title.includes(searchText) ||
                 e.description.includes(searchText)
-            ).length
-              ? tasks
-                  .filter(
-                    (e) =>
-                      e.title.includes(searchText) ||
-                      e.description.includes(searchText)
-                  )
-                  .map((e) => {
-                    return <Task task={e} key={e.id} isSearched={true} />;
-                  })
-              : "No results"}
+            ).length ? (
+              tasks
+                .filter(
+                  (e) =>
+                    e.title.includes(searchText) ||
+                    e.description.includes(searchText)
+                )
+                .map((e) => <Task task={e} key={e.id} isSearched={true} />)
+            ) : (
+              <div className={cl.noResults}>
+                <TbMoodSad className={cl.sadIcon}/>
+                No results
+              </div>
+            )}
           </Dropdown>
         ) : null}
       </div>

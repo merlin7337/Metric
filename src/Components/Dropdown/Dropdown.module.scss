@@ -1,23 +1,17 @@
 .dropdown {
   position: absolute;
   display: none;
-  bottom: -5px;
-  transform: translateY(100%) translateX(-50%);
-  left: 50%;
   z-index: 1;
   padding-bottom: 5px;
-
-  &.active {
-    display: block;
-  }
-}
-
-.dropdownContent {
+  margin-top: 5px;
   width: max-content;
-  display: flex;
   flex-direction: column;
   padding: 6px;
   background: white;
   border-radius: 5px;
   border: 1px solid black;
+
+  &.active {
+    display: block;
+  }
 }

@@ -8,7 +8,9 @@ $p4-color: #666;
 }
 
 .dropdown {
-    position: absolute;
+    transform: translateY(100%) translateX(-50%);
+    left: 50%;
+    bottom: -5px;
 }
 
 .priorityModalButton {

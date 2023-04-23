@@ -41,11 +41,7 @@ export default function PriorityDropdown({
         <IoIosFlag className={[cl.flagIcon, cl[`p${priority}`]].join(" ")} />
         Priority
       </button>
-      <Dropdown
-        className={cl.dropdown}
-        visibility={priorityVisibility}
-        setVisibility={setPriorityVisibility}
-      >
+      <Dropdown mix={cl.dropdown} visibility={priorityVisibility}>
         {priorityButtons}
       </Dropdown>
     </div>

@@ -3,12 +3,12 @@
     margin-left: 5px;
 }
 
-.searchIcon{
+.searchIcon {
     font-size: 22px;
     margin-right: 5px;
 }
 
-.inputContainer{
+.inputContainer {
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -27,11 +27,28 @@
 }
 
 .dropdown {
-    position: absolute
+    position: absolute;
+    left: 0;
+    transform: translateX(0);
 }
 
 .screenFiller {
-    height: 1080px;
-    width: 1920px;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
     position: absolute;
+}
+
+.sadIcon {
+    font-size: 25px;
+    color: #246fe0;
+    margin-right: 5px;
+}
+
+.noResults {
+    display: flex;
+    align-items: center;
 }
