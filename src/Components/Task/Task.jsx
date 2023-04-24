@@ -73,11 +73,11 @@ export default function Task({
   const dueDateClasses = [cl.dueDate];
   if (dueDate === "") {
     dueDateClasses.push(cl.undefined);
-  } else if (dueDate < moment().format("DD.MM.YYYY")) {
-    dueDateClasses.push(cl.overdue);
   } else if (dueDate === moment().format("DD.MM.YYYY")) {
     dueDateClasses.push(cl.today);
-  } else if (dueDate > moment().format("DD.MM.YYYY")) {
+  } else if (moment(dueDate, "DD.MM.YYYY").toDate() < moment().toDate()) {
+    dueDateClasses.push(cl.overdue);
+  } else if (moment(dueDate, "DD.MM.YYYY").toDate() > moment().toDate()) {
     dueDateClasses.push(cl.future);
   }
 

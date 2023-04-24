@@ -41,11 +41,17 @@ export default function DueDateDropdown({
     dueDateModalIcon = <BsSun className={cl.tomorrowIcon} />;
   } else if (dueDate === moment(nextSat).format("DD.MM.YYYY")) {
     dueDateModalIcon = <FaCouch className={cl.thisWeekendIcon} />;
-  } else if (dueDate > moment().format("DD.MM.YYYY")) {
+  } else if (dueDate === moment(nextMon).format("DD.MM.YYYY")) {
     dueDateModalIcon = <BsCalendar4Range className={cl.nextWeekIcon} />;
+  } else if (moment(dueDate, "DD.MM.YYYY").toDate() < moment().toDate()) {
+    dueDateModalIcon = <BsCalendar4Range className={cl.pastIcon} />;
+  } else if (moment(dueDate, "DD.MM.YYYY").toDate() > moment().toDate()) {
+    dueDateModalIcon = <BsCalendar4Range className={cl.futureIcon} />;
   } else {
     dueDateModalIcon = <VscCircleSlash className={cl.invalidDateIcon} />;
   }
+
+  console.log(moment(dueDate, "DD.MM.YYYY").toDate());
 
   const handleChangeDueDate = (value) => {
     setDueDateInputValue(dayjs(value));
