@@ -122,7 +122,8 @@ export default function Task({
             <Checkbox
               className={cl.checkbox}
               priority={priority}
-              disabled={isSearched}
+              deleteTask={deleteTask}
+              task={task}
             />
             <div className={cl.taskTitle}>{title}</div>
             <div className={dueDateClasses.join(" ")}>

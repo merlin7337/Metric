@@ -5,11 +5,12 @@ import Dropdown from "../Dropdown/Dropdown";
 import useTasks from "../../hooks/useTasks";
 import Task from "../Task/Task";
 import { TbMoodSad } from "react-icons/tb";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 export default function Search() {
   const [searchText, setSearchText] = useState("");
   const [dropdownVisibility, setDropdownVisibility] = useState(false);
-  const [tasks] = useTasks();
+  const [tasks, handleSetTasks] = useTasks();
 
   const handleChangeSearchText = (e) => {
     setSearchText(e.currentTarget.value);
@@ -17,6 +18,18 @@ export default function Search() {
       ? setDropdownVisibility(false)
       : setDropdownVisibility(true);
   };
+
+  const deleteTimeout =
+    tasks.filter(
+      (e) => e.title.includes(searchText) || e.description.includes(searchText)
+    ).length === 1
+      ? 0
+      : 300;
+
+  function deleteTask(task) {
+    const newTasks = tasks.filter((e) => e.id !== task.id);
+    handleSetTasks(newTasks);
+  }
 
   return (
     <div className={cl.searchContainer}>
@@ -39,24 +52,41 @@ export default function Search() {
         </div>
         {searchText ? (
           <Dropdown mix={cl.dropdown} visibility={dropdownVisibility}>
-            {tasks.filter(
-              (e) =>
-                e.title.includes(searchText) ||
-                e.description.includes(searchText)
-            ).length ? (
-              tasks
-                .filter(
-                  (e) =>
-                    e.title.includes(searchText) ||
-                    e.description.includes(searchText)
-                )
-                .map((e) => <Task task={e} key={e.id} isSearched={true} />)
-            ) : (
-              <div className={cl.noResults}>
-                <TbMoodSad className={cl.sadIcon}/>
-                No results
-              </div>
-            )}
+            <TransitionGroup>
+              {tasks.filter(
+                (e) =>
+                  e.title.includes(searchText) ||
+                  e.description.includes(searchText)
+              ).length ? (
+                tasks
+                  .filter(
+                    (e) =>
+                      e.title.includes(searchText) ||
+                      e.description.includes(searchText)
+                  )
+                  .map((e) => (
+                    <CSSTransition
+                      key={e.id}
+                      timeout={deleteTimeout}
+                      classNames="item"
+                    >
+                      <Task
+                        task={e}
+                        key={e.id}
+                        isSearched={true}
+                        tasks={tasks}
+                        handleSetTasks={handleSetTasks}
+                        deleteTask={deleteTask}
+                      />
+                    </CSSTransition>
+                  ))
+              ) : (
+                <div className={cl.noResults}>
+                  <TbMoodSad className={cl.sadIcon} />
+                  No results
+                </div>
+              )}
+            </TransitionGroup>
           </Dropdown>
         ) : null}
       </div>

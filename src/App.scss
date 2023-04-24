@@ -2,3 +2,12 @@
   text-align: left;
   display: flex;
 }
+
+.item-exit {
+  opacity: 1;
+}
+
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}

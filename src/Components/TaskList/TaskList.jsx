@@ -4,6 +4,7 @@ import TaskForm from "../TaskForm/TaskForm";
 import cl from "./TaskList.module.scss";
 import { AiOutlinePlus } from "react-icons/ai";
 import useTasks from "../../hooks/useTasks";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 export default function TaskList({
   filter,
@@ -36,23 +37,24 @@ export default function TaskList({
   }
 
   return (
-    <div className={cl.taskList}>
+    <TransitionGroup className={cl.taskList}>
       {tasks
         .filter(filter)
         .sort(handlePrioritySort)
         .map((e) => {
           return (
-            <Task
-              task={e}
-              deleteTask={deleteTask}
-              editingTask={editingTask}
-              setEditingTask={setEditingTask}
-              setType={setType}
-              setIsFormActive={setIsFormActive}
-              key={e.id}
-              tasks={tasks}
-              handleSetTasks={handleSetTasks}
-            />
+            <CSSTransition key={e.id} timeout={300} classNames="item">
+              <Task
+                task={e}
+                deleteTask={deleteTask}
+                editingTask={editingTask}
+                setEditingTask={setEditingTask}
+                setType={setType}
+                setIsFormActive={setIsFormActive}
+                tasks={tasks}
+                handleSetTasks={handleSetTasks}
+              />
+            </CSSTransition>
           );
         })}
       <div className={cl.formContainer}>
@@ -74,6 +76,6 @@ export default function TaskList({
           </button>
         ) : null}
       </div>
-    </div>
+    </TransitionGroup>
   );
 }

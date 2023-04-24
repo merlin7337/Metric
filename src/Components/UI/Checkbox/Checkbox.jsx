@@ -5,7 +5,10 @@ import { IoIosCheckmark, IoIosCheckmarkCircle } from "react-icons/io";
 export default function Checkbox({ priority, deleteTask, task }) {
   const [isChecked, setIsChecked] = useState(false);
 
-  const checkboxClasses = [cl.checkbox, cl[`p${priority}`]].join(" ");
+  const checkboxClasses = [cl.checkbox, cl[`p${priority}`]];
+  if (isChecked) {
+    checkboxClasses.push(cl.checked);
+  }
   const checkmarkClasses = [cl.checkmarkIcon, cl[`p${priority}`]].join(" ");
 
   let icon;
@@ -16,10 +19,10 @@ export default function Checkbox({ priority, deleteTask, task }) {
   return (
     <div className={cl.checkboxContainer}>
       <button
-        className={checkboxClasses}
+        className={checkboxClasses.join(" ")}
         onClick={() => {
           setIsChecked(!isChecked);
-          // setTimeout(() => deleteTask(task), 800);
+          deleteTask(task);
         }}
       >
         {icon}
