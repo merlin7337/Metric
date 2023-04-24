@@ -125,12 +125,12 @@ export default function Task({
               deleteTask={deleteTask}
               task={task}
             />
-            <div className={cl.taskTitle}>{title}</div>
+            <span className={cl.taskTitle}>{title}</span>
             <div className={dueDateClasses.join(" ")}>
               {!dueDate ? "" : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
             </div>
           </div>
-          <div className={cl.taskDescription}>{description}</div>
+          <span className={cl.taskDescription}>{description}</span>
         </div>
       </div>
       <div className={cl.divider} />
@@ -146,12 +146,12 @@ export default function Task({
               deleteTask={deleteTask}
               task={task}
             />
-            <div className={cl.taskTitle}>{title}</div>
+            <span className={cl.taskTitle}>{title}</span>
             <div className={dueDateClasses.join(" ")}>
               {!dueDate ? "" : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
             </div>
           </div>
-          <div className={cl.taskDescription}>{description}</div>
+          <span className={cl.taskDescription}>{description}</span>
         </div>
         <div className={cl.taskTools}>
           <button className={cl.editButton} onClick={handleEdit}>
