@@ -1,6 +1,6 @@
 import React from "react";
 import { IoIosFlag, IoMdCheckmark } from "react-icons/io";
-import Dropdown from "../../Dropdown/Dropdown";
+import Dropdown from "../../../Dropdown/Dropdown";
 import cl from "./PriorityDropdown.module.scss";
 
 export default function PriorityDropdown({

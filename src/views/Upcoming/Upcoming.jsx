@@ -5,7 +5,9 @@ import moment from "moment";
 
 export default function Upcoming() {
   const upcomingWeek = Array.from({ length: 6 }).map((_, i) =>
-    moment().add(i + 1, "days").format("DD.MM.YYYY")
+    moment()
+      .add(i + 1, "days")
+      .format("DD.MM.YYYY")
   );
 
   const upcomingWeekTaskLists = Array.from({ length: 6 }).map((_, i) => {

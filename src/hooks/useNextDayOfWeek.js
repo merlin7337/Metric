@@ -1,6 +1,4 @@
-export default function useNextDayOfWeek(
-  dayOfWeekIndex,
-) {
+export default function useNextDayOfWeek(dayOfWeekIndex) {
   let now = new Date();
   let result = new Date(
     now.getFullYear(),

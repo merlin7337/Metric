@@ -1,25 +1,17 @@
-import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./App.scss";
 import Router from "./routes/Router";
 import Navbar from "./components/UI/Navbar/Navbar";
 import Sidebar from "./components/UI/Sidebar/Sidebar";
-import { SidebarContext } from "./context";
 import { TasksProvider } from "./hooks/useTasks";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { SidebarProvider } from "./hooks/useSidebar";
 
 function App() {
-  const [sidebarVisibility, setSidebarVisibility] = useState(false);
-
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <SidebarContext.Provider
-        value={{
-          sidebarVisibility,
-          setSidebarVisibility,
-        }}
-      >
+      <SidebarProvider>
         <TasksProvider>
           <BrowserRouter>
             <Navbar />
@@ -29,7 +21,7 @@ function App() {
             </div>
           </BrowserRouter>
         </TasksProvider>
-      </SidebarContext.Provider>
+      </SidebarProvider>
     </LocalizationProvider>
   );
 }

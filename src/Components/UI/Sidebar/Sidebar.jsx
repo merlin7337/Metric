@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { SidebarContext } from "../../../context";
 import cl from "./Sidebar.module.scss";
 import { HiOutlineInbox } from "react-icons/hi2";
 import { IoCalendarClearOutline, IoCalendarOutline } from "react-icons/io5";
 import moment from "moment";
 import useTasks from "../../../hooks/useTasks";
+import useSidebar from "../../../hooks/useSidebar";
 import { useState } from "react";
 import { useEffect } from "react";
 import { BsCalendar4Range } from "react-icons/bs";
 
 export default function Sidebar() {
-  const { sidebarVisibility } = useContext(SidebarContext);
+  const [sidebarVisibility] = useSidebar();
 
   const [tasks] = useTasks();
   const [countOfInboxTasks, setCountOfInboxTasks] = useState(0);
@@ -27,7 +27,11 @@ export default function Sidebar() {
       .map(
         (_, i) =>
           tasks.filter(
-            (e) => e.dueDate === moment().add(i + 1, "days").format("DD.MM.YYYY")
+            (e) =>
+              e.dueDate ===
+              moment()
+                .add(i + 1, "days")
+                .format("DD.MM.YYYY")
           ).length
       )
       .reduce((a, b) => {
@@ -78,7 +82,6 @@ export default function Sidebar() {
           </div>
           <div className={cl.countOfTasks}>{countOfUpcomingTasks}</div>
         </NavLink>
-        <div className={cl.divider} />
         <NavLink to="/overdue" className={cl.link}>
           <div className={cl.navLinkLeft}>
             <BsCalendar4Range className={cl.overdueDateIcon} />

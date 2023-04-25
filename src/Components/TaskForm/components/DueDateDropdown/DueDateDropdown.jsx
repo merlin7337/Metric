@@ -1,13 +1,13 @@
 import moment from "moment";
 import React, { useState } from "react";
-import Dropdown from "../../Dropdown/Dropdown";
+import Dropdown from "../../../Dropdown/Dropdown";
 import cl from "./DueDateDropdown.module.scss";
 import { IoMdCheckmark } from "react-icons/io";
 import { BsSun, BsCalendar4Range } from "react-icons/bs";
 import { VscCircleSlash } from "react-icons/vsc";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { FaCouch } from "react-icons/fa";
-import useNextDayOfWeek from "../../../hooks/useNextDayOfWeek";
+import useNextDayOfWeek from "../../../../hooks/useNextDayOfWeek";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 

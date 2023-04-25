@@ -1,20 +1,9 @@
-$p1-color: #d1453b;
-$p2-color: #eb8909;
-$p3-color: #246fe0;
-$p4-color: #666;
-
 $overdue-color: #d82113;
 $todayDue-color: #00c90a;
 $futureDue-color: #246fe0;
 
 .task {
   position: relative;
-}
-
-.dropdown{
-  transform: translateY(100%) translateX(-50%);
-  left: 50%;
-  bottom: -5px;
 }
 
 .taskContent {
@@ -62,38 +51,6 @@ $futureDue-color: #246fe0;
   }
 }
 
-.trashButton {
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  position: relative;
-  font-size: 14px;
-  border-radius: 4px;
-  padding: 1px;
-
-  &:hover {
-    background-color: #e5e5e5;
-  }
-}
-
-.priorityButton {
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  position: relative;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  border-radius: 4px;
-  padding: 2px;
-
-  &.active .flagIcon {
-    border: 1px solid black;
-  }
-}
-
 .editButton {
   display: flex;
   align-items: center;
@@ -112,80 +69,12 @@ $futureDue-color: #246fe0;
   }
 }
 
-.editFullButton {
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  position: relative;
-  font-size: 14px;
-  border-radius: 4px;
-  margin-bottom: 5px;
-  padding: 1px;
-
-  &:hover {
-    background-color: #e5e5e5;
-  }
-}
-
-.duplicateButton {
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  position: relative;
-  font-size: 14px;
-
-  margin-bottom: 5px;
-  padding: 1px;
-
-  &:hover {
-    background-color: #e5e5e5;
-  }
-}
-
 .moreIcon {
   font-size: 30px;
 }
 
 .editIcon {
   font-size: 24px;
-}
-
-.trashIcon {
-  font-size: 24px;
-}
-
-.duplicateIcon {
-  font-size: 24px;
-}
-
-.flagIcon {
-  font-size: 24px;
-  margin-right: 5px;
-  border-radius: 4px;
-
-  &:hover {
-    background: #e5e5e5;
-  }
-
-  &.p1 {
-    color: $p1-color;
-  }
-
-  &.p2 {
-    color: $p2-color;
-  }
-
-  &.p3 {
-    color: $p3-color;
-  }
-
-  &.p4 {
-    color: $p4-color;
-  }
 }
 
 .taskLeft {
@@ -233,107 +122,7 @@ $futureDue-color: #246fe0;
   }
 }
 
-.dueDateButtonsContainer {
-  margin-top: 6px;
-  display: flex;
-}
-
-.priorityButtonsContainer {
-  margin-top: 6px;
-  display: flex;
-}
-
-.heading {
-  font-size: 14px;
-}
-
 .divider {
   border-top: 1px solid #e5e5e5;
   margin-bottom: 5px;
-}
-
-.dueDateButton {
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  position: relative;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  border-radius: 4px;
-  padding: 1px;
-  margin-right: 4px;
-}
-
-.todayIcon {
-  font-size: 24px;
-  color: #058527;
-  border-radius: 4px;
-
-  &:hover {
-    background: #e5e5e5;
-  }
-}
-
-.tomorrowIcon {
-  font-size: 24px;
-  color: #ad6200 !important;
-  border-radius: 4px;
-  padding: 2px;
-
-  &:hover {
-    background: #e5e5e5;
-  }
-}
-
-.nextWeekIcon {
-  font-size: 24px;
-  color: #692fc2 !important;
-  border-radius: 4px;
-  padding: 2px;
-
-  &:hover {
-    background: #e5e5e5;
-  }
-}
-
-.thisWeekendIcon {
-  font-size: 24px;
-  color: #246fe0 !important;
-  border-radius: 4px;
-  padding: 2px;
-
-  &:hover {
-    background: #e5e5e5;
-  }
-}
-
-.noDueDateIcon {
-  font-size: 24px;
-  color: #666;
-  padding: 2px;
-  border-radius: 4px;
-
-  &:hover {
-    background: #e5e5e5;
-  }
-}
-
-.date {
-  color: #058527;
-  font-size: 12px;
-  top: 8px;
-  position: absolute;
-}
-
-.calendarIconContainer {
-  padding: 2px;
-  justify-content: center;
-  position: relative;
-  display: flex;
-  border-radius: 4px;
-
-  &:hover {
-    background: #e5e5e5;
-  }
 }

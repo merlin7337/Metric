@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import cl from "./Search.module.scss";
 import { FiSearch } from "react-icons/fi";
-import Dropdown from "../Dropdown/Dropdown";
-import useTasks from "../../hooks/useTasks";
-import Task from "../Task/Task";
+import Dropdown from "../../Dropdown/Dropdown";
+import useTasks from "../../../hooks/useTasks";
+import Task from "../../Task/Task";
 import { TbMoodSad } from "react-icons/tb";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 

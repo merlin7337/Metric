@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import cl from "./TaskForm.module.scss";
 import uuid from "react-uuid";
-import DueDateDropdown from "../UI/DueDateDropdown/DueDateDropdown";
-import PriorityDropdown from "../UI/PriorityDropdown/PriorityDropdown";
+import DueDateDropdown from "./components/DueDateDropdown/DueDateDropdown";
+import PriorityDropdown from "./components/PriorityDropdown/PriorityDropdown";
 
 export default function TaskForm({
   setIsActive,
