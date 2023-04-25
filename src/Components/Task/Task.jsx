@@ -7,6 +7,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import cl from "./Task.module.scss";
 import moment from "moment";
 import uuid from "react-uuid";
+import TaskForm from "../TaskForm/TaskForm";
 import { BiDuplicate } from "react-icons/bi";
 import { IoIosFlag } from "react-icons/io";
 import useTasks from "../../hooks/useTasks";
@@ -19,14 +20,14 @@ export default function Task({
   editingTask,
   setEditingTask,
   deleteTask,
-  setType,
-  setIsFormActive,
   task,
   isSearched,
 }) {
   const { title, description, priority, dueDate } = task;
   const [tasks, handleSetTasks] = useTasks();
   const [dropdownVisiblility, setDropdownVisibility] = useState(false);
+  const [formVisibility, setFormVisibility] = useState(false);
+  const [type, setType] = useState("create");
 
   const handleEditPriority = (priority) => {
     const f = (tasks) => {
@@ -55,7 +56,7 @@ export default function Task({
   const handleEdit = () => {
     setEditingTask(task);
     setType("edit");
-    setIsFormActive(true);
+    setFormVisibility(true);
     setDropdownVisibility(false);
   };
 
@@ -136,125 +137,139 @@ export default function Task({
       <div className={cl.divider} />
     </div>
   ) : (
-    <div className={cl.task}>
-      <div className={cl.taskContent}>
-        <div className={cl.taskLeft}>
-          <div className={cl.taskTopLine}>
-            <Checkbox
-              className={cl.checkbox}
-              priority={priority}
-              deleteTask={deleteTask}
-              task={task}
-            />
-            <span className={cl.taskTitle}>{title}</span>
-            <div className={dueDateClasses.join(" ")}>
-              {!dueDate ? "" : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
+    <>
+      <div className={cl.task}>
+        <div className={cl.taskContent}>
+          <div className={cl.taskLeft}>
+            <div className={cl.taskTopLine}>
+              <Checkbox
+                className={cl.checkbox}
+                priority={priority}
+                deleteTask={deleteTask}
+                task={task}
+              />
+              <span className={cl.taskTitle}>{title}</span>
+              <div className={dueDateClasses.join(" ")}>
+                {!dueDate ? "" : moment(dueDate, "DD.MM.YYYY").format("DD MMM")}
+              </div>
             </div>
+            <span className={cl.taskDescription}>{description}</span>
           </div>
-          <span className={cl.taskDescription}>{description}</span>
-        </div>
-        <div className={cl.taskTools}>
-          <button className={cl.editButton} onClick={handleEdit}>
-            <AiOutlineEdit className={cl.editIcon} />
-          </button>
-          <div className={cl.moreContainer}>
-            <button
-              className={cl.moreButton}
-              onClick={() => {
-                setDropdownVisibility(!dropdownVisiblility);
-                setEditingTask(task);
-              }}
-            >
-              <FiMoreHorizontal className={cl.moreIcon} />
+          <div className={cl.taskTools}>
+            <button className={cl.editButton} onClick={handleEdit}>
+              <AiOutlineEdit className={cl.editIcon} />
             </button>
-            <Dropdown
-              visibility={dropdownVisiblility}
-              setVisibility={setDropdownVisibility}
-            >
-              <button className={cl.editFullButton} onClick={handleEdit}>
-                <AiOutlineEdit className={cl.editIcon} />
-                Edit task
-              </button>
+            <div className={cl.moreContainer}>
               <button
-                className={cl.duplicateButton}
-                onClick={() => handleDuplicate(task)}
-              >
-                <BiDuplicate className={cl.duplicateIcon} />
-                Duplicate
-              </button>
-              <div className={cl.divider} />
-              <div className={cl.heading}>Due date</div>
-              <div className={cl.dueDateButtonsContainer}>
-                <button
-                  className={cl.dueDateButton}
-                  onClick={() => {
-                    setEditingTask(task);
-                    handleEditDueDate(moment().format("DD.MM.YYYY"));
-                  }}
-                >
-                  <div className={cl.calendarIconContainer}>
-                    <IoCalendarClearOutline className={cl.todayIcon} />
-                    <span className={cl.date}>{today}</span>
-                  </div>
-                </button>
-                <button
-                  className={cl.dueDateButton}
-                  onClick={() => {
-                    setEditingTask(task);
-                    handleEditDueDate(
-                      moment().add(1, "days").format("DD.MM.YYYY")
-                    );
-                  }}
-                >
-                  <BsSun className={cl.tomorrowIcon} />
-                </button>
-                <button
-                  className={cl.dueDateButton}
-                  onClick={() => {
-                    setEditingTask(task);
-                    handleEditDueDate(moment(nextSat).format("DD.MM.YYYY"));
-                  }}
-                >
-                  <FaCouch className={cl.thisWeekendIcon} />
-                </button>
-                <button
-                  className={cl.dueDateButton}
-                  onClick={() => {
-                    setEditingTask(task);
-                    handleEditDueDate(moment(nextMon).format("DD.MM.YYYY"));
-                  }}
-                >
-                  <BsCalendar4Range className={cl.nextWeekIcon} />
-                </button>
-                <button
-                  className={cl.dueDateButton}
-                  onClick={() => {
-                    setEditingTask(task);
-                    handleEditDueDate(undefined);
-                  }}
-                >
-                  <VscCircleSlash className={cl.noDueDateIcon} />
-                </button>
-              </div>
-              <div className={cl.heading}>Priority</div>
-              <div className={cl.priorityButtonsContainer}>
-                {priorityButtons}
-              </div>
-              <div className={cl.divider} />
-              <button
-                className={cl.trashButton}
+                className={cl.moreButton}
                 onClick={() => {
-                  deleteTask(task);
+                  setDropdownVisibility(!dropdownVisiblility);
+                  setEditingTask(task);
                 }}
               >
-                <FaRegTrashAlt className={cl.trashIcon} />
-                Delete task
+                <FiMoreHorizontal className={cl.moreIcon} />
               </button>
-            </Dropdown>
+              <Dropdown
+                visibility={dropdownVisiblility}
+                setVisibility={setDropdownVisibility}
+                mix={cl.dropdown}
+              >
+                <button className={cl.editFullButton} onClick={handleEdit}>
+                  <AiOutlineEdit className={cl.editIcon} />
+                  Edit task
+                </button>
+                <button
+                  className={cl.duplicateButton}
+                  onClick={() => handleDuplicate(task)}
+                >
+                  <BiDuplicate className={cl.duplicateIcon} />
+                  Duplicate
+                </button>
+                <div className={cl.divider} />
+                <div className={cl.heading}>Due date</div>
+                <div className={cl.dueDateButtonsContainer}>
+                  <button
+                    className={cl.dueDateButton}
+                    onClick={() => {
+                      setEditingTask(task);
+                      handleEditDueDate(moment().format("DD.MM.YYYY"));
+                    }}
+                  >
+                    <div className={cl.calendarIconContainer}>
+                      <IoCalendarClearOutline className={cl.todayIcon} />
+                      <span className={cl.date}>{today}</span>
+                    </div>
+                  </button>
+                  <button
+                    className={cl.dueDateButton}
+                    onClick={() => {
+                      setEditingTask(task);
+                      handleEditDueDate(
+                        moment().add(1, "days").format("DD.MM.YYYY")
+                      );
+                    }}
+                  >
+                    <BsSun className={cl.tomorrowIcon} />
+                  </button>
+                  <button
+                    className={cl.dueDateButton}
+                    onClick={() => {
+                      setEditingTask(task);
+                      handleEditDueDate(moment(nextSat).format("DD.MM.YYYY"));
+                    }}
+                  >
+                    <FaCouch className={cl.thisWeekendIcon} />
+                  </button>
+                  <button
+                    className={cl.dueDateButton}
+                    onClick={() => {
+                      setEditingTask(task);
+                      handleEditDueDate(moment(nextMon).format("DD.MM.YYYY"));
+                    }}
+                  >
+                    <BsCalendar4Range className={cl.nextWeekIcon} />
+                  </button>
+                  <button
+                    className={cl.dueDateButton}
+                    onClick={() => {
+                      setEditingTask(task);
+                      handleEditDueDate(undefined);
+                    }}
+                  >
+                    <VscCircleSlash className={cl.noDueDateIcon} />
+                  </button>
+                </div>
+                <div className={cl.heading}>Priority</div>
+                <div className={cl.priorityButtonsContainer}>
+                  {priorityButtons}
+                </div>
+                <div className={cl.divider} />
+                <button
+                  className={cl.trashButton}
+                  onClick={() => {
+                    deleteTask(task);
+                  }}
+                >
+                  <FaRegTrashAlt className={cl.trashIcon} />
+                  Delete task
+                </button>
+              </Dropdown>
+            </div>
           </div>
         </div>
       </div>
+      {formVisibility && (
+        <TaskForm
+          setIsActive={setFormVisibility}
+          editingTask={editingTask}
+          setEditingTask={setEditingTask}
+          tasks={tasks}
+          handleSetTasks={handleSetTasks}
+          type={type}
+          setType={setType}
+        />
+      )}
       <div className={cl.divider} />
-    </div>
+    </>
   );
 }

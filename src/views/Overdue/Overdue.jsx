@@ -10,12 +10,16 @@ export default function Overdue() {
   function handleReschedule() {
     handleSetTasks(
       tasks.map((e) =>
-        e.dueDate < moment().format("DD.MM.YYYY")
+        moment(e.dueDate, "DD.MM.YYYY").toDate() <
+        moment()
+          .set({ hour: 0, minute: 0, seconds: 0, milliseconds: 0 })
+          .toDate()
           ? { ...e, dueDate: moment().format("DD.MM.YYYY") }
           : e
       )
     );
   }
+
   return (
     <div className={cl.container}>
       <div className={cl.content}>
@@ -26,7 +30,12 @@ export default function Overdue() {
           </button>
         </div>
         <TaskList
-          filter={(e) => e.dueDate < moment().format("DD.MM.YYYY")}
+          filter={(e) =>
+            moment(e.dueDate, "DD.MM.YYYY").toDate() <
+            moment()
+              .set({ hour: 0, minute: 0, seconds: 0, milliseconds: 0 })
+              .toDate()
+          }
           isButtonActive={false}
         />
       </div>

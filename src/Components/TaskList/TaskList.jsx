@@ -49,10 +49,7 @@ export default function TaskList({
                 deleteTask={deleteTask}
                 editingTask={editingTask}
                 setEditingTask={setEditingTask}
-                setType={setType}
-                setIsFormActive={setIsFormActive}
-                tasks={tasks}
-                handleSetTasks={handleSetTasks}
+                isSearched={false}
               />
             </CSSTransition>
           );

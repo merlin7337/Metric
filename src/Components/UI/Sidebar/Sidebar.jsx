@@ -8,7 +8,7 @@ import moment from "moment";
 import useTasks from "../../../hooks/useTasks";
 import { useState } from "react";
 import { useEffect } from "react";
-import { VscCircleSlash } from "react-icons/vsc";
+import { BsCalendar4Range } from "react-icons/bs";
 
 export default function Sidebar() {
   const { sidebarVisibility } = useContext(SidebarContext);
@@ -23,11 +23,11 @@ export default function Sidebar() {
   today = today.length > 1 ? today : "0" + today;
 
   useEffect(() => {
-    const upcomingWeekTasksCount = Array.from({ length: 7 })
+    const upcomingWeekTasksCount = Array.from({ length: 6 })
       .map(
         (_, i) =>
           tasks.filter(
-            (e) => e.dueDate === moment().add(i, "days").format("DD.MM.YYYY")
+            (e) => e.dueDate === moment().add(i + 1, "days").format("DD.MM.YYYY")
           ).length
       )
       .reduce((a, b) => {
@@ -40,7 +40,13 @@ export default function Sidebar() {
     );
     setCountOfUpcomingTasks(upcomingWeekTasksCount);
     setCountOfOverdueTasks(
-      tasks.filter((e) => e.dueDate < moment().format("DD.MM.YYYY")).length
+      tasks.filter(
+        (e) =>
+          moment(e.dueDate, "DD.MM.YYYY").toDate() <
+          moment()
+            .set({ hour: 0, minute: 0, seconds: 0, milliseconds: 0 })
+            .toDate()
+      ).length
     );
   }, [tasks]);
 
@@ -75,7 +81,7 @@ export default function Sidebar() {
         <div className={cl.divider} />
         <NavLink to="/overdue" className={cl.link}>
           <div className={cl.navLinkLeft}>
-            <VscCircleSlash className={cl.overdueDateIcon} />
+            <BsCalendar4Range className={cl.overdueDateIcon} />
             Overdue
           </div>
           <div className={cl.countOfTasks}>{countOfOverdueTasks}</div>

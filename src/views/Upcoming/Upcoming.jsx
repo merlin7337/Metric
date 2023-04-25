@@ -4,12 +4,12 @@ import TaskList from "../../components/TaskList/TaskList";
 import moment from "moment";
 
 export default function Upcoming() {
-  const upcomingWeek = Array.from({ length: 7 }).map((_, i) =>
-    moment().add(i, "days").format("DD.MM.YYYY")
+  const upcomingWeek = Array.from({ length: 6 }).map((_, i) =>
+    moment().add(i + 1, "days").format("DD.MM.YYYY")
   );
 
-  const upcomingWeekTaskLists = Array.from({ length: 7 }).map((_, i) => {
-    return i === 0 || i > 6 ? (
+  const upcomingWeekTaskLists = Array.from({ length: 6 }).map((_, i) => {
+    return i === 0 || i > 5 ? (
       <div className={cl.taskListContainer}>
         <div className={cl.dateHeading}>
           {moment(upcomingWeek[i], "DD.MM.YYYY").format("DD MMM")}
