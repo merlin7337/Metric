@@ -57,7 +57,7 @@ export default function Sidebar() {
   return (
     <div className={`${cl.sidebar} ${sidebarVisibility ? cl.active : ""}`}>
       <div className={cl.links}>
-        <NavLink to="/inbox" className={cl.link}>
+        <NavLink to="/#/inbox" className={cl.link}>
           <div className={cl.navLinkLeft}>
             <HiOutlineInbox className={cl.inboxIcon} />
             Inbox
@@ -65,7 +65,7 @@ export default function Sidebar() {
           <div className={cl.countOfTasks}>{countOfInboxTasks}</div>
         </NavLink>
         <div className={cl.divider} />
-        <NavLink to="/today" className={cl.link}>
+        <NavLink to="/#/today" className={cl.link}>
           <div className={cl.navLinkLeft}>
             <div className={cl.calendarIconContainer}>
               <IoCalendarClearOutline className={cl.todayIcon} />
@@ -75,14 +75,14 @@ export default function Sidebar() {
           </div>
           <div className={cl.countOfTasks}>{countOfTodayTasks}</div>
         </NavLink>
-        <NavLink to="/upcoming" className={cl.link}>
+        <NavLink to="/#/upcoming" className={cl.link}>
           <div className={cl.navLinkLeft}>
             <IoCalendarOutline className={cl.upcomingIcon} />
             Upcoming
           </div>
           <div className={cl.countOfTasks}>{countOfUpcomingTasks}</div>
         </NavLink>
-        <NavLink to="/overdue" className={cl.link}>
+        <NavLink to="/#/overdue" className={cl.link}>
           <div className={cl.navLinkLeft}>
             <BsCalendar4Range className={cl.overdueDateIcon} />
             Overdue
