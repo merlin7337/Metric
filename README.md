@@ -1,7 +1,7 @@
 # What is Metric?
 
 Metric is an open source pet-project that copies [todoist](https://todoist.com/app/today).
-It's my first project, so I was concentrated on learning while making it. I hope you'll find Metric intersting.
+It's my first project, so I was concentrated on learning while making it. I hope you'll find Metric interesting.
 
 ## Technologies
 
