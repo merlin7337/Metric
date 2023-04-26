@@ -16,7 +16,7 @@ export default function Navbar() {
       >
         <FiMenu className={cl.menuIcon} />
       </button>
-      <NavLink className={cl.homeButton} to="/Metric/today">
+      <NavLink className={cl.homeButton} to="/today">
         <GrHomeRounded className={cl.homeIcon} />
       </NavLink>
       <Search />
