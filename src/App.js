@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import "./App.scss";
 import Router from "./routes/Router";
 import Navbar from "./components/UI/Navbar/Navbar";
@@ -13,13 +13,13 @@ function App() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <SidebarProvider>
         <TasksProvider>
-          <BrowserRouter basename="/Metric">
+          <HashRouter>
             <Navbar />
             <div className="App">
               <Sidebar />
               <Router />
             </div>
-          </BrowserRouter>
+          </HashRouter>
         </TasksProvider>
       </SidebarProvider>
     </LocalizationProvider>
