@@ -13,7 +13,7 @@ function App() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <SidebarProvider>
         <TasksProvider>
-          <BrowserRouter>
+          <BrowserRouter basename="/Metric">
             <Navbar />
             <div className="App">
               <Sidebar />
