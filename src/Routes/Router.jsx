@@ -8,11 +8,11 @@ import Overdue from "../views/Overdue/Overdue";
 function Router() {
   return (
     <Routes>
-      <Route path="/#/" component={<Today />} />
-      <Route path="/#/inbox" component={<Inbox />} />
-      <Route path="/#/today" component={<Today />} />
-      <Route path="/#/upcoming" component={<Upcoming />} />
-      <Route path="/#/overdue" component={<Overdue />} />
+      <Route path="/" component={<Today />} />
+      <Route path="/inbox" component={<Inbox />} />
+      <Route path="/today" component={<Today />} />
+      <Route path="/upcoming" component={<Upcoming />} />
+      <Route path="/overdue" component={<Overdue />} />
     </Routes>
   );
 }
