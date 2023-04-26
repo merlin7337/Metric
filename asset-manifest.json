@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Metric/static/css/main.7600d786.css",
-    "main.js": "/Metric/static/js/main.0c745d4a.js",
+    "main.js": "/Metric/static/js/main.ad209653.js",
     "index.html": "/Metric/index.html",
     "main.7600d786.css.map": "/Metric/static/css/main.7600d786.css.map",
-    "main.0c745d4a.js.map": "/Metric/static/js/main.0c745d4a.js.map"
+    "main.ad209653.js.map": "/Metric/static/js/main.ad209653.js.map"
   },
   "entrypoints": [
     "static/css/main.7600d786.css",
-    "static/js/main.0c745d4a.js"
+    "static/js/main.ad209653.js"
   ]
 }
