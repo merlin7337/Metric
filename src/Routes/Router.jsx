@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import Inbox from "../views/Inbox/Inbox";
 import Today from "../views/Today/Today";
 import Upcoming from "../views/Upcoming/Upcoming";
