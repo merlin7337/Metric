@@ -157,7 +157,7 @@ export default function MoreDropdown({
           className={cl.dueDateButton}
           onClick={() => {
             setEditingTask(task);
-            handleEditDueDate(undefined);
+            handleEditDueDate("");
           }}
         >
           <VscCircleSlash className={cl.noDueDateIcon} />
